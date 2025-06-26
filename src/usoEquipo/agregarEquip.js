@@ -1,20 +1,22 @@
 const { v4 } = require("uuid");
 const AWS = require("aws-sdk");
-exports.agregarTask = async (event) => {
+
+exports.agregarEquip = async (event) => {
   const dynamoDB = new AWS.DynamoDB.DocumentClient();
-  const { titulo, descripcion } = JSON.parse(event.body);
-  const fechaCreacion = new Date().toISOString();
+  const { estudiante, practica, equipoUsado, horaInicio, horaFin } = JSON.parse(event.body);
   const id = v4();
   const items = {
     id,
-    titulo,
-    descripcion,
-    fechaCreacion,
-    completada: false,
+    estudiante,
+    practica,
+    equipoUsado,
+    horaInicio,
+    horaFin,
   };
+
   await dynamoDB
     .put({
-      TableName: "tabla",
+      TableName: "usoEquipos",
       Item: items,
     })
     .promise();

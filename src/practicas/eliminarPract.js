@@ -1,19 +1,20 @@
 const AWS = require("aws-sdk");
 
-exports.eliminarTask = async (event) => {
+exports.eliminarPract = async (event) => {
   const dynamoDB = new AWS.DynamoDB.DocumentClient();
-  const {id} = event.pathParameters;
+  const { id } = event.pathParameters;
+
   await dynamoDB
     .delete({
-      TableName: "tabla",
-      Key : {id},
+      TableName: "practicas",
+      Key: { id },
     })
     .promise();
 
   return {
     status: 200,
     body: {
-        message: "Tarea eliminada",
-      },
+      message: "Practica eliminada",
+    },
   };
 };

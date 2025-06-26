@@ -1,17 +1,18 @@
 const AWS = require("aws-sdk");
 
-exports.obtenerTask = async (event) => {
+exports.obtenerLab = async (event) => {
   const dynamoDB = new AWS.DynamoDB.DocumentClient();
-  const {id} = event.pathParameters;
+  const { id } = event.pathParameters;
   const result = await dynamoDB
     .get({
-      TableName: "tabla",
-      Key : {id},
+      TableName: "laboratorios",
+      Key: { id },
     })
     .promise();
-  const tarea = result.Item;
+  const laboratorio = result.Item;
   return {
     status: 200,
-    body: tarea,
+    body: laboratorio,
   };
 };
+

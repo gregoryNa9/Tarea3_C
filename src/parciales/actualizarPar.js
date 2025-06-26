@@ -1,28 +1,27 @@
 const AWS = require("aws-sdk");
 
-exports.actualizarTask = async (event) => {
+exports.actualizarPar = async (event) => {
   const dynamoDB = new AWS.DynamoDB.DocumentClient();
   const { id } = event.pathParameters;
-  const { completada, titulo,  descripcion } = JSON.parse(event.body);
+  const { nombre, asignatura } = JSON.parse(event.body);
+
   await dynamoDB
     .update({
-      TableName: "tabla",
-      Key: {
-        id,
-      },
-      UpdateExpression: "set completada = :completada, titulo = :titulo, descripcion = :descripcion",
+      TableName: "parciales",
+      Key: { id },
+      UpdateExpression: "set nombre = :nombre, asignatura = :asignatura",
       ExpressionAttributeValues: {
-        ":completada": completada,
-        ":titulo": titulo,
-        ":descripcion": descripcion,
+        ":nombre": nombre,
+        ":asignatura": asignatura,
       },
       ReturnValues: "ALL_NEW",
     })
     .promise();
+
   return {
     status: 200,
     body: JSON.stringify({
-    message: "Tarea actualizada correctamente",
+      message: "Parcial actualizado correctamente",
     }),
   };
 };
