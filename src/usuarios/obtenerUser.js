@@ -5,7 +5,7 @@ exports.obtenerUser = async (event) => {
   const { id } = event.pathParameters;
   const result = await dynamoDB
     .get({
-      TableName: "usuarios",
+      TableName: "usuario",
       Key: { id },
     })
     .promise();

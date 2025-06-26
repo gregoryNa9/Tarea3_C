@@ -9,53 +9,184 @@ provider:
       Action:
         - dynamodb:*
       Resource:
-          - arn:aws:dynamodb:us-east-1:469647637171:table/tabla
-    
+          - arn:aws:dynamodb:us-east-1:469647637171:table/usuario
+          - arn:aws:dynamodb:us-east-1:469647637171:table/laboratorios
+          - arn:aws:dynamodb:us-east-1:469647637171:table/asignaturas
+          - arn:aws:dynamodb:us-east-1:469647637171:table/parciales
+          - arn:aws:dynamodb:us-east-1:469647637171:table/practicas
+          - arn:aws:dynamodb:us-east-1:469647637171:table/usoEquipo
+
 functions:
-  agregarTask:
-    handler: src/agregarTask.agregarTask
+  # Funciones para la tabla usuarios
+  agregarUser:
+    handler: src/usuarios/agregarUser.agregarUser
     events:
       - httpApi:
-          path: /tarea
+          path: /usuario
           method: post
 
-  obtenerTasks:
-    handler: src/obtenerTasks.obtenerTasks
+  obtenerUser:
+    handler: src/usuarios/obtenerUser.obtenerUser
     events:
       - httpApi:
-          path: /tareas
+          path: /usuario/{id}
           method: get
 
-  obtenerTask:
-    handler: src/obtenerTask.obtenerTask
+  eliminarUser:
+    handler: src/usuarios/eliminarUser.eliminarUser
     events:
       - httpApi:
-          path: /tareas/{id}
-          method: get
-
-  eliminarTask:
-    handler: src/eliminarTask.eliminarTask
-    events:
-      - httpApi:
-          path: /tareas/{id}
+          path: /usuario/{id}
           method: delete
 
-  actualizarTask:
-    handler: src/actualizarTask.actualizarTask
+  actualizarUser:
+    handler: src/usuarios/actualizarUser.actualizarUser
     events:
       - httpApi:
-          path: /tareas/{id}
+          path: /usuario/{id}
           method: put
-resources: 
-  Resources:
-    tareasTable:
-      Type: AWS::DynamoDB::Table
-      Properties:
-        TableName: tabla
-        BillingMode: PAY_PER_REQUEST
-        AttributeDefinitions:
-          - AttributeName: id
-            AttributeType: S
-        KeySchema:
-          - AttributeName: id
-            KeyType: HASH
+  
+  # Funciones para la tabla laboratorios
+  agregarLaboratorio:
+    handler: src/laboratorios/agregarLab.agregarLab
+    events:
+      - httpApi:
+          path: /laboratorio
+          method: post
+  
+  obtenerLaboratorio:
+    handler: src/laboratorios/obtenerLab.obtenerLab
+    events:
+      - httpApi:
+          path: /laboratorio/{id}
+          method: get
+  
+  eliminarLaboratorio:
+    handler: src/laboratorios/eliminarLab.eliminarLab
+    events:
+      - httpApi:
+          path: /laboratorio/{id}
+          method: delete
+  
+  actualizarLaboratorio:
+    handler: src/laboratorios/actualizarLab.actualizarLab
+    events:
+      - httpApi:
+          path: /laboratorio/{id}
+          method: put
+
+  # Funciones para la tabla asignaturas
+  agregarAsignatura:
+    handler: src/asignaturas/agregarAsig.agregarAsig
+    events:
+      - httpApi:
+          path: /asignatura
+          method: post
+  
+  obtenerAsignatura:
+    handler: src/asignaturas/obtenerAsig.obtenerAsig
+    events:
+      - httpApi:
+          path: /asignatura/{id}
+          method: get
+
+  eliminarAsignatura:
+    handler: src/asignaturas/eliminarAsig.eliminarAsig
+    events:
+      - httpApi:
+          path: /asignatura/{id}
+          method: delete
+  
+  actualizarAsignatura:
+    handler: src/asignaturas/actualizarAsig.actualizarAsig
+    events:
+      - httpApi:
+          path: /asignatura/{id}
+          method: put
+
+  # Funciones para la tabla parciales
+  agregarParcial:
+    handler: src/parciales/agregarPar.agregarPar  
+    events:
+      - httpApi:
+          path: /parciales
+          method: post
+
+  obtenerParciales:
+    handler: src/parciales/obtenerPar.obtenerPar
+    events:
+      - httpApi:
+          path: /parciales
+          method: get
+  
+  eliminarParcial:
+    handler: src/parciales/eliminarPar.eliminarPar
+    events:
+      - httpApi:
+          path: /parciales/{id}
+          method: delete
+  
+  actualizarParcial:
+    handler: src/parciales/actualizarPar.actualizarPar
+    events:
+      - httpApi:
+          path: /parciales/{id}
+          method: put
+
+  # Funciones para la tabla practicas
+  agregarPractica:
+    handler: src/practicas/agregarPract.agregarPract  
+    events:
+      - httpApi:
+          path: /practicas
+          method: post
+
+  obtenerPracticas:
+    handler: src/practicas/obtenerPract.obtenerPract
+    events:
+      - httpApi:
+          path: /practicas
+          method: get
+
+  eliminarPractica:
+    handler: src/practicas/eliminarPract.eliminarPract
+    events:
+      - httpApi:
+          path: /practicas/{id}
+          method: delete
+
+  actualizarPractica:
+    handler: src/practicas/actualizarPract.actualizarPract
+    events:
+      - httpApi:
+          path: /practicas/{id}
+          method: put
+
+  # Funciones para la tabla usoEquipo
+  agregarUsoEquipo:
+    handler: src/usoEquipo/agregarEquip.agregarEquip
+    events:
+      - httpApi:
+          path: /usoEquipo
+          method: post
+
+  obtenerUsoEquipo:
+    handler: src/usoEquipo/obtenerEquip.obtenerEquip
+    events:
+      - httpApi:
+          path: /usoEquipo/{id}
+          method: get
+
+  eliminarUsoEquipo:
+    handler: src/usoEquipo/eliminarEquip.eliminarEquip
+    events:
+      - httpApi:
+          path: /usoEquipo/{id}
+          method: delete
+
+  actualizarUsoEquipo:
+    handler: src/usoEquipo/actualizarEquip.actualizarEquip
+    events:
+      - httpApi:
+          path: /usoEquipo/{id}
+          method: put

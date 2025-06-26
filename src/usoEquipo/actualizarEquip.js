@@ -7,7 +7,7 @@ exports.actualizarEquip = async (event) => {
 
   await dynamoDB
     .update({
-      TableName: "usoEquipos",
+      TableName: "usoEquipo",
       Key: { id },
       UpdateExpression: "set estudiante = :estudiante, practica = :practica, equipoUsado = :equipoUsado, horaInicio = :horaInicio, horaFin = :horaFin",
       ExpressionAttributeValues: {

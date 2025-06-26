@@ -2,34 +2,148 @@
   "AWSTemplateFormatVersion": "2010-09-09",
   "Description": "The AWS CloudFormation template for this Serverless application",
   "Resources": {
-    "AgregarTaskLogGroup": {
+    "AgregarUserLogGroup": {
       "Type": "AWS::Logs::LogGroup",
       "Properties": {
-        "LogGroupName": "/aws/lambda/servidor-melanymoreira-dev-agregarTask"
+        "LogGroupName": "/aws/lambda/servidor-melanymoreira-dev-agregarUser"
       }
     },
-    "ObtenerTasksLogGroup": {
+    "ObtenerUserLogGroup": {
       "Type": "AWS::Logs::LogGroup",
       "Properties": {
-        "LogGroupName": "/aws/lambda/servidor-melanymoreira-dev-obtenerTasks"
+        "LogGroupName": "/aws/lambda/servidor-melanymoreira-dev-obtenerUser"
       }
     },
-    "ObtenerTaskLogGroup": {
+    "EliminarUserLogGroup": {
       "Type": "AWS::Logs::LogGroup",
       "Properties": {
-        "LogGroupName": "/aws/lambda/servidor-melanymoreira-dev-obtenerTask"
+        "LogGroupName": "/aws/lambda/servidor-melanymoreira-dev-eliminarUser"
       }
     },
-    "EliminarTaskLogGroup": {
+    "ActualizarUserLogGroup": {
       "Type": "AWS::Logs::LogGroup",
       "Properties": {
-        "LogGroupName": "/aws/lambda/servidor-melanymoreira-dev-eliminarTask"
+        "LogGroupName": "/aws/lambda/servidor-melanymoreira-dev-actualizarUser"
       }
     },
-    "ActualizarTaskLogGroup": {
+    "AgregarLaboratorioLogGroup": {
       "Type": "AWS::Logs::LogGroup",
       "Properties": {
-        "LogGroupName": "/aws/lambda/servidor-melanymoreira-dev-actualizarTask"
+        "LogGroupName": "/aws/lambda/servidor-melanymoreira-dev-agregarLaboratorio"
+      }
+    },
+    "ObtenerLaboratorioLogGroup": {
+      "Type": "AWS::Logs::LogGroup",
+      "Properties": {
+        "LogGroupName": "/aws/lambda/servidor-melanymoreira-dev-obtenerLaboratorio"
+      }
+    },
+    "EliminarLaboratorioLogGroup": {
+      "Type": "AWS::Logs::LogGroup",
+      "Properties": {
+        "LogGroupName": "/aws/lambda/servidor-melanymoreira-dev-eliminarLaboratorio"
+      }
+    },
+    "ActualizarLaboratorioLogGroup": {
+      "Type": "AWS::Logs::LogGroup",
+      "Properties": {
+        "LogGroupName": "/aws/lambda/servidor-melanymoreira-dev-actualizarLaboratorio"
+      }
+    },
+    "AgregarAsignaturaLogGroup": {
+      "Type": "AWS::Logs::LogGroup",
+      "Properties": {
+        "LogGroupName": "/aws/lambda/servidor-melanymoreira-dev-agregarAsignatura"
+      }
+    },
+    "ObtenerAsignaturaLogGroup": {
+      "Type": "AWS::Logs::LogGroup",
+      "Properties": {
+        "LogGroupName": "/aws/lambda/servidor-melanymoreira-dev-obtenerAsignatura"
+      }
+    },
+    "EliminarAsignaturaLogGroup": {
+      "Type": "AWS::Logs::LogGroup",
+      "Properties": {
+        "LogGroupName": "/aws/lambda/servidor-melanymoreira-dev-eliminarAsignatura"
+      }
+    },
+    "ActualizarAsignaturaLogGroup": {
+      "Type": "AWS::Logs::LogGroup",
+      "Properties": {
+        "LogGroupName": "/aws/lambda/servidor-melanymoreira-dev-actualizarAsignatura"
+      }
+    },
+    "AgregarParcialLogGroup": {
+      "Type": "AWS::Logs::LogGroup",
+      "Properties": {
+        "LogGroupName": "/aws/lambda/servidor-melanymoreira-dev-agregarParcial"
+      }
+    },
+    "ObtenerParcialesLogGroup": {
+      "Type": "AWS::Logs::LogGroup",
+      "Properties": {
+        "LogGroupName": "/aws/lambda/servidor-melanymoreira-dev-obtenerParciales"
+      }
+    },
+    "EliminarParcialLogGroup": {
+      "Type": "AWS::Logs::LogGroup",
+      "Properties": {
+        "LogGroupName": "/aws/lambda/servidor-melanymoreira-dev-eliminarParcial"
+      }
+    },
+    "ActualizarParcialLogGroup": {
+      "Type": "AWS::Logs::LogGroup",
+      "Properties": {
+        "LogGroupName": "/aws/lambda/servidor-melanymoreira-dev-actualizarParcial"
+      }
+    },
+    "AgregarPracticaLogGroup": {
+      "Type": "AWS::Logs::LogGroup",
+      "Properties": {
+        "LogGroupName": "/aws/lambda/servidor-melanymoreira-dev-agregarPractica"
+      }
+    },
+    "ObtenerPracticasLogGroup": {
+      "Type": "AWS::Logs::LogGroup",
+      "Properties": {
+        "LogGroupName": "/aws/lambda/servidor-melanymoreira-dev-obtenerPracticas"
+      }
+    },
+    "EliminarPracticaLogGroup": {
+      "Type": "AWS::Logs::LogGroup",
+      "Properties": {
+        "LogGroupName": "/aws/lambda/servidor-melanymoreira-dev-eliminarPractica"
+      }
+    },
+    "ActualizarPracticaLogGroup": {
+      "Type": "AWS::Logs::LogGroup",
+      "Properties": {
+        "LogGroupName": "/aws/lambda/servidor-melanymoreira-dev-actualizarPractica"
+      }
+    },
+    "AgregarUsoEquipoLogGroup": {
+      "Type": "AWS::Logs::LogGroup",
+      "Properties": {
+        "LogGroupName": "/aws/lambda/servidor-melanymoreira-dev-agregarUsoEquipo"
+      }
+    },
+    "ObtenerUsoEquipoLogGroup": {
+      "Type": "AWS::Logs::LogGroup",
+      "Properties": {
+        "LogGroupName": "/aws/lambda/servidor-melanymoreira-dev-obtenerUsoEquipo"
+      }
+    },
+    "EliminarUsoEquipoLogGroup": {
+      "Type": "AWS::Logs::LogGroup",
+      "Properties": {
+        "LogGroupName": "/aws/lambda/servidor-melanymoreira-dev-eliminarUsoEquipo"
+      }
+    },
+    "ActualizarUsoEquipoLogGroup": {
+      "Type": "AWS::Logs::LogGroup",
+      "Properties": {
+        "LogGroupName": "/aws/lambda/servidor-melanymoreira-dev-actualizarUsoEquipo"
       }
     },
     "IamRoleLambdaExecution": {
@@ -95,7 +209,14 @@
                   "Action": [
                     "dynamodb:*"
                   ],
-                  "Resource": "arn:aws:dynamodb:us-east-1:469647637171:table/tabla"
+                  "Resource": [
+                    "arn:aws:dynamodb:us-east-1:469647637171:table/usuario",
+                    "arn:aws:dynamodb:us-east-1:469647637171:table/laboratorios",
+                    "arn:aws:dynamodb:us-east-1:469647637171:table/asignaturas",
+                    "arn:aws:dynamodb:us-east-1:469647637171:table/parciales",
+                    "arn:aws:dynamodb:us-east-1:469647637171:table/practicas",
+                    "arn:aws:dynamodb:us-east-1:469647637171:table/usoEquipo"
+                  ]
                 }
               ]
             }
@@ -117,16 +238,16 @@
         }
       }
     },
-    "AgregarTaskLambdaFunction": {
+    "AgregarUserLambdaFunction": {
       "Type": "AWS::Lambda::Function",
       "Properties": {
         "Code": {
           "S3Bucket": "serverless-framework-deployments-us-east-1-d6410a1c-8fc2",
-          "S3Key": "serverless/servidor-melanymoreira/dev/1746822856355-2025-05-09T20:34:16.355Z/servidor-melanymoreira.zip"
+          "S3Key": "serverless/servidor-melanymoreira/dev/1750911758496-2025-06-26T04:22:38.496Z/servidor-melanymoreira.zip"
         },
-        "Handler": "src/agregarTask.agregarTask",
+        "Handler": "src/usuarios/agregarUser.agregarUser",
         "Runtime": "nodejs20.x",
-        "FunctionName": "servidor-melanymoreira-dev-agregarTask",
+        "FunctionName": "servidor-melanymoreira-dev-agregarUser",
         "MemorySize": 1024,
         "Timeout": 6,
         "Role": {
@@ -137,19 +258,19 @@
         }
       },
       "DependsOn": [
-        "AgregarTaskLogGroup"
+        "AgregarUserLogGroup"
       ]
     },
-    "ObtenerTasksLambdaFunction": {
+    "ObtenerUserLambdaFunction": {
       "Type": "AWS::Lambda::Function",
       "Properties": {
         "Code": {
           "S3Bucket": "serverless-framework-deployments-us-east-1-d6410a1c-8fc2",
-          "S3Key": "serverless/servidor-melanymoreira/dev/1746822856355-2025-05-09T20:34:16.355Z/servidor-melanymoreira.zip"
+          "S3Key": "serverless/servidor-melanymoreira/dev/1750911758496-2025-06-26T04:22:38.496Z/servidor-melanymoreira.zip"
         },
-        "Handler": "src/obtenerTasks.obtenerTasks",
+        "Handler": "src/usuarios/obtenerUser.obtenerUser",
         "Runtime": "nodejs20.x",
-        "FunctionName": "servidor-melanymoreira-dev-obtenerTasks",
+        "FunctionName": "servidor-melanymoreira-dev-obtenerUser",
         "MemorySize": 1024,
         "Timeout": 6,
         "Role": {
@@ -160,19 +281,19 @@
         }
       },
       "DependsOn": [
-        "ObtenerTasksLogGroup"
+        "ObtenerUserLogGroup"
       ]
     },
-    "ObtenerTaskLambdaFunction": {
+    "EliminarUserLambdaFunction": {
       "Type": "AWS::Lambda::Function",
       "Properties": {
         "Code": {
           "S3Bucket": "serverless-framework-deployments-us-east-1-d6410a1c-8fc2",
-          "S3Key": "serverless/servidor-melanymoreira/dev/1746822856355-2025-05-09T20:34:16.355Z/servidor-melanymoreira.zip"
+          "S3Key": "serverless/servidor-melanymoreira/dev/1750911758496-2025-06-26T04:22:38.496Z/servidor-melanymoreira.zip"
         },
-        "Handler": "src/obtenerTask.obtenerTask",
+        "Handler": "src/usuarios/eliminarUser.eliminarUser",
         "Runtime": "nodejs20.x",
-        "FunctionName": "servidor-melanymoreira-dev-obtenerTask",
+        "FunctionName": "servidor-melanymoreira-dev-eliminarUser",
         "MemorySize": 1024,
         "Timeout": 6,
         "Role": {
@@ -183,19 +304,19 @@
         }
       },
       "DependsOn": [
-        "ObtenerTaskLogGroup"
+        "EliminarUserLogGroup"
       ]
     },
-    "EliminarTaskLambdaFunction": {
+    "ActualizarUserLambdaFunction": {
       "Type": "AWS::Lambda::Function",
       "Properties": {
         "Code": {
           "S3Bucket": "serverless-framework-deployments-us-east-1-d6410a1c-8fc2",
-          "S3Key": "serverless/servidor-melanymoreira/dev/1746822856355-2025-05-09T20:34:16.355Z/servidor-melanymoreira.zip"
+          "S3Key": "serverless/servidor-melanymoreira/dev/1750911758496-2025-06-26T04:22:38.496Z/servidor-melanymoreira.zip"
         },
-        "Handler": "src/eliminarTask.eliminarTask",
+        "Handler": "src/usuarios/actualizarUser.actualizarUser",
         "Runtime": "nodejs20.x",
-        "FunctionName": "servidor-melanymoreira-dev-eliminarTask",
+        "FunctionName": "servidor-melanymoreira-dev-actualizarUser",
         "MemorySize": 1024,
         "Timeout": 6,
         "Role": {
@@ -206,19 +327,19 @@
         }
       },
       "DependsOn": [
-        "EliminarTaskLogGroup"
+        "ActualizarUserLogGroup"
       ]
     },
-    "ActualizarTaskLambdaFunction": {
+    "AgregarLaboratorioLambdaFunction": {
       "Type": "AWS::Lambda::Function",
       "Properties": {
         "Code": {
           "S3Bucket": "serverless-framework-deployments-us-east-1-d6410a1c-8fc2",
-          "S3Key": "serverless/servidor-melanymoreira/dev/1746822856355-2025-05-09T20:34:16.355Z/servidor-melanymoreira.zip"
+          "S3Key": "serverless/servidor-melanymoreira/dev/1750911758496-2025-06-26T04:22:38.496Z/servidor-melanymoreira.zip"
         },
-        "Handler": "src/actualizarTask.actualizarTask",
+        "Handler": "src/laboratorios/agregarLab.agregarLab",
         "Runtime": "nodejs20.x",
-        "FunctionName": "servidor-melanymoreira-dev-actualizarTask",
+        "FunctionName": "servidor-melanymoreira-dev-agregarLaboratorio",
         "MemorySize": 1024,
         "Timeout": 6,
         "Role": {
@@ -229,57 +350,684 @@
         }
       },
       "DependsOn": [
-        "ActualizarTaskLogGroup"
+        "AgregarLaboratorioLogGroup"
       ]
     },
-    "AgregarTaskLambdaVersionu545ynwBb3jFkork0OUbgjix9OQsnulrX5nZe1RNOE": {
+    "ObtenerLaboratorioLambdaFunction": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": "serverless-framework-deployments-us-east-1-d6410a1c-8fc2",
+          "S3Key": "serverless/servidor-melanymoreira/dev/1750911758496-2025-06-26T04:22:38.496Z/servidor-melanymoreira.zip"
+        },
+        "Handler": "src/laboratorios/obtenerLab.obtenerLab",
+        "Runtime": "nodejs20.x",
+        "FunctionName": "servidor-melanymoreira-dev-obtenerLaboratorio",
+        "MemorySize": 1024,
+        "Timeout": 6,
+        "Role": {
+          "Fn::GetAtt": [
+            "IamRoleLambdaExecution",
+            "Arn"
+          ]
+        }
+      },
+      "DependsOn": [
+        "ObtenerLaboratorioLogGroup"
+      ]
+    },
+    "EliminarLaboratorioLambdaFunction": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": "serverless-framework-deployments-us-east-1-d6410a1c-8fc2",
+          "S3Key": "serverless/servidor-melanymoreira/dev/1750911758496-2025-06-26T04:22:38.496Z/servidor-melanymoreira.zip"
+        },
+        "Handler": "src/laboratorios/eliminarLab.eliminarLab",
+        "Runtime": "nodejs20.x",
+        "FunctionName": "servidor-melanymoreira-dev-eliminarLaboratorio",
+        "MemorySize": 1024,
+        "Timeout": 6,
+        "Role": {
+          "Fn::GetAtt": [
+            "IamRoleLambdaExecution",
+            "Arn"
+          ]
+        }
+      },
+      "DependsOn": [
+        "EliminarLaboratorioLogGroup"
+      ]
+    },
+    "ActualizarLaboratorioLambdaFunction": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": "serverless-framework-deployments-us-east-1-d6410a1c-8fc2",
+          "S3Key": "serverless/servidor-melanymoreira/dev/1750911758496-2025-06-26T04:22:38.496Z/servidor-melanymoreira.zip"
+        },
+        "Handler": "src/laboratorios/actualizarLab.actualizarLab",
+        "Runtime": "nodejs20.x",
+        "FunctionName": "servidor-melanymoreira-dev-actualizarLaboratorio",
+        "MemorySize": 1024,
+        "Timeout": 6,
+        "Role": {
+          "Fn::GetAtt": [
+            "IamRoleLambdaExecution",
+            "Arn"
+          ]
+        }
+      },
+      "DependsOn": [
+        "ActualizarLaboratorioLogGroup"
+      ]
+    },
+    "AgregarAsignaturaLambdaFunction": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": "serverless-framework-deployments-us-east-1-d6410a1c-8fc2",
+          "S3Key": "serverless/servidor-melanymoreira/dev/1750911758496-2025-06-26T04:22:38.496Z/servidor-melanymoreira.zip"
+        },
+        "Handler": "src/asignaturas/agregarAsig.agregarAsig",
+        "Runtime": "nodejs20.x",
+        "FunctionName": "servidor-melanymoreira-dev-agregarAsignatura",
+        "MemorySize": 1024,
+        "Timeout": 6,
+        "Role": {
+          "Fn::GetAtt": [
+            "IamRoleLambdaExecution",
+            "Arn"
+          ]
+        }
+      },
+      "DependsOn": [
+        "AgregarAsignaturaLogGroup"
+      ]
+    },
+    "ObtenerAsignaturaLambdaFunction": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": "serverless-framework-deployments-us-east-1-d6410a1c-8fc2",
+          "S3Key": "serverless/servidor-melanymoreira/dev/1750911758496-2025-06-26T04:22:38.496Z/servidor-melanymoreira.zip"
+        },
+        "Handler": "src/asignaturas/obtenerAsig.obtenerAsig",
+        "Runtime": "nodejs20.x",
+        "FunctionName": "servidor-melanymoreira-dev-obtenerAsignatura",
+        "MemorySize": 1024,
+        "Timeout": 6,
+        "Role": {
+          "Fn::GetAtt": [
+            "IamRoleLambdaExecution",
+            "Arn"
+          ]
+        }
+      },
+      "DependsOn": [
+        "ObtenerAsignaturaLogGroup"
+      ]
+    },
+    "EliminarAsignaturaLambdaFunction": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": "serverless-framework-deployments-us-east-1-d6410a1c-8fc2",
+          "S3Key": "serverless/servidor-melanymoreira/dev/1750911758496-2025-06-26T04:22:38.496Z/servidor-melanymoreira.zip"
+        },
+        "Handler": "src/asignaturas/eliminarAsig.eliminarAsig",
+        "Runtime": "nodejs20.x",
+        "FunctionName": "servidor-melanymoreira-dev-eliminarAsignatura",
+        "MemorySize": 1024,
+        "Timeout": 6,
+        "Role": {
+          "Fn::GetAtt": [
+            "IamRoleLambdaExecution",
+            "Arn"
+          ]
+        }
+      },
+      "DependsOn": [
+        "EliminarAsignaturaLogGroup"
+      ]
+    },
+    "ActualizarAsignaturaLambdaFunction": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": "serverless-framework-deployments-us-east-1-d6410a1c-8fc2",
+          "S3Key": "serverless/servidor-melanymoreira/dev/1750911758496-2025-06-26T04:22:38.496Z/servidor-melanymoreira.zip"
+        },
+        "Handler": "src/asignaturas/actualizarAsig.actualizarAsig",
+        "Runtime": "nodejs20.x",
+        "FunctionName": "servidor-melanymoreira-dev-actualizarAsignatura",
+        "MemorySize": 1024,
+        "Timeout": 6,
+        "Role": {
+          "Fn::GetAtt": [
+            "IamRoleLambdaExecution",
+            "Arn"
+          ]
+        }
+      },
+      "DependsOn": [
+        "ActualizarAsignaturaLogGroup"
+      ]
+    },
+    "AgregarParcialLambdaFunction": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": "serverless-framework-deployments-us-east-1-d6410a1c-8fc2",
+          "S3Key": "serverless/servidor-melanymoreira/dev/1750911758496-2025-06-26T04:22:38.496Z/servidor-melanymoreira.zip"
+        },
+        "Handler": "src/parciales/agregarPar.agregarPar",
+        "Runtime": "nodejs20.x",
+        "FunctionName": "servidor-melanymoreira-dev-agregarParcial",
+        "MemorySize": 1024,
+        "Timeout": 6,
+        "Role": {
+          "Fn::GetAtt": [
+            "IamRoleLambdaExecution",
+            "Arn"
+          ]
+        }
+      },
+      "DependsOn": [
+        "AgregarParcialLogGroup"
+      ]
+    },
+    "ObtenerParcialesLambdaFunction": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": "serverless-framework-deployments-us-east-1-d6410a1c-8fc2",
+          "S3Key": "serverless/servidor-melanymoreira/dev/1750911758496-2025-06-26T04:22:38.496Z/servidor-melanymoreira.zip"
+        },
+        "Handler": "src/parciales/obtenerPar.obtenerPar",
+        "Runtime": "nodejs20.x",
+        "FunctionName": "servidor-melanymoreira-dev-obtenerParciales",
+        "MemorySize": 1024,
+        "Timeout": 6,
+        "Role": {
+          "Fn::GetAtt": [
+            "IamRoleLambdaExecution",
+            "Arn"
+          ]
+        }
+      },
+      "DependsOn": [
+        "ObtenerParcialesLogGroup"
+      ]
+    },
+    "EliminarParcialLambdaFunction": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": "serverless-framework-deployments-us-east-1-d6410a1c-8fc2",
+          "S3Key": "serverless/servidor-melanymoreira/dev/1750911758496-2025-06-26T04:22:38.496Z/servidor-melanymoreira.zip"
+        },
+        "Handler": "src/parciales/eliminarPar.eliminarPar",
+        "Runtime": "nodejs20.x",
+        "FunctionName": "servidor-melanymoreira-dev-eliminarParcial",
+        "MemorySize": 1024,
+        "Timeout": 6,
+        "Role": {
+          "Fn::GetAtt": [
+            "IamRoleLambdaExecution",
+            "Arn"
+          ]
+        }
+      },
+      "DependsOn": [
+        "EliminarParcialLogGroup"
+      ]
+    },
+    "ActualizarParcialLambdaFunction": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": "serverless-framework-deployments-us-east-1-d6410a1c-8fc2",
+          "S3Key": "serverless/servidor-melanymoreira/dev/1750911758496-2025-06-26T04:22:38.496Z/servidor-melanymoreira.zip"
+        },
+        "Handler": "src/parciales/actualizarPar.actualizarPar",
+        "Runtime": "nodejs20.x",
+        "FunctionName": "servidor-melanymoreira-dev-actualizarParcial",
+        "MemorySize": 1024,
+        "Timeout": 6,
+        "Role": {
+          "Fn::GetAtt": [
+            "IamRoleLambdaExecution",
+            "Arn"
+          ]
+        }
+      },
+      "DependsOn": [
+        "ActualizarParcialLogGroup"
+      ]
+    },
+    "AgregarPracticaLambdaFunction": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": "serverless-framework-deployments-us-east-1-d6410a1c-8fc2",
+          "S3Key": "serverless/servidor-melanymoreira/dev/1750911758496-2025-06-26T04:22:38.496Z/servidor-melanymoreira.zip"
+        },
+        "Handler": "src/practicas/agregarPract.agregarPract",
+        "Runtime": "nodejs20.x",
+        "FunctionName": "servidor-melanymoreira-dev-agregarPractica",
+        "MemorySize": 1024,
+        "Timeout": 6,
+        "Role": {
+          "Fn::GetAtt": [
+            "IamRoleLambdaExecution",
+            "Arn"
+          ]
+        }
+      },
+      "DependsOn": [
+        "AgregarPracticaLogGroup"
+      ]
+    },
+    "ObtenerPracticasLambdaFunction": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": "serverless-framework-deployments-us-east-1-d6410a1c-8fc2",
+          "S3Key": "serverless/servidor-melanymoreira/dev/1750911758496-2025-06-26T04:22:38.496Z/servidor-melanymoreira.zip"
+        },
+        "Handler": "src/practicas/obtenerPract.obtenerPract",
+        "Runtime": "nodejs20.x",
+        "FunctionName": "servidor-melanymoreira-dev-obtenerPracticas",
+        "MemorySize": 1024,
+        "Timeout": 6,
+        "Role": {
+          "Fn::GetAtt": [
+            "IamRoleLambdaExecution",
+            "Arn"
+          ]
+        }
+      },
+      "DependsOn": [
+        "ObtenerPracticasLogGroup"
+      ]
+    },
+    "EliminarPracticaLambdaFunction": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": "serverless-framework-deployments-us-east-1-d6410a1c-8fc2",
+          "S3Key": "serverless/servidor-melanymoreira/dev/1750911758496-2025-06-26T04:22:38.496Z/servidor-melanymoreira.zip"
+        },
+        "Handler": "src/practicas/eliminarPract.eliminarPract",
+        "Runtime": "nodejs20.x",
+        "FunctionName": "servidor-melanymoreira-dev-eliminarPractica",
+        "MemorySize": 1024,
+        "Timeout": 6,
+        "Role": {
+          "Fn::GetAtt": [
+            "IamRoleLambdaExecution",
+            "Arn"
+          ]
+        }
+      },
+      "DependsOn": [
+        "EliminarPracticaLogGroup"
+      ]
+    },
+    "ActualizarPracticaLambdaFunction": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": "serverless-framework-deployments-us-east-1-d6410a1c-8fc2",
+          "S3Key": "serverless/servidor-melanymoreira/dev/1750911758496-2025-06-26T04:22:38.496Z/servidor-melanymoreira.zip"
+        },
+        "Handler": "src/practicas/actualizarPract.actualizarPract",
+        "Runtime": "nodejs20.x",
+        "FunctionName": "servidor-melanymoreira-dev-actualizarPractica",
+        "MemorySize": 1024,
+        "Timeout": 6,
+        "Role": {
+          "Fn::GetAtt": [
+            "IamRoleLambdaExecution",
+            "Arn"
+          ]
+        }
+      },
+      "DependsOn": [
+        "ActualizarPracticaLogGroup"
+      ]
+    },
+    "AgregarUsoEquipoLambdaFunction": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": "serverless-framework-deployments-us-east-1-d6410a1c-8fc2",
+          "S3Key": "serverless/servidor-melanymoreira/dev/1750911758496-2025-06-26T04:22:38.496Z/servidor-melanymoreira.zip"
+        },
+        "Handler": "src/usoEquipo/agregarEquip.agregarEquip",
+        "Runtime": "nodejs20.x",
+        "FunctionName": "servidor-melanymoreira-dev-agregarUsoEquipo",
+        "MemorySize": 1024,
+        "Timeout": 6,
+        "Role": {
+          "Fn::GetAtt": [
+            "IamRoleLambdaExecution",
+            "Arn"
+          ]
+        }
+      },
+      "DependsOn": [
+        "AgregarUsoEquipoLogGroup"
+      ]
+    },
+    "ObtenerUsoEquipoLambdaFunction": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": "serverless-framework-deployments-us-east-1-d6410a1c-8fc2",
+          "S3Key": "serverless/servidor-melanymoreira/dev/1750911758496-2025-06-26T04:22:38.496Z/servidor-melanymoreira.zip"
+        },
+        "Handler": "src/usoEquipo/obtenerEquip.obtenerEquip",
+        "Runtime": "nodejs20.x",
+        "FunctionName": "servidor-melanymoreira-dev-obtenerUsoEquipo",
+        "MemorySize": 1024,
+        "Timeout": 6,
+        "Role": {
+          "Fn::GetAtt": [
+            "IamRoleLambdaExecution",
+            "Arn"
+          ]
+        }
+      },
+      "DependsOn": [
+        "ObtenerUsoEquipoLogGroup"
+      ]
+    },
+    "EliminarUsoEquipoLambdaFunction": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": "serverless-framework-deployments-us-east-1-d6410a1c-8fc2",
+          "S3Key": "serverless/servidor-melanymoreira/dev/1750911758496-2025-06-26T04:22:38.496Z/servidor-melanymoreira.zip"
+        },
+        "Handler": "src/usoEquipo/eliminarEquip.eliminarEquip",
+        "Runtime": "nodejs20.x",
+        "FunctionName": "servidor-melanymoreira-dev-eliminarUsoEquipo",
+        "MemorySize": 1024,
+        "Timeout": 6,
+        "Role": {
+          "Fn::GetAtt": [
+            "IamRoleLambdaExecution",
+            "Arn"
+          ]
+        }
+      },
+      "DependsOn": [
+        "EliminarUsoEquipoLogGroup"
+      ]
+    },
+    "ActualizarUsoEquipoLambdaFunction": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": "serverless-framework-deployments-us-east-1-d6410a1c-8fc2",
+          "S3Key": "serverless/servidor-melanymoreira/dev/1750911758496-2025-06-26T04:22:38.496Z/servidor-melanymoreira.zip"
+        },
+        "Handler": "src/usoEquipo/actualizarEquip.actualizarEquip",
+        "Runtime": "nodejs20.x",
+        "FunctionName": "servidor-melanymoreira-dev-actualizarUsoEquipo",
+        "MemorySize": 1024,
+        "Timeout": 6,
+        "Role": {
+          "Fn::GetAtt": [
+            "IamRoleLambdaExecution",
+            "Arn"
+          ]
+        }
+      },
+      "DependsOn": [
+        "ActualizarUsoEquipoLogGroup"
+      ]
+    },
+    "AgregarUserLambdaVersionRgxEkZf66J79z4KD8QSA3TFVIEn7PRNCbLeasEdKU": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
-          "Ref": "AgregarTaskLambdaFunction"
+          "Ref": "AgregarUserLambdaFunction"
         },
-        "CodeSha256": "9qcJKqaO5sNR5ZmVW5Y0G6n/Qn2bdblxBkmVQNBC4cM="
+        "CodeSha256": "iDrH+QdsJ8c+jSsJ0KQqdNImg/ylThBxpuLmLB6SZOM="
       }
     },
-    "ObtenerTasksLambdaVersionblR1bjT8ZhNUh0lEggFq5mvJSBjuyC5AKyjRRsagjc": {
+    "ObtenerUserLambdaVersiono1AwuFyD5Jz9Aaqe23lzO7ehQaprOBZ1XVK9Ksehk": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
-          "Ref": "ObtenerTasksLambdaFunction"
+          "Ref": "ObtenerUserLambdaFunction"
         },
-        "CodeSha256": "9qcJKqaO5sNR5ZmVW5Y0G6n/Qn2bdblxBkmVQNBC4cM="
+        "CodeSha256": "iDrH+QdsJ8c+jSsJ0KQqdNImg/ylThBxpuLmLB6SZOM="
       }
     },
-    "ObtenerTaskLambdaVersionOMiEjX4VJxgmlgv2r3U5kr6we75wGSoNcgYqhbyvM": {
+    "EliminarUserLambdaVersionlXaBJONwY1nCyKXQVhaHBrOJ9FuVWvyuP6gev5weis": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
-          "Ref": "ObtenerTaskLambdaFunction"
+          "Ref": "EliminarUserLambdaFunction"
         },
-        "CodeSha256": "9qcJKqaO5sNR5ZmVW5Y0G6n/Qn2bdblxBkmVQNBC4cM="
+        "CodeSha256": "iDrH+QdsJ8c+jSsJ0KQqdNImg/ylThBxpuLmLB6SZOM="
       }
     },
-    "EliminarTaskLambdaVersionQeSvh43bQiHIyYF3g3wCaWgcxx6Kj9KR1XrWaaOkc": {
+    "ActualizarUserLambdaVersionQBYO9DW55p0We32cSNNhYRx8Wwf9U27rCYXjFfvZmQ": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
-          "Ref": "EliminarTaskLambdaFunction"
+          "Ref": "ActualizarUserLambdaFunction"
         },
-        "CodeSha256": "9qcJKqaO5sNR5ZmVW5Y0G6n/Qn2bdblxBkmVQNBC4cM="
+        "CodeSha256": "iDrH+QdsJ8c+jSsJ0KQqdNImg/ylThBxpuLmLB6SZOM="
       }
     },
-    "ActualizarTaskLambdaVersionrLmcm37Bbm32jwrN9HPr0QLQwr6Sn7zu4X3nxPzEpQ": {
+    "AgregarLaboratorioLambdaVersionvwoTv7sOQhbMMQmsUMRqyco1rLgC0cuKC73AkOUWts": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
-          "Ref": "ActualizarTaskLambdaFunction"
+          "Ref": "AgregarLaboratorioLambdaFunction"
         },
-        "CodeSha256": "9qcJKqaO5sNR5ZmVW5Y0G6n/Qn2bdblxBkmVQNBC4cM="
+        "CodeSha256": "iDrH+QdsJ8c+jSsJ0KQqdNImg/ylThBxpuLmLB6SZOM="
+      }
+    },
+    "ObtenerLaboratorioLambdaVersionfkrvHMFzgJx5nxEzYUUGjIKgsYDEoS2Gx9mvlNOOSig": {
+      "Type": "AWS::Lambda::Version",
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "ObtenerLaboratorioLambdaFunction"
+        },
+        "CodeSha256": "iDrH+QdsJ8c+jSsJ0KQqdNImg/ylThBxpuLmLB6SZOM="
+      }
+    },
+    "EliminarLaboratorioLambdaVersionu7UKtobNoe19Q0D3xFUxUdIWzNhlhruYbLxPFvE": {
+      "Type": "AWS::Lambda::Version",
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "EliminarLaboratorioLambdaFunction"
+        },
+        "CodeSha256": "iDrH+QdsJ8c+jSsJ0KQqdNImg/ylThBxpuLmLB6SZOM="
+      }
+    },
+    "ActualizarLaboratorioLambdaVersion2i6bpCy2KrnE1T23D4LjwUJL9yT0pHNhNlU7Fihlf8s": {
+      "Type": "AWS::Lambda::Version",
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "ActualizarLaboratorioLambdaFunction"
+        },
+        "CodeSha256": "iDrH+QdsJ8c+jSsJ0KQqdNImg/ylThBxpuLmLB6SZOM="
+      }
+    },
+    "AgregarAsignaturaLambdaVersion2c7xU17MkygCHd7T0CjZXcP3YJ9bKwUdnUptErkKus": {
+      "Type": "AWS::Lambda::Version",
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "AgregarAsignaturaLambdaFunction"
+        },
+        "CodeSha256": "iDrH+QdsJ8c+jSsJ0KQqdNImg/ylThBxpuLmLB6SZOM="
+      }
+    },
+    "ObtenerAsignaturaLambdaVersioneulum2JQ9L6sU9kYmpulrc5181ikieHdDTEKJaukw": {
+      "Type": "AWS::Lambda::Version",
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "ObtenerAsignaturaLambdaFunction"
+        },
+        "CodeSha256": "iDrH+QdsJ8c+jSsJ0KQqdNImg/ylThBxpuLmLB6SZOM="
+      }
+    },
+    "EliminarAsignaturaLambdaVersiontgYA4aYEAC4fWhMa46rQFIIZFZA4Vh7n4zEuKtgsU": {
+      "Type": "AWS::Lambda::Version",
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "EliminarAsignaturaLambdaFunction"
+        },
+        "CodeSha256": "iDrH+QdsJ8c+jSsJ0KQqdNImg/ylThBxpuLmLB6SZOM="
+      }
+    },
+    "ActualizarAsignaturaLambdaVersionIbf9MjzHCFCxkwZqo7LpRbwLDhZCGCuVw8McabVQs": {
+      "Type": "AWS::Lambda::Version",
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "ActualizarAsignaturaLambdaFunction"
+        },
+        "CodeSha256": "iDrH+QdsJ8c+jSsJ0KQqdNImg/ylThBxpuLmLB6SZOM="
+      }
+    },
+    "AgregarParcialLambdaVersionQCXVCo3ziFGCrPJvfpWcfQQNBvfkKRaaXruprryKms": {
+      "Type": "AWS::Lambda::Version",
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "AgregarParcialLambdaFunction"
+        },
+        "CodeSha256": "iDrH+QdsJ8c+jSsJ0KQqdNImg/ylThBxpuLmLB6SZOM="
+      }
+    },
+    "ObtenerParcialesLambdaVersionWwSoTDRxqM5VWd2pu4Xms6kfMkc6WWPhzo2cc5DUVw": {
+      "Type": "AWS::Lambda::Version",
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "ObtenerParcialesLambdaFunction"
+        },
+        "CodeSha256": "iDrH+QdsJ8c+jSsJ0KQqdNImg/ylThBxpuLmLB6SZOM="
+      }
+    },
+    "EliminarParcialLambdaVersionovWBDb28gcYu703xi9vPoUFPnMImwEzR2xMZkH21gA": {
+      "Type": "AWS::Lambda::Version",
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "EliminarParcialLambdaFunction"
+        },
+        "CodeSha256": "iDrH+QdsJ8c+jSsJ0KQqdNImg/ylThBxpuLmLB6SZOM="
+      }
+    },
+    "ActualizarParcialLambdaVersionTcC6iYVoYDbz00NnE6SSlRyjf1wrrs6oRSyIairi5k": {
+      "Type": "AWS::Lambda::Version",
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "ActualizarParcialLambdaFunction"
+        },
+        "CodeSha256": "iDrH+QdsJ8c+jSsJ0KQqdNImg/ylThBxpuLmLB6SZOM="
+      }
+    },
+    "AgregarPracticaLambdaVersion0oTxP2ZNOWlbzkym26M8ugz3w0c5CfrM5dWe4mhRt0": {
+      "Type": "AWS::Lambda::Version",
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "AgregarPracticaLambdaFunction"
+        },
+        "CodeSha256": "iDrH+QdsJ8c+jSsJ0KQqdNImg/ylThBxpuLmLB6SZOM="
+      }
+    },
+    "ObtenerPracticasLambdaVersion4t8hqSFvAhwnCMYWjIt4ElIO8pwv1lIV4ljZn3xf3TE": {
+      "Type": "AWS::Lambda::Version",
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "ObtenerPracticasLambdaFunction"
+        },
+        "CodeSha256": "iDrH+QdsJ8c+jSsJ0KQqdNImg/ylThBxpuLmLB6SZOM="
+      }
+    },
+    "EliminarPracticaLambdaVersionj3hnFogLjhtL9vTLCZERJfuTqabuKC0RnjNCdaHQ": {
+      "Type": "AWS::Lambda::Version",
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "EliminarPracticaLambdaFunction"
+        },
+        "CodeSha256": "iDrH+QdsJ8c+jSsJ0KQqdNImg/ylThBxpuLmLB6SZOM="
+      }
+    },
+    "ActualizarPracticaLambdaVersioncKQHIuYEZrNbXuGbT6DopAjZij5jraZcnj581zqebZQ": {
+      "Type": "AWS::Lambda::Version",
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "ActualizarPracticaLambdaFunction"
+        },
+        "CodeSha256": "iDrH+QdsJ8c+jSsJ0KQqdNImg/ylThBxpuLmLB6SZOM="
+      }
+    },
+    "AgregarUsoEquipoLambdaVersionH2L2K8YBryUTTe1GHNeB40ExYrEoDp2fAslmliMWTe8": {
+      "Type": "AWS::Lambda::Version",
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "AgregarUsoEquipoLambdaFunction"
+        },
+        "CodeSha256": "iDrH+QdsJ8c+jSsJ0KQqdNImg/ylThBxpuLmLB6SZOM="
+      }
+    },
+    "ObtenerUsoEquipoLambdaVersionPzBK5I7ACFll20wS1jSONs6cjSfnrVaCEAmUSEkY": {
+      "Type": "AWS::Lambda::Version",
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "ObtenerUsoEquipoLambdaFunction"
+        },
+        "CodeSha256": "iDrH+QdsJ8c+jSsJ0KQqdNImg/ylThBxpuLmLB6SZOM="
+      }
+    },
+    "EliminarUsoEquipoLambdaVersionNv7uLlTMO4AtgnM3wrYYTao3qk8Pzez8G2If0gQb5OY": {
+      "Type": "AWS::Lambda::Version",
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "EliminarUsoEquipoLambdaFunction"
+        },
+        "CodeSha256": "iDrH+QdsJ8c+jSsJ0KQqdNImg/ylThBxpuLmLB6SZOM="
+      }
+    },
+    "ActualizarUsoEquipoLambdaVersionFITmFcwU5o6HxgNk8bo1g2rSaXnWLRd3j3V1DaBUnY": {
+      "Type": "AWS::Lambda::Version",
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "ActualizarUsoEquipoLambdaFunction"
+        },
+        "CodeSha256": "iDrH+QdsJ8c+jSsJ0KQqdNImg/ylThBxpuLmLB6SZOM="
       }
     },
     "HttpApi": {
@@ -302,12 +1050,12 @@
         }
       }
     },
-    "AgregarTaskLambdaPermissionHttpApi": {
+    "AgregarUserLambdaPermissionHttpApi": {
       "Type": "AWS::Lambda::Permission",
       "Properties": {
         "FunctionName": {
           "Fn::GetAtt": [
-            "AgregarTaskLambdaFunction",
+            "AgregarUserLambdaFunction",
             "Arn"
           ]
         },
@@ -339,7 +1087,7 @@
         }
       }
     },
-    "HttpApiIntegrationAgregarTask": {
+    "HttpApiIntegrationAgregarUser": {
       "Type": "AWS::ApiGatewayV2::Integration",
       "Properties": {
         "ApiId": {
@@ -348,7 +1096,7 @@
         "IntegrationType": "AWS_PROXY",
         "IntegrationUri": {
           "Fn::GetAtt": [
-            "AgregarTaskLambdaFunction",
+            "AgregarUserLambdaFunction",
             "Arn"
           ]
         },
@@ -356,33 +1104,33 @@
         "TimeoutInMillis": 30000
       }
     },
-    "HttpApiRoutePostTarea": {
+    "HttpApiRoutePostUsuario": {
       "Type": "AWS::ApiGatewayV2::Route",
       "Properties": {
         "ApiId": {
           "Ref": "HttpApi"
         },
-        "RouteKey": "POST /tarea",
+        "RouteKey": "POST /usuario",
         "Target": {
           "Fn::Join": [
             "/",
             [
               "integrations",
               {
-                "Ref": "HttpApiIntegrationAgregarTask"
+                "Ref": "HttpApiIntegrationAgregarUser"
               }
             ]
           ]
         }
       },
-      "DependsOn": "HttpApiIntegrationAgregarTask"
+      "DependsOn": "HttpApiIntegrationAgregarUser"
     },
-    "ObtenerTasksLambdaPermissionHttpApi": {
+    "ObtenerUserLambdaPermissionHttpApi": {
       "Type": "AWS::Lambda::Permission",
       "Properties": {
         "FunctionName": {
           "Fn::GetAtt": [
-            "ObtenerTasksLambdaFunction",
+            "ObtenerUserLambdaFunction",
             "Arn"
           ]
         },
@@ -414,7 +1162,7 @@
         }
       }
     },
-    "HttpApiIntegrationObtenerTasks": {
+    "HttpApiIntegrationObtenerUser": {
       "Type": "AWS::ApiGatewayV2::Integration",
       "Properties": {
         "ApiId": {
@@ -423,7 +1171,7 @@
         "IntegrationType": "AWS_PROXY",
         "IntegrationUri": {
           "Fn::GetAtt": [
-            "ObtenerTasksLambdaFunction",
+            "ObtenerUserLambdaFunction",
             "Arn"
           ]
         },
@@ -431,33 +1179,33 @@
         "TimeoutInMillis": 30000
       }
     },
-    "HttpApiRouteGetTareas": {
+    "HttpApiRouteGetUsuarioIdVar": {
       "Type": "AWS::ApiGatewayV2::Route",
       "Properties": {
         "ApiId": {
           "Ref": "HttpApi"
         },
-        "RouteKey": "GET /tareas",
+        "RouteKey": "GET /usuario/{id}",
         "Target": {
           "Fn::Join": [
             "/",
             [
               "integrations",
               {
-                "Ref": "HttpApiIntegrationObtenerTasks"
+                "Ref": "HttpApiIntegrationObtenerUser"
               }
             ]
           ]
         }
       },
-      "DependsOn": "HttpApiIntegrationObtenerTasks"
+      "DependsOn": "HttpApiIntegrationObtenerUser"
     },
-    "ObtenerTaskLambdaPermissionHttpApi": {
+    "EliminarUserLambdaPermissionHttpApi": {
       "Type": "AWS::Lambda::Permission",
       "Properties": {
         "FunctionName": {
           "Fn::GetAtt": [
-            "ObtenerTaskLambdaFunction",
+            "EliminarUserLambdaFunction",
             "Arn"
           ]
         },
@@ -489,7 +1237,7 @@
         }
       }
     },
-    "HttpApiIntegrationObtenerTask": {
+    "HttpApiIntegrationEliminarUser": {
       "Type": "AWS::ApiGatewayV2::Integration",
       "Properties": {
         "ApiId": {
@@ -498,7 +1246,7 @@
         "IntegrationType": "AWS_PROXY",
         "IntegrationUri": {
           "Fn::GetAtt": [
-            "ObtenerTaskLambdaFunction",
+            "EliminarUserLambdaFunction",
             "Arn"
           ]
         },
@@ -506,33 +1254,33 @@
         "TimeoutInMillis": 30000
       }
     },
-    "HttpApiRouteGetTareasIdVar": {
+    "HttpApiRouteDeleteUsuarioIdVar": {
       "Type": "AWS::ApiGatewayV2::Route",
       "Properties": {
         "ApiId": {
           "Ref": "HttpApi"
         },
-        "RouteKey": "GET /tareas/{id}",
+        "RouteKey": "DELETE /usuario/{id}",
         "Target": {
           "Fn::Join": [
             "/",
             [
               "integrations",
               {
-                "Ref": "HttpApiIntegrationObtenerTask"
+                "Ref": "HttpApiIntegrationEliminarUser"
               }
             ]
           ]
         }
       },
-      "DependsOn": "HttpApiIntegrationObtenerTask"
+      "DependsOn": "HttpApiIntegrationEliminarUser"
     },
-    "EliminarTaskLambdaPermissionHttpApi": {
+    "ActualizarUserLambdaPermissionHttpApi": {
       "Type": "AWS::Lambda::Permission",
       "Properties": {
         "FunctionName": {
           "Fn::GetAtt": [
-            "EliminarTaskLambdaFunction",
+            "ActualizarUserLambdaFunction",
             "Arn"
           ]
         },
@@ -564,7 +1312,7 @@
         }
       }
     },
-    "HttpApiIntegrationEliminarTask": {
+    "HttpApiIntegrationActualizarUser": {
       "Type": "AWS::ApiGatewayV2::Integration",
       "Properties": {
         "ApiId": {
@@ -573,7 +1321,7 @@
         "IntegrationType": "AWS_PROXY",
         "IntegrationUri": {
           "Fn::GetAtt": [
-            "EliminarTaskLambdaFunction",
+            "ActualizarUserLambdaFunction",
             "Arn"
           ]
         },
@@ -581,33 +1329,33 @@
         "TimeoutInMillis": 30000
       }
     },
-    "HttpApiRouteDeleteTareasIdVar": {
+    "HttpApiRoutePutUsuarioIdVar": {
       "Type": "AWS::ApiGatewayV2::Route",
       "Properties": {
         "ApiId": {
           "Ref": "HttpApi"
         },
-        "RouteKey": "DELETE /tareas/{id}",
+        "RouteKey": "PUT /usuario/{id}",
         "Target": {
           "Fn::Join": [
             "/",
             [
               "integrations",
               {
-                "Ref": "HttpApiIntegrationEliminarTask"
+                "Ref": "HttpApiIntegrationActualizarUser"
               }
             ]
           ]
         }
       },
-      "DependsOn": "HttpApiIntegrationEliminarTask"
+      "DependsOn": "HttpApiIntegrationActualizarUser"
     },
-    "ActualizarTaskLambdaPermissionHttpApi": {
+    "AgregarLaboratorioLambdaPermissionHttpApi": {
       "Type": "AWS::Lambda::Permission",
       "Properties": {
         "FunctionName": {
           "Fn::GetAtt": [
-            "ActualizarTaskLambdaFunction",
+            "AgregarLaboratorioLambdaFunction",
             "Arn"
           ]
         },
@@ -639,7 +1387,7 @@
         }
       }
     },
-    "HttpApiIntegrationActualizarTask": {
+    "HttpApiIntegrationAgregarLaboratorio": {
       "Type": "AWS::ApiGatewayV2::Integration",
       "Properties": {
         "ApiId": {
@@ -648,7 +1396,7 @@
         "IntegrationType": "AWS_PROXY",
         "IntegrationUri": {
           "Fn::GetAtt": [
-            "ActualizarTaskLambdaFunction",
+            "AgregarLaboratorioLambdaFunction",
             "Arn"
           ]
         },
@@ -656,45 +1404,1451 @@
         "TimeoutInMillis": 30000
       }
     },
-    "HttpApiRoutePutTareasIdVar": {
+    "HttpApiRoutePostLaboratorio": {
       "Type": "AWS::ApiGatewayV2::Route",
       "Properties": {
         "ApiId": {
           "Ref": "HttpApi"
         },
-        "RouteKey": "PUT /tareas/{id}",
+        "RouteKey": "POST /laboratorio",
         "Target": {
           "Fn::Join": [
             "/",
             [
               "integrations",
               {
-                "Ref": "HttpApiIntegrationActualizarTask"
+                "Ref": "HttpApiIntegrationAgregarLaboratorio"
               }
             ]
           ]
         }
       },
-      "DependsOn": "HttpApiIntegrationActualizarTask"
+      "DependsOn": "HttpApiIntegrationAgregarLaboratorio"
     },
-    "tareasTable": {
-      "Type": "AWS::DynamoDB::Table",
+    "ObtenerLaboratorioLambdaPermissionHttpApi": {
+      "Type": "AWS::Lambda::Permission",
       "Properties": {
-        "TableName": "tabla",
-        "BillingMode": "PAY_PER_REQUEST",
-        "AttributeDefinitions": [
-          {
-            "AttributeName": "id",
-            "AttributeType": "S"
-          }
-        ],
-        "KeySchema": [
-          {
-            "AttributeName": "id",
-            "KeyType": "HASH"
-          }
-        ]
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "ObtenerLaboratorioLambdaFunction",
+            "Arn"
+          ]
+        },
+        "Action": "lambda:InvokeFunction",
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition"
+              },
+              ":execute-api:",
+              {
+                "Ref": "AWS::Region"
+              },
+              ":",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":",
+              {
+                "Ref": "HttpApi"
+              },
+              "/*"
+            ]
+          ]
+        }
       }
+    },
+    "HttpApiIntegrationObtenerLaboratorio": {
+      "Type": "AWS::ApiGatewayV2::Integration",
+      "Properties": {
+        "ApiId": {
+          "Ref": "HttpApi"
+        },
+        "IntegrationType": "AWS_PROXY",
+        "IntegrationUri": {
+          "Fn::GetAtt": [
+            "ObtenerLaboratorioLambdaFunction",
+            "Arn"
+          ]
+        },
+        "PayloadFormatVersion": "2.0",
+        "TimeoutInMillis": 30000
+      }
+    },
+    "HttpApiRouteGetLaboratorioIdVar": {
+      "Type": "AWS::ApiGatewayV2::Route",
+      "Properties": {
+        "ApiId": {
+          "Ref": "HttpApi"
+        },
+        "RouteKey": "GET /laboratorio/{id}",
+        "Target": {
+          "Fn::Join": [
+            "/",
+            [
+              "integrations",
+              {
+                "Ref": "HttpApiIntegrationObtenerLaboratorio"
+              }
+            ]
+          ]
+        }
+      },
+      "DependsOn": "HttpApiIntegrationObtenerLaboratorio"
+    },
+    "EliminarLaboratorioLambdaPermissionHttpApi": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "EliminarLaboratorioLambdaFunction",
+            "Arn"
+          ]
+        },
+        "Action": "lambda:InvokeFunction",
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition"
+              },
+              ":execute-api:",
+              {
+                "Ref": "AWS::Region"
+              },
+              ":",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":",
+              {
+                "Ref": "HttpApi"
+              },
+              "/*"
+            ]
+          ]
+        }
+      }
+    },
+    "HttpApiIntegrationEliminarLaboratorio": {
+      "Type": "AWS::ApiGatewayV2::Integration",
+      "Properties": {
+        "ApiId": {
+          "Ref": "HttpApi"
+        },
+        "IntegrationType": "AWS_PROXY",
+        "IntegrationUri": {
+          "Fn::GetAtt": [
+            "EliminarLaboratorioLambdaFunction",
+            "Arn"
+          ]
+        },
+        "PayloadFormatVersion": "2.0",
+        "TimeoutInMillis": 30000
+      }
+    },
+    "HttpApiRouteDeleteLaboratorioIdVar": {
+      "Type": "AWS::ApiGatewayV2::Route",
+      "Properties": {
+        "ApiId": {
+          "Ref": "HttpApi"
+        },
+        "RouteKey": "DELETE /laboratorio/{id}",
+        "Target": {
+          "Fn::Join": [
+            "/",
+            [
+              "integrations",
+              {
+                "Ref": "HttpApiIntegrationEliminarLaboratorio"
+              }
+            ]
+          ]
+        }
+      },
+      "DependsOn": "HttpApiIntegrationEliminarLaboratorio"
+    },
+    "ActualizarLaboratorioLambdaPermissionHttpApi": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "ActualizarLaboratorioLambdaFunction",
+            "Arn"
+          ]
+        },
+        "Action": "lambda:InvokeFunction",
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition"
+              },
+              ":execute-api:",
+              {
+                "Ref": "AWS::Region"
+              },
+              ":",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":",
+              {
+                "Ref": "HttpApi"
+              },
+              "/*"
+            ]
+          ]
+        }
+      }
+    },
+    "HttpApiIntegrationActualizarLaboratorio": {
+      "Type": "AWS::ApiGatewayV2::Integration",
+      "Properties": {
+        "ApiId": {
+          "Ref": "HttpApi"
+        },
+        "IntegrationType": "AWS_PROXY",
+        "IntegrationUri": {
+          "Fn::GetAtt": [
+            "ActualizarLaboratorioLambdaFunction",
+            "Arn"
+          ]
+        },
+        "PayloadFormatVersion": "2.0",
+        "TimeoutInMillis": 30000
+      }
+    },
+    "HttpApiRoutePutLaboratorioIdVar": {
+      "Type": "AWS::ApiGatewayV2::Route",
+      "Properties": {
+        "ApiId": {
+          "Ref": "HttpApi"
+        },
+        "RouteKey": "PUT /laboratorio/{id}",
+        "Target": {
+          "Fn::Join": [
+            "/",
+            [
+              "integrations",
+              {
+                "Ref": "HttpApiIntegrationActualizarLaboratorio"
+              }
+            ]
+          ]
+        }
+      },
+      "DependsOn": "HttpApiIntegrationActualizarLaboratorio"
+    },
+    "AgregarAsignaturaLambdaPermissionHttpApi": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "AgregarAsignaturaLambdaFunction",
+            "Arn"
+          ]
+        },
+        "Action": "lambda:InvokeFunction",
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition"
+              },
+              ":execute-api:",
+              {
+                "Ref": "AWS::Region"
+              },
+              ":",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":",
+              {
+                "Ref": "HttpApi"
+              },
+              "/*"
+            ]
+          ]
+        }
+      }
+    },
+    "HttpApiIntegrationAgregarAsignatura": {
+      "Type": "AWS::ApiGatewayV2::Integration",
+      "Properties": {
+        "ApiId": {
+          "Ref": "HttpApi"
+        },
+        "IntegrationType": "AWS_PROXY",
+        "IntegrationUri": {
+          "Fn::GetAtt": [
+            "AgregarAsignaturaLambdaFunction",
+            "Arn"
+          ]
+        },
+        "PayloadFormatVersion": "2.0",
+        "TimeoutInMillis": 30000
+      }
+    },
+    "HttpApiRoutePostAsignatura": {
+      "Type": "AWS::ApiGatewayV2::Route",
+      "Properties": {
+        "ApiId": {
+          "Ref": "HttpApi"
+        },
+        "RouteKey": "POST /asignatura",
+        "Target": {
+          "Fn::Join": [
+            "/",
+            [
+              "integrations",
+              {
+                "Ref": "HttpApiIntegrationAgregarAsignatura"
+              }
+            ]
+          ]
+        }
+      },
+      "DependsOn": "HttpApiIntegrationAgregarAsignatura"
+    },
+    "ObtenerAsignaturaLambdaPermissionHttpApi": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "ObtenerAsignaturaLambdaFunction",
+            "Arn"
+          ]
+        },
+        "Action": "lambda:InvokeFunction",
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition"
+              },
+              ":execute-api:",
+              {
+                "Ref": "AWS::Region"
+              },
+              ":",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":",
+              {
+                "Ref": "HttpApi"
+              },
+              "/*"
+            ]
+          ]
+        }
+      }
+    },
+    "HttpApiIntegrationObtenerAsignatura": {
+      "Type": "AWS::ApiGatewayV2::Integration",
+      "Properties": {
+        "ApiId": {
+          "Ref": "HttpApi"
+        },
+        "IntegrationType": "AWS_PROXY",
+        "IntegrationUri": {
+          "Fn::GetAtt": [
+            "ObtenerAsignaturaLambdaFunction",
+            "Arn"
+          ]
+        },
+        "PayloadFormatVersion": "2.0",
+        "TimeoutInMillis": 30000
+      }
+    },
+    "HttpApiRouteGetAsignaturaIdVar": {
+      "Type": "AWS::ApiGatewayV2::Route",
+      "Properties": {
+        "ApiId": {
+          "Ref": "HttpApi"
+        },
+        "RouteKey": "GET /asignatura/{id}",
+        "Target": {
+          "Fn::Join": [
+            "/",
+            [
+              "integrations",
+              {
+                "Ref": "HttpApiIntegrationObtenerAsignatura"
+              }
+            ]
+          ]
+        }
+      },
+      "DependsOn": "HttpApiIntegrationObtenerAsignatura"
+    },
+    "EliminarAsignaturaLambdaPermissionHttpApi": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "EliminarAsignaturaLambdaFunction",
+            "Arn"
+          ]
+        },
+        "Action": "lambda:InvokeFunction",
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition"
+              },
+              ":execute-api:",
+              {
+                "Ref": "AWS::Region"
+              },
+              ":",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":",
+              {
+                "Ref": "HttpApi"
+              },
+              "/*"
+            ]
+          ]
+        }
+      }
+    },
+    "HttpApiIntegrationEliminarAsignatura": {
+      "Type": "AWS::ApiGatewayV2::Integration",
+      "Properties": {
+        "ApiId": {
+          "Ref": "HttpApi"
+        },
+        "IntegrationType": "AWS_PROXY",
+        "IntegrationUri": {
+          "Fn::GetAtt": [
+            "EliminarAsignaturaLambdaFunction",
+            "Arn"
+          ]
+        },
+        "PayloadFormatVersion": "2.0",
+        "TimeoutInMillis": 30000
+      }
+    },
+    "HttpApiRouteDeleteAsignaturaIdVar": {
+      "Type": "AWS::ApiGatewayV2::Route",
+      "Properties": {
+        "ApiId": {
+          "Ref": "HttpApi"
+        },
+        "RouteKey": "DELETE /asignatura/{id}",
+        "Target": {
+          "Fn::Join": [
+            "/",
+            [
+              "integrations",
+              {
+                "Ref": "HttpApiIntegrationEliminarAsignatura"
+              }
+            ]
+          ]
+        }
+      },
+      "DependsOn": "HttpApiIntegrationEliminarAsignatura"
+    },
+    "ActualizarAsignaturaLambdaPermissionHttpApi": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "ActualizarAsignaturaLambdaFunction",
+            "Arn"
+          ]
+        },
+        "Action": "lambda:InvokeFunction",
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition"
+              },
+              ":execute-api:",
+              {
+                "Ref": "AWS::Region"
+              },
+              ":",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":",
+              {
+                "Ref": "HttpApi"
+              },
+              "/*"
+            ]
+          ]
+        }
+      }
+    },
+    "HttpApiIntegrationActualizarAsignatura": {
+      "Type": "AWS::ApiGatewayV2::Integration",
+      "Properties": {
+        "ApiId": {
+          "Ref": "HttpApi"
+        },
+        "IntegrationType": "AWS_PROXY",
+        "IntegrationUri": {
+          "Fn::GetAtt": [
+            "ActualizarAsignaturaLambdaFunction",
+            "Arn"
+          ]
+        },
+        "PayloadFormatVersion": "2.0",
+        "TimeoutInMillis": 30000
+      }
+    },
+    "HttpApiRoutePutAsignaturaIdVar": {
+      "Type": "AWS::ApiGatewayV2::Route",
+      "Properties": {
+        "ApiId": {
+          "Ref": "HttpApi"
+        },
+        "RouteKey": "PUT /asignatura/{id}",
+        "Target": {
+          "Fn::Join": [
+            "/",
+            [
+              "integrations",
+              {
+                "Ref": "HttpApiIntegrationActualizarAsignatura"
+              }
+            ]
+          ]
+        }
+      },
+      "DependsOn": "HttpApiIntegrationActualizarAsignatura"
+    },
+    "AgregarParcialLambdaPermissionHttpApi": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "AgregarParcialLambdaFunction",
+            "Arn"
+          ]
+        },
+        "Action": "lambda:InvokeFunction",
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition"
+              },
+              ":execute-api:",
+              {
+                "Ref": "AWS::Region"
+              },
+              ":",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":",
+              {
+                "Ref": "HttpApi"
+              },
+              "/*"
+            ]
+          ]
+        }
+      }
+    },
+    "HttpApiIntegrationAgregarParcial": {
+      "Type": "AWS::ApiGatewayV2::Integration",
+      "Properties": {
+        "ApiId": {
+          "Ref": "HttpApi"
+        },
+        "IntegrationType": "AWS_PROXY",
+        "IntegrationUri": {
+          "Fn::GetAtt": [
+            "AgregarParcialLambdaFunction",
+            "Arn"
+          ]
+        },
+        "PayloadFormatVersion": "2.0",
+        "TimeoutInMillis": 30000
+      }
+    },
+    "HttpApiRoutePostParciales": {
+      "Type": "AWS::ApiGatewayV2::Route",
+      "Properties": {
+        "ApiId": {
+          "Ref": "HttpApi"
+        },
+        "RouteKey": "POST /parciales",
+        "Target": {
+          "Fn::Join": [
+            "/",
+            [
+              "integrations",
+              {
+                "Ref": "HttpApiIntegrationAgregarParcial"
+              }
+            ]
+          ]
+        }
+      },
+      "DependsOn": "HttpApiIntegrationAgregarParcial"
+    },
+    "ObtenerParcialesLambdaPermissionHttpApi": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "ObtenerParcialesLambdaFunction",
+            "Arn"
+          ]
+        },
+        "Action": "lambda:InvokeFunction",
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition"
+              },
+              ":execute-api:",
+              {
+                "Ref": "AWS::Region"
+              },
+              ":",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":",
+              {
+                "Ref": "HttpApi"
+              },
+              "/*"
+            ]
+          ]
+        }
+      }
+    },
+    "HttpApiIntegrationObtenerParciales": {
+      "Type": "AWS::ApiGatewayV2::Integration",
+      "Properties": {
+        "ApiId": {
+          "Ref": "HttpApi"
+        },
+        "IntegrationType": "AWS_PROXY",
+        "IntegrationUri": {
+          "Fn::GetAtt": [
+            "ObtenerParcialesLambdaFunction",
+            "Arn"
+          ]
+        },
+        "PayloadFormatVersion": "2.0",
+        "TimeoutInMillis": 30000
+      }
+    },
+    "HttpApiRouteGetParciales": {
+      "Type": "AWS::ApiGatewayV2::Route",
+      "Properties": {
+        "ApiId": {
+          "Ref": "HttpApi"
+        },
+        "RouteKey": "GET /parciales",
+        "Target": {
+          "Fn::Join": [
+            "/",
+            [
+              "integrations",
+              {
+                "Ref": "HttpApiIntegrationObtenerParciales"
+              }
+            ]
+          ]
+        }
+      },
+      "DependsOn": "HttpApiIntegrationObtenerParciales"
+    },
+    "EliminarParcialLambdaPermissionHttpApi": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "EliminarParcialLambdaFunction",
+            "Arn"
+          ]
+        },
+        "Action": "lambda:InvokeFunction",
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition"
+              },
+              ":execute-api:",
+              {
+                "Ref": "AWS::Region"
+              },
+              ":",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":",
+              {
+                "Ref": "HttpApi"
+              },
+              "/*"
+            ]
+          ]
+        }
+      }
+    },
+    "HttpApiIntegrationEliminarParcial": {
+      "Type": "AWS::ApiGatewayV2::Integration",
+      "Properties": {
+        "ApiId": {
+          "Ref": "HttpApi"
+        },
+        "IntegrationType": "AWS_PROXY",
+        "IntegrationUri": {
+          "Fn::GetAtt": [
+            "EliminarParcialLambdaFunction",
+            "Arn"
+          ]
+        },
+        "PayloadFormatVersion": "2.0",
+        "TimeoutInMillis": 30000
+      }
+    },
+    "HttpApiRouteDeleteParcialesIdVar": {
+      "Type": "AWS::ApiGatewayV2::Route",
+      "Properties": {
+        "ApiId": {
+          "Ref": "HttpApi"
+        },
+        "RouteKey": "DELETE /parciales/{id}",
+        "Target": {
+          "Fn::Join": [
+            "/",
+            [
+              "integrations",
+              {
+                "Ref": "HttpApiIntegrationEliminarParcial"
+              }
+            ]
+          ]
+        }
+      },
+      "DependsOn": "HttpApiIntegrationEliminarParcial"
+    },
+    "ActualizarParcialLambdaPermissionHttpApi": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "ActualizarParcialLambdaFunction",
+            "Arn"
+          ]
+        },
+        "Action": "lambda:InvokeFunction",
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition"
+              },
+              ":execute-api:",
+              {
+                "Ref": "AWS::Region"
+              },
+              ":",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":",
+              {
+                "Ref": "HttpApi"
+              },
+              "/*"
+            ]
+          ]
+        }
+      }
+    },
+    "HttpApiIntegrationActualizarParcial": {
+      "Type": "AWS::ApiGatewayV2::Integration",
+      "Properties": {
+        "ApiId": {
+          "Ref": "HttpApi"
+        },
+        "IntegrationType": "AWS_PROXY",
+        "IntegrationUri": {
+          "Fn::GetAtt": [
+            "ActualizarParcialLambdaFunction",
+            "Arn"
+          ]
+        },
+        "PayloadFormatVersion": "2.0",
+        "TimeoutInMillis": 30000
+      }
+    },
+    "HttpApiRoutePutParcialesIdVar": {
+      "Type": "AWS::ApiGatewayV2::Route",
+      "Properties": {
+        "ApiId": {
+          "Ref": "HttpApi"
+        },
+        "RouteKey": "PUT /parciales/{id}",
+        "Target": {
+          "Fn::Join": [
+            "/",
+            [
+              "integrations",
+              {
+                "Ref": "HttpApiIntegrationActualizarParcial"
+              }
+            ]
+          ]
+        }
+      },
+      "DependsOn": "HttpApiIntegrationActualizarParcial"
+    },
+    "AgregarPracticaLambdaPermissionHttpApi": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "AgregarPracticaLambdaFunction",
+            "Arn"
+          ]
+        },
+        "Action": "lambda:InvokeFunction",
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition"
+              },
+              ":execute-api:",
+              {
+                "Ref": "AWS::Region"
+              },
+              ":",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":",
+              {
+                "Ref": "HttpApi"
+              },
+              "/*"
+            ]
+          ]
+        }
+      }
+    },
+    "HttpApiIntegrationAgregarPractica": {
+      "Type": "AWS::ApiGatewayV2::Integration",
+      "Properties": {
+        "ApiId": {
+          "Ref": "HttpApi"
+        },
+        "IntegrationType": "AWS_PROXY",
+        "IntegrationUri": {
+          "Fn::GetAtt": [
+            "AgregarPracticaLambdaFunction",
+            "Arn"
+          ]
+        },
+        "PayloadFormatVersion": "2.0",
+        "TimeoutInMillis": 30000
+      }
+    },
+    "HttpApiRoutePostPracticas": {
+      "Type": "AWS::ApiGatewayV2::Route",
+      "Properties": {
+        "ApiId": {
+          "Ref": "HttpApi"
+        },
+        "RouteKey": "POST /practicas",
+        "Target": {
+          "Fn::Join": [
+            "/",
+            [
+              "integrations",
+              {
+                "Ref": "HttpApiIntegrationAgregarPractica"
+              }
+            ]
+          ]
+        }
+      },
+      "DependsOn": "HttpApiIntegrationAgregarPractica"
+    },
+    "ObtenerPracticasLambdaPermissionHttpApi": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "ObtenerPracticasLambdaFunction",
+            "Arn"
+          ]
+        },
+        "Action": "lambda:InvokeFunction",
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition"
+              },
+              ":execute-api:",
+              {
+                "Ref": "AWS::Region"
+              },
+              ":",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":",
+              {
+                "Ref": "HttpApi"
+              },
+              "/*"
+            ]
+          ]
+        }
+      }
+    },
+    "HttpApiIntegrationObtenerPracticas": {
+      "Type": "AWS::ApiGatewayV2::Integration",
+      "Properties": {
+        "ApiId": {
+          "Ref": "HttpApi"
+        },
+        "IntegrationType": "AWS_PROXY",
+        "IntegrationUri": {
+          "Fn::GetAtt": [
+            "ObtenerPracticasLambdaFunction",
+            "Arn"
+          ]
+        },
+        "PayloadFormatVersion": "2.0",
+        "TimeoutInMillis": 30000
+      }
+    },
+    "HttpApiRouteGetPracticas": {
+      "Type": "AWS::ApiGatewayV2::Route",
+      "Properties": {
+        "ApiId": {
+          "Ref": "HttpApi"
+        },
+        "RouteKey": "GET /practicas",
+        "Target": {
+          "Fn::Join": [
+            "/",
+            [
+              "integrations",
+              {
+                "Ref": "HttpApiIntegrationObtenerPracticas"
+              }
+            ]
+          ]
+        }
+      },
+      "DependsOn": "HttpApiIntegrationObtenerPracticas"
+    },
+    "EliminarPracticaLambdaPermissionHttpApi": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "EliminarPracticaLambdaFunction",
+            "Arn"
+          ]
+        },
+        "Action": "lambda:InvokeFunction",
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition"
+              },
+              ":execute-api:",
+              {
+                "Ref": "AWS::Region"
+              },
+              ":",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":",
+              {
+                "Ref": "HttpApi"
+              },
+              "/*"
+            ]
+          ]
+        }
+      }
+    },
+    "HttpApiIntegrationEliminarPractica": {
+      "Type": "AWS::ApiGatewayV2::Integration",
+      "Properties": {
+        "ApiId": {
+          "Ref": "HttpApi"
+        },
+        "IntegrationType": "AWS_PROXY",
+        "IntegrationUri": {
+          "Fn::GetAtt": [
+            "EliminarPracticaLambdaFunction",
+            "Arn"
+          ]
+        },
+        "PayloadFormatVersion": "2.0",
+        "TimeoutInMillis": 30000
+      }
+    },
+    "HttpApiRouteDeletePracticasIdVar": {
+      "Type": "AWS::ApiGatewayV2::Route",
+      "Properties": {
+        "ApiId": {
+          "Ref": "HttpApi"
+        },
+        "RouteKey": "DELETE /practicas/{id}",
+        "Target": {
+          "Fn::Join": [
+            "/",
+            [
+              "integrations",
+              {
+                "Ref": "HttpApiIntegrationEliminarPractica"
+              }
+            ]
+          ]
+        }
+      },
+      "DependsOn": "HttpApiIntegrationEliminarPractica"
+    },
+    "ActualizarPracticaLambdaPermissionHttpApi": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "ActualizarPracticaLambdaFunction",
+            "Arn"
+          ]
+        },
+        "Action": "lambda:InvokeFunction",
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition"
+              },
+              ":execute-api:",
+              {
+                "Ref": "AWS::Region"
+              },
+              ":",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":",
+              {
+                "Ref": "HttpApi"
+              },
+              "/*"
+            ]
+          ]
+        }
+      }
+    },
+    "HttpApiIntegrationActualizarPractica": {
+      "Type": "AWS::ApiGatewayV2::Integration",
+      "Properties": {
+        "ApiId": {
+          "Ref": "HttpApi"
+        },
+        "IntegrationType": "AWS_PROXY",
+        "IntegrationUri": {
+          "Fn::GetAtt": [
+            "ActualizarPracticaLambdaFunction",
+            "Arn"
+          ]
+        },
+        "PayloadFormatVersion": "2.0",
+        "TimeoutInMillis": 30000
+      }
+    },
+    "HttpApiRoutePutPracticasIdVar": {
+      "Type": "AWS::ApiGatewayV2::Route",
+      "Properties": {
+        "ApiId": {
+          "Ref": "HttpApi"
+        },
+        "RouteKey": "PUT /practicas/{id}",
+        "Target": {
+          "Fn::Join": [
+            "/",
+            [
+              "integrations",
+              {
+                "Ref": "HttpApiIntegrationActualizarPractica"
+              }
+            ]
+          ]
+        }
+      },
+      "DependsOn": "HttpApiIntegrationActualizarPractica"
+    },
+    "AgregarUsoEquipoLambdaPermissionHttpApi": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "AgregarUsoEquipoLambdaFunction",
+            "Arn"
+          ]
+        },
+        "Action": "lambda:InvokeFunction",
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition"
+              },
+              ":execute-api:",
+              {
+                "Ref": "AWS::Region"
+              },
+              ":",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":",
+              {
+                "Ref": "HttpApi"
+              },
+              "/*"
+            ]
+          ]
+        }
+      }
+    },
+    "HttpApiIntegrationAgregarUsoEquipo": {
+      "Type": "AWS::ApiGatewayV2::Integration",
+      "Properties": {
+        "ApiId": {
+          "Ref": "HttpApi"
+        },
+        "IntegrationType": "AWS_PROXY",
+        "IntegrationUri": {
+          "Fn::GetAtt": [
+            "AgregarUsoEquipoLambdaFunction",
+            "Arn"
+          ]
+        },
+        "PayloadFormatVersion": "2.0",
+        "TimeoutInMillis": 30000
+      }
+    },
+    "HttpApiRoutePostUsoequipo": {
+      "Type": "AWS::ApiGatewayV2::Route",
+      "Properties": {
+        "ApiId": {
+          "Ref": "HttpApi"
+        },
+        "RouteKey": "POST /usoEquipo",
+        "Target": {
+          "Fn::Join": [
+            "/",
+            [
+              "integrations",
+              {
+                "Ref": "HttpApiIntegrationAgregarUsoEquipo"
+              }
+            ]
+          ]
+        }
+      },
+      "DependsOn": "HttpApiIntegrationAgregarUsoEquipo"
+    },
+    "ObtenerUsoEquipoLambdaPermissionHttpApi": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "ObtenerUsoEquipoLambdaFunction",
+            "Arn"
+          ]
+        },
+        "Action": "lambda:InvokeFunction",
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition"
+              },
+              ":execute-api:",
+              {
+                "Ref": "AWS::Region"
+              },
+              ":",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":",
+              {
+                "Ref": "HttpApi"
+              },
+              "/*"
+            ]
+          ]
+        }
+      }
+    },
+    "HttpApiIntegrationObtenerUsoEquipo": {
+      "Type": "AWS::ApiGatewayV2::Integration",
+      "Properties": {
+        "ApiId": {
+          "Ref": "HttpApi"
+        },
+        "IntegrationType": "AWS_PROXY",
+        "IntegrationUri": {
+          "Fn::GetAtt": [
+            "ObtenerUsoEquipoLambdaFunction",
+            "Arn"
+          ]
+        },
+        "PayloadFormatVersion": "2.0",
+        "TimeoutInMillis": 30000
+      }
+    },
+    "HttpApiRouteGetUsoequipoIdVar": {
+      "Type": "AWS::ApiGatewayV2::Route",
+      "Properties": {
+        "ApiId": {
+          "Ref": "HttpApi"
+        },
+        "RouteKey": "GET /usoEquipo/{id}",
+        "Target": {
+          "Fn::Join": [
+            "/",
+            [
+              "integrations",
+              {
+                "Ref": "HttpApiIntegrationObtenerUsoEquipo"
+              }
+            ]
+          ]
+        }
+      },
+      "DependsOn": "HttpApiIntegrationObtenerUsoEquipo"
+    },
+    "EliminarUsoEquipoLambdaPermissionHttpApi": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "EliminarUsoEquipoLambdaFunction",
+            "Arn"
+          ]
+        },
+        "Action": "lambda:InvokeFunction",
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition"
+              },
+              ":execute-api:",
+              {
+                "Ref": "AWS::Region"
+              },
+              ":",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":",
+              {
+                "Ref": "HttpApi"
+              },
+              "/*"
+            ]
+          ]
+        }
+      }
+    },
+    "HttpApiIntegrationEliminarUsoEquipo": {
+      "Type": "AWS::ApiGatewayV2::Integration",
+      "Properties": {
+        "ApiId": {
+          "Ref": "HttpApi"
+        },
+        "IntegrationType": "AWS_PROXY",
+        "IntegrationUri": {
+          "Fn::GetAtt": [
+            "EliminarUsoEquipoLambdaFunction",
+            "Arn"
+          ]
+        },
+        "PayloadFormatVersion": "2.0",
+        "TimeoutInMillis": 30000
+      }
+    },
+    "HttpApiRouteDeleteUsoequipoIdVar": {
+      "Type": "AWS::ApiGatewayV2::Route",
+      "Properties": {
+        "ApiId": {
+          "Ref": "HttpApi"
+        },
+        "RouteKey": "DELETE /usoEquipo/{id}",
+        "Target": {
+          "Fn::Join": [
+            "/",
+            [
+              "integrations",
+              {
+                "Ref": "HttpApiIntegrationEliminarUsoEquipo"
+              }
+            ]
+          ]
+        }
+      },
+      "DependsOn": "HttpApiIntegrationEliminarUsoEquipo"
+    },
+    "ActualizarUsoEquipoLambdaPermissionHttpApi": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "ActualizarUsoEquipoLambdaFunction",
+            "Arn"
+          ]
+        },
+        "Action": "lambda:InvokeFunction",
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition"
+              },
+              ":execute-api:",
+              {
+                "Ref": "AWS::Region"
+              },
+              ":",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":",
+              {
+                "Ref": "HttpApi"
+              },
+              "/*"
+            ]
+          ]
+        }
+      }
+    },
+    "HttpApiIntegrationActualizarUsoEquipo": {
+      "Type": "AWS::ApiGatewayV2::Integration",
+      "Properties": {
+        "ApiId": {
+          "Ref": "HttpApi"
+        },
+        "IntegrationType": "AWS_PROXY",
+        "IntegrationUri": {
+          "Fn::GetAtt": [
+            "ActualizarUsoEquipoLambdaFunction",
+            "Arn"
+          ]
+        },
+        "PayloadFormatVersion": "2.0",
+        "TimeoutInMillis": 30000
+      }
+    },
+    "HttpApiRoutePutUsoequipoIdVar": {
+      "Type": "AWS::ApiGatewayV2::Route",
+      "Properties": {
+        "ApiId": {
+          "Ref": "HttpApi"
+        },
+        "RouteKey": "PUT /usoEquipo/{id}",
+        "Target": {
+          "Fn::Join": [
+            "/",
+            [
+              "integrations",
+              {
+                "Ref": "HttpApiIntegrationActualizarUsoEquipo"
+              }
+            ]
+          ]
+        }
+      },
+      "DependsOn": "HttpApiIntegrationActualizarUsoEquipo"
     }
   },
   "Outputs": {
@@ -704,49 +2858,220 @@
         "Name": "sls-servidor-melanymoreira-dev-ServerlessDeploymentBucketName"
       }
     },
-    "AgregarTaskLambdaFunctionQualifiedArn": {
+    "AgregarUserLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "AgregarTaskLambdaVersionu545ynwBb3jFkork0OUbgjix9OQsnulrX5nZe1RNOE"
+        "Ref": "AgregarUserLambdaVersionRgxEkZf66J79z4KD8QSA3TFVIEn7PRNCbLeasEdKU"
       },
       "Export": {
-        "Name": "sls-servidor-melanymoreira-dev-AgregarTaskLambdaFunctionQualifiedArn"
+        "Name": "sls-servidor-melanymoreira-dev-AgregarUserLambdaFunctionQualifiedArn"
       }
     },
-    "ObtenerTasksLambdaFunctionQualifiedArn": {
+    "ObtenerUserLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "ObtenerTasksLambdaVersionblR1bjT8ZhNUh0lEggFq5mvJSBjuyC5AKyjRRsagjc"
+        "Ref": "ObtenerUserLambdaVersiono1AwuFyD5Jz9Aaqe23lzO7ehQaprOBZ1XVK9Ksehk"
       },
       "Export": {
-        "Name": "sls-servidor-melanymoreira-dev-ObtenerTasksLambdaFunctionQualifiedArn"
+        "Name": "sls-servidor-melanymoreira-dev-ObtenerUserLambdaFunctionQualifiedArn"
       }
     },
-    "ObtenerTaskLambdaFunctionQualifiedArn": {
+    "EliminarUserLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "ObtenerTaskLambdaVersionOMiEjX4VJxgmlgv2r3U5kr6we75wGSoNcgYqhbyvM"
+        "Ref": "EliminarUserLambdaVersionlXaBJONwY1nCyKXQVhaHBrOJ9FuVWvyuP6gev5weis"
       },
       "Export": {
-        "Name": "sls-servidor-melanymoreira-dev-ObtenerTaskLambdaFunctionQualifiedArn"
+        "Name": "sls-servidor-melanymoreira-dev-EliminarUserLambdaFunctionQualifiedArn"
       }
     },
-    "EliminarTaskLambdaFunctionQualifiedArn": {
+    "ActualizarUserLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "EliminarTaskLambdaVersionQeSvh43bQiHIyYF3g3wCaWgcxx6Kj9KR1XrWaaOkc"
+        "Ref": "ActualizarUserLambdaVersionQBYO9DW55p0We32cSNNhYRx8Wwf9U27rCYXjFfvZmQ"
       },
       "Export": {
-        "Name": "sls-servidor-melanymoreira-dev-EliminarTaskLambdaFunctionQualifiedArn"
+        "Name": "sls-servidor-melanymoreira-dev-ActualizarUserLambdaFunctionQualifiedArn"
       }
     },
-    "ActualizarTaskLambdaFunctionQualifiedArn": {
+    "AgregarLaboratorioLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "ActualizarTaskLambdaVersionrLmcm37Bbm32jwrN9HPr0QLQwr6Sn7zu4X3nxPzEpQ"
+        "Ref": "AgregarLaboratorioLambdaVersionvwoTv7sOQhbMMQmsUMRqyco1rLgC0cuKC73AkOUWts"
       },
       "Export": {
-        "Name": "sls-servidor-melanymoreira-dev-ActualizarTaskLambdaFunctionQualifiedArn"
+        "Name": "sls-servidor-melanymoreira-dev-AgregarLaboratorioLambdaFunctionQualifiedArn"
+      }
+    },
+    "ObtenerLaboratorioLambdaFunctionQualifiedArn": {
+      "Description": "Current Lambda function version",
+      "Value": {
+        "Ref": "ObtenerLaboratorioLambdaVersionfkrvHMFzgJx5nxEzYUUGjIKgsYDEoS2Gx9mvlNOOSig"
+      },
+      "Export": {
+        "Name": "sls-servidor-melanymoreira-dev-ObtenerLaboratorioLambdaFunctionQualifiedArn"
+      }
+    },
+    "EliminarLaboratorioLambdaFunctionQualifiedArn": {
+      "Description": "Current Lambda function version",
+      "Value": {
+        "Ref": "EliminarLaboratorioLambdaVersionu7UKtobNoe19Q0D3xFUxUdIWzNhlhruYbLxPFvE"
+      },
+      "Export": {
+        "Name": "sls-servidor-melanymoreira-dev-EliminarLaboratorioLambdaFunctionQualifiedArn"
+      }
+    },
+    "ActualizarLaboratorioLambdaFunctionQualifiedArn": {
+      "Description": "Current Lambda function version",
+      "Value": {
+        "Ref": "ActualizarLaboratorioLambdaVersion2i6bpCy2KrnE1T23D4LjwUJL9yT0pHNhNlU7Fihlf8s"
+      },
+      "Export": {
+        "Name": "sls-servidor-melanymoreira-dev-ActualizarLaboratorioLambdaFunctionQualifiedArn"
+      }
+    },
+    "AgregarAsignaturaLambdaFunctionQualifiedArn": {
+      "Description": "Current Lambda function version",
+      "Value": {
+        "Ref": "AgregarAsignaturaLambdaVersion2c7xU17MkygCHd7T0CjZXcP3YJ9bKwUdnUptErkKus"
+      },
+      "Export": {
+        "Name": "sls-servidor-melanymoreira-dev-AgregarAsignaturaLambdaFunctionQualifiedArn"
+      }
+    },
+    "ObtenerAsignaturaLambdaFunctionQualifiedArn": {
+      "Description": "Current Lambda function version",
+      "Value": {
+        "Ref": "ObtenerAsignaturaLambdaVersioneulum2JQ9L6sU9kYmpulrc5181ikieHdDTEKJaukw"
+      },
+      "Export": {
+        "Name": "sls-servidor-melanymoreira-dev-ObtenerAsignaturaLambdaFunctionQualifiedArn"
+      }
+    },
+    "EliminarAsignaturaLambdaFunctionQualifiedArn": {
+      "Description": "Current Lambda function version",
+      "Value": {
+        "Ref": "EliminarAsignaturaLambdaVersiontgYA4aYEAC4fWhMa46rQFIIZFZA4Vh7n4zEuKtgsU"
+      },
+      "Export": {
+        "Name": "sls-servidor-melanymoreira-dev-EliminarAsignaturaLambdaFunctionQualifiedArn"
+      }
+    },
+    "ActualizarAsignaturaLambdaFunctionQualifiedArn": {
+      "Description": "Current Lambda function version",
+      "Value": {
+        "Ref": "ActualizarAsignaturaLambdaVersionIbf9MjzHCFCxkwZqo7LpRbwLDhZCGCuVw8McabVQs"
+      },
+      "Export": {
+        "Name": "sls-servidor-melanymoreira-dev-ActualizarAsignaturaLambdaFunctionQualifiedArn"
+      }
+    },
+    "AgregarParcialLambdaFunctionQualifiedArn": {
+      "Description": "Current Lambda function version",
+      "Value": {
+        "Ref": "AgregarParcialLambdaVersionQCXVCo3ziFGCrPJvfpWcfQQNBvfkKRaaXruprryKms"
+      },
+      "Export": {
+        "Name": "sls-servidor-melanymoreira-dev-AgregarParcialLambdaFunctionQualifiedArn"
+      }
+    },
+    "ObtenerParcialesLambdaFunctionQualifiedArn": {
+      "Description": "Current Lambda function version",
+      "Value": {
+        "Ref": "ObtenerParcialesLambdaVersionWwSoTDRxqM5VWd2pu4Xms6kfMkc6WWPhzo2cc5DUVw"
+      },
+      "Export": {
+        "Name": "sls-servidor-melanymoreira-dev-ObtenerParcialesLambdaFunctionQualifiedArn"
+      }
+    },
+    "EliminarParcialLambdaFunctionQualifiedArn": {
+      "Description": "Current Lambda function version",
+      "Value": {
+        "Ref": "EliminarParcialLambdaVersionovWBDb28gcYu703xi9vPoUFPnMImwEzR2xMZkH21gA"
+      },
+      "Export": {
+        "Name": "sls-servidor-melanymoreira-dev-EliminarParcialLambdaFunctionQualifiedArn"
+      }
+    },
+    "ActualizarParcialLambdaFunctionQualifiedArn": {
+      "Description": "Current Lambda function version",
+      "Value": {
+        "Ref": "ActualizarParcialLambdaVersionTcC6iYVoYDbz00NnE6SSlRyjf1wrrs6oRSyIairi5k"
+      },
+      "Export": {
+        "Name": "sls-servidor-melanymoreira-dev-ActualizarParcialLambdaFunctionQualifiedArn"
+      }
+    },
+    "AgregarPracticaLambdaFunctionQualifiedArn": {
+      "Description": "Current Lambda function version",
+      "Value": {
+        "Ref": "AgregarPracticaLambdaVersion0oTxP2ZNOWlbzkym26M8ugz3w0c5CfrM5dWe4mhRt0"
+      },
+      "Export": {
+        "Name": "sls-servidor-melanymoreira-dev-AgregarPracticaLambdaFunctionQualifiedArn"
+      }
+    },
+    "ObtenerPracticasLambdaFunctionQualifiedArn": {
+      "Description": "Current Lambda function version",
+      "Value": {
+        "Ref": "ObtenerPracticasLambdaVersion4t8hqSFvAhwnCMYWjIt4ElIO8pwv1lIV4ljZn3xf3TE"
+      },
+      "Export": {
+        "Name": "sls-servidor-melanymoreira-dev-ObtenerPracticasLambdaFunctionQualifiedArn"
+      }
+    },
+    "EliminarPracticaLambdaFunctionQualifiedArn": {
+      "Description": "Current Lambda function version",
+      "Value": {
+        "Ref": "EliminarPracticaLambdaVersionj3hnFogLjhtL9vTLCZERJfuTqabuKC0RnjNCdaHQ"
+      },
+      "Export": {
+        "Name": "sls-servidor-melanymoreira-dev-EliminarPracticaLambdaFunctionQualifiedArn"
+      }
+    },
+    "ActualizarPracticaLambdaFunctionQualifiedArn": {
+      "Description": "Current Lambda function version",
+      "Value": {
+        "Ref": "ActualizarPracticaLambdaVersioncKQHIuYEZrNbXuGbT6DopAjZij5jraZcnj581zqebZQ"
+      },
+      "Export": {
+        "Name": "sls-servidor-melanymoreira-dev-ActualizarPracticaLambdaFunctionQualifiedArn"
+      }
+    },
+    "AgregarUsoEquipoLambdaFunctionQualifiedArn": {
+      "Description": "Current Lambda function version",
+      "Value": {
+        "Ref": "AgregarUsoEquipoLambdaVersionH2L2K8YBryUTTe1GHNeB40ExYrEoDp2fAslmliMWTe8"
+      },
+      "Export": {
+        "Name": "sls-servidor-melanymoreira-dev-AgregarUsoEquipoLambdaFunctionQualifiedArn"
+      }
+    },
+    "ObtenerUsoEquipoLambdaFunctionQualifiedArn": {
+      "Description": "Current Lambda function version",
+      "Value": {
+        "Ref": "ObtenerUsoEquipoLambdaVersionPzBK5I7ACFll20wS1jSONs6cjSfnrVaCEAmUSEkY"
+      },
+      "Export": {
+        "Name": "sls-servidor-melanymoreira-dev-ObtenerUsoEquipoLambdaFunctionQualifiedArn"
+      }
+    },
+    "EliminarUsoEquipoLambdaFunctionQualifiedArn": {
+      "Description": "Current Lambda function version",
+      "Value": {
+        "Ref": "EliminarUsoEquipoLambdaVersionNv7uLlTMO4AtgnM3wrYYTao3qk8Pzez8G2If0gQb5OY"
+      },
+      "Export": {
+        "Name": "sls-servidor-melanymoreira-dev-EliminarUsoEquipoLambdaFunctionQualifiedArn"
+      }
+    },
+    "ActualizarUsoEquipoLambdaFunctionQualifiedArn": {
+      "Description": "Current Lambda function version",
+      "Value": {
+        "Ref": "ActualizarUsoEquipoLambdaVersionFITmFcwU5o6HxgNk8bo1g2rSaXnWLRd3j3V1DaBUnY"
+      },
+      "Export": {
+        "Name": "sls-servidor-melanymoreira-dev-ActualizarUsoEquipoLambdaFunctionQualifiedArn"
       }
     },
     "HttpApiId": {

@@ -12,7 +12,7 @@ exports.agregarUser = async (event) => {
   };
   await dynamoDB
     .put({
-      TableName: "usuarios",
+      TableName: "usuario",
       Item: items,
     })
     .promise();

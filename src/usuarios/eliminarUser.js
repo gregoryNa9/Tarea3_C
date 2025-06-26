@@ -5,7 +5,7 @@ exports.eliminarUser = async (event) => {
   const { id } = event.pathParameters;
   await dynamoDB
     .delete({
-      TableName: "usuarios",
+      TableName: "usuario",
       Key: { id },
     })
     .promise();

@@ -6,7 +6,7 @@ exports.actualizarUser = async (event) => {
   const { nombre, correo, rol } = JSON.parse(event.body);
   await dynamoDB
     .update({
-      TableName: "usuarios",
+      TableName: "usuario",
       Key: { id },
       UpdateExpression: "set nombre = :nombre, correo = :correo, rol = :rol",
       ExpressionAttributeValues: {

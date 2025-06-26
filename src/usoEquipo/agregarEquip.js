@@ -16,7 +16,7 @@ exports.agregarEquip = async (event) => {
 
   await dynamoDB
     .put({
-      TableName: "usoEquipos",
+      TableName: "usoEquipo",
       Item: items,
     })
     .promise();
