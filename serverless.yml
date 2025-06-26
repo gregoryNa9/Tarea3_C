@@ -1,0 +1,61 @@
+org: melanymoreira
+app: servidor-melanymoreira
+service: servidor-melanymoreira
+provider:
+  name: aws
+  runtime: nodejs20.x
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:*
+      Resource:
+          - arn:aws:dynamodb:us-east-1:469647637171:table/tabla
+    
+functions:
+  agregarTask:
+    handler: src/agregarTask.agregarTask
+    events:
+      - httpApi:
+          path: /tarea
+          method: post
+
+  obtenerTasks:
+    handler: src/obtenerTasks.obtenerTasks
+    events:
+      - httpApi:
+          path: /tareas
+          method: get
+
+  obtenerTask:
+    handler: src/obtenerTask.obtenerTask
+    events:
+      - httpApi:
+          path: /tareas/{id}
+          method: get
+
+  eliminarTask:
+    handler: src/eliminarTask.eliminarTask
+    events:
+      - httpApi:
+          path: /tareas/{id}
+          method: delete
+
+  actualizarTask:
+    handler: src/actualizarTask.actualizarTask
+    events:
+      - httpApi:
+          path: /tareas/{id}
+          method: put
+resources: 
+  Resources:
+    tareasTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: tabla
+        BillingMode: PAY_PER_REQUEST
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH

@@ -1,0 +1,2611 @@
+{
+  "C:\\xampp\\htdocs\\practica-serverless-api-MoreiraMelany\\serverless.yml": {
+    "versionFramework": "4.14.3",
+    "servicePath": "C:\\xampp\\htdocs\\practica-serverless-api-MoreiraMelany\\serverless.yml",
+    "serviceConfigFileName": "serverless.yml",
+    "service": {
+      "org": "melanymoreira",
+      "app": "servidor-melanymoreira",
+      "service": "servidor-melanymoreira",
+      "provider": {
+        "name": "aws",
+        "runtime": "nodejs20.x",
+        "iamRoleStatements": [
+          {
+            "Effect": "Allow",
+            "Action": [
+              "dynamodb:*"
+            ],
+            "Resource": "arn:aws:dynamodb:us-east-1:469647637171:table/tabla"
+          }
+        ],
+        "stage": "dev",
+        "region": "us-east-1",
+        "versionFunctions": true,
+        "compiledCloudFormationTemplate": {
+          "AWSTemplateFormatVersion": "2010-09-09",
+          "Description": "The AWS CloudFormation template for this Serverless application",
+          "Resources": {
+            "AgregarTaskLogGroup": {
+              "Type": "AWS::Logs::LogGroup",
+              "Properties": {
+                "LogGroupName": "/aws/lambda/servidor-melanymoreira-dev-agregarTask"
+              }
+            },
+            "ObtenerTasksLogGroup": {
+              "Type": "AWS::Logs::LogGroup",
+              "Properties": {
+                "LogGroupName": "/aws/lambda/servidor-melanymoreira-dev-obtenerTasks"
+              }
+            },
+            "ObtenerTaskLogGroup": {
+              "Type": "AWS::Logs::LogGroup",
+              "Properties": {
+                "LogGroupName": "/aws/lambda/servidor-melanymoreira-dev-obtenerTask"
+              }
+            },
+            "EliminarTaskLogGroup": {
+              "Type": "AWS::Logs::LogGroup",
+              "Properties": {
+                "LogGroupName": "/aws/lambda/servidor-melanymoreira-dev-eliminarTask"
+              }
+            },
+            "ActualizarTaskLogGroup": {
+              "Type": "AWS::Logs::LogGroup",
+              "Properties": {
+                "LogGroupName": "/aws/lambda/servidor-melanymoreira-dev-actualizarTask"
+              }
+            },
+            "IamRoleLambdaExecution": {
+              "Type": "AWS::IAM::Role",
+              "Properties": {
+                "AssumeRolePolicyDocument": {
+                  "Version": "2012-10-17",
+                  "Statement": [
+                    {
+                      "Effect": "Allow",
+                      "Principal": {
+                        "Service": [
+                          "lambda.amazonaws.com"
+                        ]
+                      },
+                      "Action": [
+                        "sts:AssumeRole"
+                      ]
+                    }
+                  ]
+                },
+                "Policies": [
+                  {
+                    "PolicyName": {
+                      "Fn::Join": [
+                        "-",
+                        [
+                          "servidor-melanymoreira",
+                          "dev",
+                          "lambda"
+                        ]
+                      ]
+                    },
+                    "PolicyDocument": {
+                      "Version": "2012-10-17",
+                      "Statement": [
+                        {
+                          "Effect": "Allow",
+                          "Action": [
+                            "logs:CreateLogStream",
+                            "logs:CreateLogGroup",
+                            "logs:TagResource"
+                          ],
+                          "Resource": [
+                            {
+                              "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/servidor-melanymoreira-dev*:*"
+                            }
+                          ]
+                        },
+                        {
+                          "Effect": "Allow",
+                          "Action": [
+                            "logs:PutLogEvents"
+                          ],
+                          "Resource": [
+                            {
+                              "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/servidor-melanymoreira-dev*:*:*"
+                            }
+                          ]
+                        },
+                        {
+                          "Effect": "Allow",
+                          "Action": [
+                            "dynamodb:*"
+                          ],
+                          "Resource": "arn:aws:dynamodb:us-east-1:469647637171:table/tabla"
+                        }
+                      ]
+                    }
+                  }
+                ],
+                "Path": "/",
+                "RoleName": {
+                  "Fn::Join": [
+                    "-",
+                    [
+                      "servidor-melanymoreira",
+                      "dev",
+                      {
+                        "Ref": "AWS::Region"
+                      },
+                      "lambdaRole"
+                    ]
+                  ]
+                }
+              }
+            },
+            "AgregarTaskLambdaFunction": {
+              "Type": "AWS::Lambda::Function",
+              "Properties": {
+                "Code": {
+                  "S3Bucket": "serverless-framework-deployments-us-east-1-d6410a1c-8fc2",
+                  "S3Key": "serverless/servidor-melanymoreira/dev/1746822856355-2025-05-09T20:34:16.355Z/servidor-melanymoreira.zip"
+                },
+                "Handler": "src/agregarTask.agregarTask",
+                "Runtime": "nodejs20.x",
+                "FunctionName": "servidor-melanymoreira-dev-agregarTask",
+                "MemorySize": 1024,
+                "Timeout": 6,
+                "Role": {
+                  "Fn::GetAtt": [
+                    "IamRoleLambdaExecution",
+                    "Arn"
+                  ]
+                }
+              },
+              "DependsOn": [
+                "AgregarTaskLogGroup"
+              ]
+            },
+            "ObtenerTasksLambdaFunction": {
+              "Type": "AWS::Lambda::Function",
+              "Properties": {
+                "Code": {
+                  "S3Bucket": "serverless-framework-deployments-us-east-1-d6410a1c-8fc2",
+                  "S3Key": "serverless/servidor-melanymoreira/dev/1746822856355-2025-05-09T20:34:16.355Z/servidor-melanymoreira.zip"
+                },
+                "Handler": "src/obtenerTasks.obtenerTasks",
+                "Runtime": "nodejs20.x",
+                "FunctionName": "servidor-melanymoreira-dev-obtenerTasks",
+                "MemorySize": 1024,
+                "Timeout": 6,
+                "Role": {
+                  "Fn::GetAtt": [
+                    "IamRoleLambdaExecution",
+                    "Arn"
+                  ]
+                }
+              },
+              "DependsOn": [
+                "ObtenerTasksLogGroup"
+              ]
+            },
+            "ObtenerTaskLambdaFunction": {
+              "Type": "AWS::Lambda::Function",
+              "Properties": {
+                "Code": {
+                  "S3Bucket": "serverless-framework-deployments-us-east-1-d6410a1c-8fc2",
+                  "S3Key": "serverless/servidor-melanymoreira/dev/1746822856355-2025-05-09T20:34:16.355Z/servidor-melanymoreira.zip"
+                },
+                "Handler": "src/obtenerTask.obtenerTask",
+                "Runtime": "nodejs20.x",
+                "FunctionName": "servidor-melanymoreira-dev-obtenerTask",
+                "MemorySize": 1024,
+                "Timeout": 6,
+                "Role": {
+                  "Fn::GetAtt": [
+                    "IamRoleLambdaExecution",
+                    "Arn"
+                  ]
+                }
+              },
+              "DependsOn": [
+                "ObtenerTaskLogGroup"
+              ]
+            },
+            "EliminarTaskLambdaFunction": {
+              "Type": "AWS::Lambda::Function",
+              "Properties": {
+                "Code": {
+                  "S3Bucket": "serverless-framework-deployments-us-east-1-d6410a1c-8fc2",
+                  "S3Key": "serverless/servidor-melanymoreira/dev/1746822856355-2025-05-09T20:34:16.355Z/servidor-melanymoreira.zip"
+                },
+                "Handler": "src/eliminarTask.eliminarTask",
+                "Runtime": "nodejs20.x",
+                "FunctionName": "servidor-melanymoreira-dev-eliminarTask",
+                "MemorySize": 1024,
+                "Timeout": 6,
+                "Role": {
+                  "Fn::GetAtt": [
+                    "IamRoleLambdaExecution",
+                    "Arn"
+                  ]
+                }
+              },
+              "DependsOn": [
+                "EliminarTaskLogGroup"
+              ]
+            },
+            "ActualizarTaskLambdaFunction": {
+              "Type": "AWS::Lambda::Function",
+              "Properties": {
+                "Code": {
+                  "S3Bucket": "serverless-framework-deployments-us-east-1-d6410a1c-8fc2",
+                  "S3Key": "serverless/servidor-melanymoreira/dev/1746822856355-2025-05-09T20:34:16.355Z/servidor-melanymoreira.zip"
+                },
+                "Handler": "src/actualizarTask.actualizarTask",
+                "Runtime": "nodejs20.x",
+                "FunctionName": "servidor-melanymoreira-dev-actualizarTask",
+                "MemorySize": 1024,
+                "Timeout": 6,
+                "Role": {
+                  "Fn::GetAtt": [
+                    "IamRoleLambdaExecution",
+                    "Arn"
+                  ]
+                }
+              },
+              "DependsOn": [
+                "ActualizarTaskLogGroup"
+              ]
+            },
+            "AgregarTaskLambdaVersionu545ynwBb3jFkork0OUbgjix9OQsnulrX5nZe1RNOE": {
+              "Type": "AWS::Lambda::Version",
+              "DeletionPolicy": "Retain",
+              "Properties": {
+                "FunctionName": {
+                  "Ref": "AgregarTaskLambdaFunction"
+                },
+                "CodeSha256": "9qcJKqaO5sNR5ZmVW5Y0G6n/Qn2bdblxBkmVQNBC4cM="
+              }
+            },
+            "ObtenerTasksLambdaVersionblR1bjT8ZhNUh0lEggFq5mvJSBjuyC5AKyjRRsagjc": {
+              "Type": "AWS::Lambda::Version",
+              "DeletionPolicy": "Retain",
+              "Properties": {
+                "FunctionName": {
+                  "Ref": "ObtenerTasksLambdaFunction"
+                },
+                "CodeSha256": "9qcJKqaO5sNR5ZmVW5Y0G6n/Qn2bdblxBkmVQNBC4cM="
+              }
+            },
+            "ObtenerTaskLambdaVersionOMiEjX4VJxgmlgv2r3U5kr6we75wGSoNcgYqhbyvM": {
+              "Type": "AWS::Lambda::Version",
+              "DeletionPolicy": "Retain",
+              "Properties": {
+                "FunctionName": {
+                  "Ref": "ObtenerTaskLambdaFunction"
+                },
+                "CodeSha256": "9qcJKqaO5sNR5ZmVW5Y0G6n/Qn2bdblxBkmVQNBC4cM="
+              }
+            },
+            "EliminarTaskLambdaVersionQeSvh43bQiHIyYF3g3wCaWgcxx6Kj9KR1XrWaaOkc": {
+              "Type": "AWS::Lambda::Version",
+              "DeletionPolicy": "Retain",
+              "Properties": {
+                "FunctionName": {
+                  "Ref": "EliminarTaskLambdaFunction"
+                },
+                "CodeSha256": "9qcJKqaO5sNR5ZmVW5Y0G6n/Qn2bdblxBkmVQNBC4cM="
+              }
+            },
+            "ActualizarTaskLambdaVersionrLmcm37Bbm32jwrN9HPr0QLQwr6Sn7zu4X3nxPzEpQ": {
+              "Type": "AWS::Lambda::Version",
+              "DeletionPolicy": "Retain",
+              "Properties": {
+                "FunctionName": {
+                  "Ref": "ActualizarTaskLambdaFunction"
+                },
+                "CodeSha256": "9qcJKqaO5sNR5ZmVW5Y0G6n/Qn2bdblxBkmVQNBC4cM="
+              }
+            },
+            "HttpApi": {
+              "Type": "AWS::ApiGatewayV2::Api",
+              "Properties": {
+                "Name": "dev-servidor-melanymoreira",
+                "ProtocolType": "HTTP"
+              }
+            },
+            "HttpApiStage": {
+              "Type": "AWS::ApiGatewayV2::Stage",
+              "Properties": {
+                "ApiId": {
+                  "Ref": "HttpApi"
+                },
+                "StageName": "$default",
+                "AutoDeploy": true,
+                "DefaultRouteSettings": {
+                  "DetailedMetricsEnabled": false
+                }
+              }
+            },
+            "AgregarTaskLambdaPermissionHttpApi": {
+              "Type": "AWS::Lambda::Permission",
+              "Properties": {
+                "FunctionName": {
+                  "Fn::GetAtt": [
+                    "AgregarTaskLambdaFunction",
+                    "Arn"
+                  ]
+                },
+                "Action": "lambda:InvokeFunction",
+                "Principal": "apigateway.amazonaws.com",
+                "SourceArn": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":execute-api:",
+                      {
+                        "Ref": "AWS::Region"
+                      },
+                      ":",
+                      {
+                        "Ref": "AWS::AccountId"
+                      },
+                      ":",
+                      {
+                        "Ref": "HttpApi"
+                      },
+                      "/*"
+                    ]
+                  ]
+                }
+              }
+            },
+            "HttpApiIntegrationAgregarTask": {
+              "Type": "AWS::ApiGatewayV2::Integration",
+              "Properties": {
+                "ApiId": {
+                  "Ref": "HttpApi"
+                },
+                "IntegrationType": "AWS_PROXY",
+                "IntegrationUri": {
+                  "Fn::GetAtt": [
+                    "AgregarTaskLambdaFunction",
+                    "Arn"
+                  ]
+                },
+                "PayloadFormatVersion": "2.0",
+                "TimeoutInMillis": 30000
+              }
+            },
+            "HttpApiRoutePostTarea": {
+              "Type": "AWS::ApiGatewayV2::Route",
+              "Properties": {
+                "ApiId": {
+                  "Ref": "HttpApi"
+                },
+                "RouteKey": "POST /tarea",
+                "Target": {
+                  "Fn::Join": [
+                    "/",
+                    [
+                      "integrations",
+                      {
+                        "Ref": "HttpApiIntegrationAgregarTask"
+                      }
+                    ]
+                  ]
+                }
+              },
+              "DependsOn": "HttpApiIntegrationAgregarTask"
+            },
+            "ObtenerTasksLambdaPermissionHttpApi": {
+              "Type": "AWS::Lambda::Permission",
+              "Properties": {
+                "FunctionName": {
+                  "Fn::GetAtt": [
+                    "ObtenerTasksLambdaFunction",
+                    "Arn"
+                  ]
+                },
+                "Action": "lambda:InvokeFunction",
+                "Principal": "apigateway.amazonaws.com",
+                "SourceArn": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":execute-api:",
+                      {
+                        "Ref": "AWS::Region"
+                      },
+                      ":",
+                      {
+                        "Ref": "AWS::AccountId"
+                      },
+                      ":",
+                      {
+                        "Ref": "HttpApi"
+                      },
+                      "/*"
+                    ]
+                  ]
+                }
+              }
+            },
+            "HttpApiIntegrationObtenerTasks": {
+              "Type": "AWS::ApiGatewayV2::Integration",
+              "Properties": {
+                "ApiId": {
+                  "Ref": "HttpApi"
+                },
+                "IntegrationType": "AWS_PROXY",
+                "IntegrationUri": {
+                  "Fn::GetAtt": [
+                    "ObtenerTasksLambdaFunction",
+                    "Arn"
+                  ]
+                },
+                "PayloadFormatVersion": "2.0",
+                "TimeoutInMillis": 30000
+              }
+            },
+            "HttpApiRouteGetTareas": {
+              "Type": "AWS::ApiGatewayV2::Route",
+              "Properties": {
+                "ApiId": {
+                  "Ref": "HttpApi"
+                },
+                "RouteKey": "GET /tareas",
+                "Target": {
+                  "Fn::Join": [
+                    "/",
+                    [
+                      "integrations",
+                      {
+                        "Ref": "HttpApiIntegrationObtenerTasks"
+                      }
+                    ]
+                  ]
+                }
+              },
+              "DependsOn": "HttpApiIntegrationObtenerTasks"
+            },
+            "ObtenerTaskLambdaPermissionHttpApi": {
+              "Type": "AWS::Lambda::Permission",
+              "Properties": {
+                "FunctionName": {
+                  "Fn::GetAtt": [
+                    "ObtenerTaskLambdaFunction",
+                    "Arn"
+                  ]
+                },
+                "Action": "lambda:InvokeFunction",
+                "Principal": "apigateway.amazonaws.com",
+                "SourceArn": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":execute-api:",
+                      {
+                        "Ref": "AWS::Region"
+                      },
+                      ":",
+                      {
+                        "Ref": "AWS::AccountId"
+                      },
+                      ":",
+                      {
+                        "Ref": "HttpApi"
+                      },
+                      "/*"
+                    ]
+                  ]
+                }
+              }
+            },
+            "HttpApiIntegrationObtenerTask": {
+              "Type": "AWS::ApiGatewayV2::Integration",
+              "Properties": {
+                "ApiId": {
+                  "Ref": "HttpApi"
+                },
+                "IntegrationType": "AWS_PROXY",
+                "IntegrationUri": {
+                  "Fn::GetAtt": [
+                    "ObtenerTaskLambdaFunction",
+                    "Arn"
+                  ]
+                },
+                "PayloadFormatVersion": "2.0",
+                "TimeoutInMillis": 30000
+              }
+            },
+            "HttpApiRouteGetTareasIdVar": {
+              "Type": "AWS::ApiGatewayV2::Route",
+              "Properties": {
+                "ApiId": {
+                  "Ref": "HttpApi"
+                },
+                "RouteKey": "GET /tareas/{id}",
+                "Target": {
+                  "Fn::Join": [
+                    "/",
+                    [
+                      "integrations",
+                      {
+                        "Ref": "HttpApiIntegrationObtenerTask"
+                      }
+                    ]
+                  ]
+                }
+              },
+              "DependsOn": "HttpApiIntegrationObtenerTask"
+            },
+            "EliminarTaskLambdaPermissionHttpApi": {
+              "Type": "AWS::Lambda::Permission",
+              "Properties": {
+                "FunctionName": {
+                  "Fn::GetAtt": [
+                    "EliminarTaskLambdaFunction",
+                    "Arn"
+                  ]
+                },
+                "Action": "lambda:InvokeFunction",
+                "Principal": "apigateway.amazonaws.com",
+                "SourceArn": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":execute-api:",
+                      {
+                        "Ref": "AWS::Region"
+                      },
+                      ":",
+                      {
+                        "Ref": "AWS::AccountId"
+                      },
+                      ":",
+                      {
+                        "Ref": "HttpApi"
+                      },
+                      "/*"
+                    ]
+                  ]
+                }
+              }
+            },
+            "HttpApiIntegrationEliminarTask": {
+              "Type": "AWS::ApiGatewayV2::Integration",
+              "Properties": {
+                "ApiId": {
+                  "Ref": "HttpApi"
+                },
+                "IntegrationType": "AWS_PROXY",
+                "IntegrationUri": {
+                  "Fn::GetAtt": [
+                    "EliminarTaskLambdaFunction",
+                    "Arn"
+                  ]
+                },
+                "PayloadFormatVersion": "2.0",
+                "TimeoutInMillis": 30000
+              }
+            },
+            "HttpApiRouteDeleteTareasIdVar": {
+              "Type": "AWS::ApiGatewayV2::Route",
+              "Properties": {
+                "ApiId": {
+                  "Ref": "HttpApi"
+                },
+                "RouteKey": "DELETE /tareas/{id}",
+                "Target": {
+                  "Fn::Join": [
+                    "/",
+                    [
+                      "integrations",
+                      {
+                        "Ref": "HttpApiIntegrationEliminarTask"
+                      }
+                    ]
+                  ]
+                }
+              },
+              "DependsOn": "HttpApiIntegrationEliminarTask"
+            },
+            "ActualizarTaskLambdaPermissionHttpApi": {
+              "Type": "AWS::Lambda::Permission",
+              "Properties": {
+                "FunctionName": {
+                  "Fn::GetAtt": [
+                    "ActualizarTaskLambdaFunction",
+                    "Arn"
+                  ]
+                },
+                "Action": "lambda:InvokeFunction",
+                "Principal": "apigateway.amazonaws.com",
+                "SourceArn": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":execute-api:",
+                      {
+                        "Ref": "AWS::Region"
+                      },
+                      ":",
+                      {
+                        "Ref": "AWS::AccountId"
+                      },
+                      ":",
+                      {
+                        "Ref": "HttpApi"
+                      },
+                      "/*"
+                    ]
+                  ]
+                }
+              }
+            },
+            "HttpApiIntegrationActualizarTask": {
+              "Type": "AWS::ApiGatewayV2::Integration",
+              "Properties": {
+                "ApiId": {
+                  "Ref": "HttpApi"
+                },
+                "IntegrationType": "AWS_PROXY",
+                "IntegrationUri": {
+                  "Fn::GetAtt": [
+                    "ActualizarTaskLambdaFunction",
+                    "Arn"
+                  ]
+                },
+                "PayloadFormatVersion": "2.0",
+                "TimeoutInMillis": 30000
+              }
+            },
+            "HttpApiRoutePutTareasIdVar": {
+              "Type": "AWS::ApiGatewayV2::Route",
+              "Properties": {
+                "ApiId": {
+                  "Ref": "HttpApi"
+                },
+                "RouteKey": "PUT /tareas/{id}",
+                "Target": {
+                  "Fn::Join": [
+                    "/",
+                    [
+                      "integrations",
+                      {
+                        "Ref": "HttpApiIntegrationActualizarTask"
+                      }
+                    ]
+                  ]
+                }
+              },
+              "DependsOn": "HttpApiIntegrationActualizarTask"
+            },
+            "tareasTable": {
+              "Type": "AWS::DynamoDB::Table",
+              "Properties": {
+                "TableName": "tabla",
+                "BillingMode": "PAY_PER_REQUEST",
+                "AttributeDefinitions": [
+                  {
+                    "AttributeName": "id",
+                    "AttributeType": "S"
+                  }
+                ],
+                "KeySchema": [
+                  {
+                    "AttributeName": "id",
+                    "KeyType": "HASH"
+                  }
+                ]
+              }
+            }
+          },
+          "Outputs": {
+            "ServerlessDeploymentBucketName": {
+              "Value": "serverless-framework-deployments-us-east-1-d6410a1c-8fc2",
+              "Export": {
+                "Name": "sls-servidor-melanymoreira-dev-ServerlessDeploymentBucketName"
+              }
+            },
+            "AgregarTaskLambdaFunctionQualifiedArn": {
+              "Description": "Current Lambda function version",
+              "Value": {
+                "Ref": "AgregarTaskLambdaVersionu545ynwBb3jFkork0OUbgjix9OQsnulrX5nZe1RNOE"
+              },
+              "Export": {
+                "Name": "sls-servidor-melanymoreira-dev-AgregarTaskLambdaFunctionQualifiedArn"
+              }
+            },
+            "ObtenerTasksLambdaFunctionQualifiedArn": {
+              "Description": "Current Lambda function version",
+              "Value": {
+                "Ref": "ObtenerTasksLambdaVersionblR1bjT8ZhNUh0lEggFq5mvJSBjuyC5AKyjRRsagjc"
+              },
+              "Export": {
+                "Name": "sls-servidor-melanymoreira-dev-ObtenerTasksLambdaFunctionQualifiedArn"
+              }
+            },
+            "ObtenerTaskLambdaFunctionQualifiedArn": {
+              "Description": "Current Lambda function version",
+              "Value": {
+                "Ref": "ObtenerTaskLambdaVersionOMiEjX4VJxgmlgv2r3U5kr6we75wGSoNcgYqhbyvM"
+              },
+              "Export": {
+                "Name": "sls-servidor-melanymoreira-dev-ObtenerTaskLambdaFunctionQualifiedArn"
+              }
+            },
+            "EliminarTaskLambdaFunctionQualifiedArn": {
+              "Description": "Current Lambda function version",
+              "Value": {
+                "Ref": "EliminarTaskLambdaVersionQeSvh43bQiHIyYF3g3wCaWgcxx6Kj9KR1XrWaaOkc"
+              },
+              "Export": {
+                "Name": "sls-servidor-melanymoreira-dev-EliminarTaskLambdaFunctionQualifiedArn"
+              }
+            },
+            "ActualizarTaskLambdaFunctionQualifiedArn": {
+              "Description": "Current Lambda function version",
+              "Value": {
+                "Ref": "ActualizarTaskLambdaVersionrLmcm37Bbm32jwrN9HPr0QLQwr6Sn7zu4X3nxPzEpQ"
+              },
+              "Export": {
+                "Name": "sls-servidor-melanymoreira-dev-ActualizarTaskLambdaFunctionQualifiedArn"
+              }
+            },
+            "HttpApiId": {
+              "Description": "Id of the HTTP API",
+              "Value": {
+                "Ref": "HttpApi"
+              },
+              "Export": {
+                "Name": "sls-servidor-melanymoreira-dev-HttpApiId"
+              }
+            },
+            "HttpApiUrl": {
+              "Description": "URL of the HTTP API",
+              "Value": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "https://",
+                    {
+                      "Ref": "HttpApi"
+                    },
+                    ".execute-api.",
+                    {
+                      "Ref": "AWS::Region"
+                    },
+                    ".",
+                    {
+                      "Ref": "AWS::URLSuffix"
+                    }
+                  ]
+                ]
+              },
+              "Export": {
+                "Name": "sls-servidor-melanymoreira-dev-HttpApiUrl"
+              }
+            }
+          }
+        },
+        "vpc": {}
+      },
+      "functions": {
+        "agregarTask": {
+          "handler": "src/agregarTask.agregarTask",
+          "events": [
+            {
+              "httpApi": {
+                "path": "/tarea",
+                "method": "post"
+              },
+              "resolvedMethod": "POST",
+              "resolvedPath": "/tarea"
+            }
+          ],
+          "name": "servidor-melanymoreira-dev-agregarTask",
+          "package": {},
+          "memory": 1024,
+          "timeout": 6,
+          "runtime": "nodejs20.x",
+          "vpc": {},
+          "versionLogicalId": "AgregarTaskLambdaVersionu545ynwBb3jFkork0OUbgjix9OQsnulrX5nZe1RNOE"
+        },
+        "obtenerTasks": {
+          "handler": "src/obtenerTasks.obtenerTasks",
+          "events": [
+            {
+              "httpApi": {
+                "path": "/tareas",
+                "method": "get"
+              },
+              "resolvedMethod": "GET",
+              "resolvedPath": "/tareas"
+            }
+          ],
+          "name": "servidor-melanymoreira-dev-obtenerTasks",
+          "package": {},
+          "memory": 1024,
+          "timeout": 6,
+          "runtime": "nodejs20.x",
+          "vpc": {},
+          "versionLogicalId": "ObtenerTasksLambdaVersionblR1bjT8ZhNUh0lEggFq5mvJSBjuyC5AKyjRRsagjc"
+        },
+        "obtenerTask": {
+          "handler": "src/obtenerTask.obtenerTask",
+          "events": [
+            {
+              "httpApi": {
+                "path": "/tareas/{id}",
+                "method": "get"
+              },
+              "resolvedMethod": "GET",
+              "resolvedPath": "/tareas/{id}"
+            }
+          ],
+          "name": "servidor-melanymoreira-dev-obtenerTask",
+          "package": {},
+          "memory": 1024,
+          "timeout": 6,
+          "runtime": "nodejs20.x",
+          "vpc": {},
+          "versionLogicalId": "ObtenerTaskLambdaVersionOMiEjX4VJxgmlgv2r3U5kr6we75wGSoNcgYqhbyvM"
+        },
+        "eliminarTask": {
+          "handler": "src/eliminarTask.eliminarTask",
+          "events": [
+            {
+              "httpApi": {
+                "path": "/tareas/{id}",
+                "method": "delete"
+              },
+              "resolvedMethod": "DELETE",
+              "resolvedPath": "/tareas/{id}"
+            }
+          ],
+          "name": "servidor-melanymoreira-dev-eliminarTask",
+          "package": {},
+          "memory": 1024,
+          "timeout": 6,
+          "runtime": "nodejs20.x",
+          "vpc": {},
+          "versionLogicalId": "EliminarTaskLambdaVersionQeSvh43bQiHIyYF3g3wCaWgcxx6Kj9KR1XrWaaOkc"
+        },
+        "actualizarTask": {
+          "handler": "src/actualizarTask.actualizarTask",
+          "events": [
+            {
+              "httpApi": {
+                "path": "/tareas/{id}",
+                "method": "put"
+              },
+              "resolvedMethod": "PUT",
+              "resolvedPath": "/tareas/{id}"
+            }
+          ],
+          "name": "servidor-melanymoreira-dev-actualizarTask",
+          "package": {},
+          "memory": 1024,
+          "timeout": 6,
+          "runtime": "nodejs20.x",
+          "vpc": {},
+          "versionLogicalId": "ActualizarTaskLambdaVersionrLmcm37Bbm32jwrN9HPr0QLQwr6Sn7zu4X3nxPzEpQ"
+        }
+      },
+      "resources": {
+        "Resources": {
+          "tareasTable": {
+            "Type": "AWS::DynamoDB::Table",
+            "Properties": {
+              "TableName": "tabla",
+              "BillingMode": "PAY_PER_REQUEST",
+              "AttributeDefinitions": [
+                {
+                  "AttributeName": "id",
+                  "AttributeType": "S"
+                }
+              ],
+              "KeySchema": [
+                {
+                  "AttributeName": "id",
+                  "KeyType": "HASH"
+                }
+              ]
+            }
+          }
+        },
+        "Outputs": {}
+      }
+    },
+    "provider": {
+      "name": "aws",
+      "runtime": "nodejs20.x",
+      "iamRoleStatements": [
+        {
+          "Effect": "Allow",
+          "Action": [
+            "dynamodb:*"
+          ],
+          "Resource": "arn:aws:dynamodb:us-east-1:469647637171:table/tabla"
+        }
+      ],
+      "stage": "dev",
+      "region": "us-east-1",
+      "versionFunctions": true,
+      "compiledCloudFormationTemplate": {
+        "AWSTemplateFormatVersion": "2010-09-09",
+        "Description": "The AWS CloudFormation template for this Serverless application",
+        "Resources": {
+          "AgregarTaskLogGroup": {
+            "Type": "AWS::Logs::LogGroup",
+            "Properties": {
+              "LogGroupName": "/aws/lambda/servidor-melanymoreira-dev-agregarTask"
+            }
+          },
+          "ObtenerTasksLogGroup": {
+            "Type": "AWS::Logs::LogGroup",
+            "Properties": {
+              "LogGroupName": "/aws/lambda/servidor-melanymoreira-dev-obtenerTasks"
+            }
+          },
+          "ObtenerTaskLogGroup": {
+            "Type": "AWS::Logs::LogGroup",
+            "Properties": {
+              "LogGroupName": "/aws/lambda/servidor-melanymoreira-dev-obtenerTask"
+            }
+          },
+          "EliminarTaskLogGroup": {
+            "Type": "AWS::Logs::LogGroup",
+            "Properties": {
+              "LogGroupName": "/aws/lambda/servidor-melanymoreira-dev-eliminarTask"
+            }
+          },
+          "ActualizarTaskLogGroup": {
+            "Type": "AWS::Logs::LogGroup",
+            "Properties": {
+              "LogGroupName": "/aws/lambda/servidor-melanymoreira-dev-actualizarTask"
+            }
+          },
+          "IamRoleLambdaExecution": {
+            "Type": "AWS::IAM::Role",
+            "Properties": {
+              "AssumeRolePolicyDocument": {
+                "Version": "2012-10-17",
+                "Statement": [
+                  {
+                    "Effect": "Allow",
+                    "Principal": {
+                      "Service": [
+                        "lambda.amazonaws.com"
+                      ]
+                    },
+                    "Action": [
+                      "sts:AssumeRole"
+                    ]
+                  }
+                ]
+              },
+              "Policies": [
+                {
+                  "PolicyName": {
+                    "Fn::Join": [
+                      "-",
+                      [
+                        "servidor-melanymoreira",
+                        "dev",
+                        "lambda"
+                      ]
+                    ]
+                  },
+                  "PolicyDocument": {
+                    "Version": "2012-10-17",
+                    "Statement": [
+                      {
+                        "Effect": "Allow",
+                        "Action": [
+                          "logs:CreateLogStream",
+                          "logs:CreateLogGroup",
+                          "logs:TagResource"
+                        ],
+                        "Resource": [
+                          {
+                            "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/servidor-melanymoreira-dev*:*"
+                          }
+                        ]
+                      },
+                      {
+                        "Effect": "Allow",
+                        "Action": [
+                          "logs:PutLogEvents"
+                        ],
+                        "Resource": [
+                          {
+                            "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/servidor-melanymoreira-dev*:*:*"
+                          }
+                        ]
+                      },
+                      {
+                        "Effect": "Allow",
+                        "Action": [
+                          "dynamodb:*"
+                        ],
+                        "Resource": "arn:aws:dynamodb:us-east-1:469647637171:table/tabla"
+                      }
+                    ]
+                  }
+                }
+              ],
+              "Path": "/",
+              "RoleName": {
+                "Fn::Join": [
+                  "-",
+                  [
+                    "servidor-melanymoreira",
+                    "dev",
+                    {
+                      "Ref": "AWS::Region"
+                    },
+                    "lambdaRole"
+                  ]
+                ]
+              }
+            }
+          },
+          "AgregarTaskLambdaFunction": {
+            "Type": "AWS::Lambda::Function",
+            "Properties": {
+              "Code": {
+                "S3Bucket": "serverless-framework-deployments-us-east-1-d6410a1c-8fc2",
+                "S3Key": "serverless/servidor-melanymoreira/dev/1746822856355-2025-05-09T20:34:16.355Z/servidor-melanymoreira.zip"
+              },
+              "Handler": "src/agregarTask.agregarTask",
+              "Runtime": "nodejs20.x",
+              "FunctionName": "servidor-melanymoreira-dev-agregarTask",
+              "MemorySize": 1024,
+              "Timeout": 6,
+              "Role": {
+                "Fn::GetAtt": [
+                  "IamRoleLambdaExecution",
+                  "Arn"
+                ]
+              }
+            },
+            "DependsOn": [
+              "AgregarTaskLogGroup"
+            ]
+          },
+          "ObtenerTasksLambdaFunction": {
+            "Type": "AWS::Lambda::Function",
+            "Properties": {
+              "Code": {
+                "S3Bucket": "serverless-framework-deployments-us-east-1-d6410a1c-8fc2",
+                "S3Key": "serverless/servidor-melanymoreira/dev/1746822856355-2025-05-09T20:34:16.355Z/servidor-melanymoreira.zip"
+              },
+              "Handler": "src/obtenerTasks.obtenerTasks",
+              "Runtime": "nodejs20.x",
+              "FunctionName": "servidor-melanymoreira-dev-obtenerTasks",
+              "MemorySize": 1024,
+              "Timeout": 6,
+              "Role": {
+                "Fn::GetAtt": [
+                  "IamRoleLambdaExecution",
+                  "Arn"
+                ]
+              }
+            },
+            "DependsOn": [
+              "ObtenerTasksLogGroup"
+            ]
+          },
+          "ObtenerTaskLambdaFunction": {
+            "Type": "AWS::Lambda::Function",
+            "Properties": {
+              "Code": {
+                "S3Bucket": "serverless-framework-deployments-us-east-1-d6410a1c-8fc2",
+                "S3Key": "serverless/servidor-melanymoreira/dev/1746822856355-2025-05-09T20:34:16.355Z/servidor-melanymoreira.zip"
+              },
+              "Handler": "src/obtenerTask.obtenerTask",
+              "Runtime": "nodejs20.x",
+              "FunctionName": "servidor-melanymoreira-dev-obtenerTask",
+              "MemorySize": 1024,
+              "Timeout": 6,
+              "Role": {
+                "Fn::GetAtt": [
+                  "IamRoleLambdaExecution",
+                  "Arn"
+                ]
+              }
+            },
+            "DependsOn": [
+              "ObtenerTaskLogGroup"
+            ]
+          },
+          "EliminarTaskLambdaFunction": {
+            "Type": "AWS::Lambda::Function",
+            "Properties": {
+              "Code": {
+                "S3Bucket": "serverless-framework-deployments-us-east-1-d6410a1c-8fc2",
+                "S3Key": "serverless/servidor-melanymoreira/dev/1746822856355-2025-05-09T20:34:16.355Z/servidor-melanymoreira.zip"
+              },
+              "Handler": "src/eliminarTask.eliminarTask",
+              "Runtime": "nodejs20.x",
+              "FunctionName": "servidor-melanymoreira-dev-eliminarTask",
+              "MemorySize": 1024,
+              "Timeout": 6,
+              "Role": {
+                "Fn::GetAtt": [
+                  "IamRoleLambdaExecution",
+                  "Arn"
+                ]
+              }
+            },
+            "DependsOn": [
+              "EliminarTaskLogGroup"
+            ]
+          },
+          "ActualizarTaskLambdaFunction": {
+            "Type": "AWS::Lambda::Function",
+            "Properties": {
+              "Code": {
+                "S3Bucket": "serverless-framework-deployments-us-east-1-d6410a1c-8fc2",
+                "S3Key": "serverless/servidor-melanymoreira/dev/1746822856355-2025-05-09T20:34:16.355Z/servidor-melanymoreira.zip"
+              },
+              "Handler": "src/actualizarTask.actualizarTask",
+              "Runtime": "nodejs20.x",
+              "FunctionName": "servidor-melanymoreira-dev-actualizarTask",
+              "MemorySize": 1024,
+              "Timeout": 6,
+              "Role": {
+                "Fn::GetAtt": [
+                  "IamRoleLambdaExecution",
+                  "Arn"
+                ]
+              }
+            },
+            "DependsOn": [
+              "ActualizarTaskLogGroup"
+            ]
+          },
+          "AgregarTaskLambdaVersionu545ynwBb3jFkork0OUbgjix9OQsnulrX5nZe1RNOE": {
+            "Type": "AWS::Lambda::Version",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+              "FunctionName": {
+                "Ref": "AgregarTaskLambdaFunction"
+              },
+              "CodeSha256": "9qcJKqaO5sNR5ZmVW5Y0G6n/Qn2bdblxBkmVQNBC4cM="
+            }
+          },
+          "ObtenerTasksLambdaVersionblR1bjT8ZhNUh0lEggFq5mvJSBjuyC5AKyjRRsagjc": {
+            "Type": "AWS::Lambda::Version",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+              "FunctionName": {
+                "Ref": "ObtenerTasksLambdaFunction"
+              },
+              "CodeSha256": "9qcJKqaO5sNR5ZmVW5Y0G6n/Qn2bdblxBkmVQNBC4cM="
+            }
+          },
+          "ObtenerTaskLambdaVersionOMiEjX4VJxgmlgv2r3U5kr6we75wGSoNcgYqhbyvM": {
+            "Type": "AWS::Lambda::Version",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+              "FunctionName": {
+                "Ref": "ObtenerTaskLambdaFunction"
+              },
+              "CodeSha256": "9qcJKqaO5sNR5ZmVW5Y0G6n/Qn2bdblxBkmVQNBC4cM="
+            }
+          },
+          "EliminarTaskLambdaVersionQeSvh43bQiHIyYF3g3wCaWgcxx6Kj9KR1XrWaaOkc": {
+            "Type": "AWS::Lambda::Version",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+              "FunctionName": {
+                "Ref": "EliminarTaskLambdaFunction"
+              },
+              "CodeSha256": "9qcJKqaO5sNR5ZmVW5Y0G6n/Qn2bdblxBkmVQNBC4cM="
+            }
+          },
+          "ActualizarTaskLambdaVersionrLmcm37Bbm32jwrN9HPr0QLQwr6Sn7zu4X3nxPzEpQ": {
+            "Type": "AWS::Lambda::Version",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+              "FunctionName": {
+                "Ref": "ActualizarTaskLambdaFunction"
+              },
+              "CodeSha256": "9qcJKqaO5sNR5ZmVW5Y0G6n/Qn2bdblxBkmVQNBC4cM="
+            }
+          },
+          "HttpApi": {
+            "Type": "AWS::ApiGatewayV2::Api",
+            "Properties": {
+              "Name": "dev-servidor-melanymoreira",
+              "ProtocolType": "HTTP"
+            }
+          },
+          "HttpApiStage": {
+            "Type": "AWS::ApiGatewayV2::Stage",
+            "Properties": {
+              "ApiId": {
+                "Ref": "HttpApi"
+              },
+              "StageName": "$default",
+              "AutoDeploy": true,
+              "DefaultRouteSettings": {
+                "DetailedMetricsEnabled": false
+              }
+            }
+          },
+          "AgregarTaskLambdaPermissionHttpApi": {
+            "Type": "AWS::Lambda::Permission",
+            "Properties": {
+              "FunctionName": {
+                "Fn::GetAtt": [
+                  "AgregarTaskLambdaFunction",
+                  "Arn"
+                ]
+              },
+              "Action": "lambda:InvokeFunction",
+              "Principal": "apigateway.amazonaws.com",
+              "SourceArn": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":execute-api:",
+                    {
+                      "Ref": "AWS::Region"
+                    },
+                    ":",
+                    {
+                      "Ref": "AWS::AccountId"
+                    },
+                    ":",
+                    {
+                      "Ref": "HttpApi"
+                    },
+                    "/*"
+                  ]
+                ]
+              }
+            }
+          },
+          "HttpApiIntegrationAgregarTask": {
+            "Type": "AWS::ApiGatewayV2::Integration",
+            "Properties": {
+              "ApiId": {
+                "Ref": "HttpApi"
+              },
+              "IntegrationType": "AWS_PROXY",
+              "IntegrationUri": {
+                "Fn::GetAtt": [
+                  "AgregarTaskLambdaFunction",
+                  "Arn"
+                ]
+              },
+              "PayloadFormatVersion": "2.0",
+              "TimeoutInMillis": 30000
+            }
+          },
+          "HttpApiRoutePostTarea": {
+            "Type": "AWS::ApiGatewayV2::Route",
+            "Properties": {
+              "ApiId": {
+                "Ref": "HttpApi"
+              },
+              "RouteKey": "POST /tarea",
+              "Target": {
+                "Fn::Join": [
+                  "/",
+                  [
+                    "integrations",
+                    {
+                      "Ref": "HttpApiIntegrationAgregarTask"
+                    }
+                  ]
+                ]
+              }
+            },
+            "DependsOn": "HttpApiIntegrationAgregarTask"
+          },
+          "ObtenerTasksLambdaPermissionHttpApi": {
+            "Type": "AWS::Lambda::Permission",
+            "Properties": {
+              "FunctionName": {
+                "Fn::GetAtt": [
+                  "ObtenerTasksLambdaFunction",
+                  "Arn"
+                ]
+              },
+              "Action": "lambda:InvokeFunction",
+              "Principal": "apigateway.amazonaws.com",
+              "SourceArn": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":execute-api:",
+                    {
+                      "Ref": "AWS::Region"
+                    },
+                    ":",
+                    {
+                      "Ref": "AWS::AccountId"
+                    },
+                    ":",
+                    {
+                      "Ref": "HttpApi"
+                    },
+                    "/*"
+                  ]
+                ]
+              }
+            }
+          },
+          "HttpApiIntegrationObtenerTasks": {
+            "Type": "AWS::ApiGatewayV2::Integration",
+            "Properties": {
+              "ApiId": {
+                "Ref": "HttpApi"
+              },
+              "IntegrationType": "AWS_PROXY",
+              "IntegrationUri": {
+                "Fn::GetAtt": [
+                  "ObtenerTasksLambdaFunction",
+                  "Arn"
+                ]
+              },
+              "PayloadFormatVersion": "2.0",
+              "TimeoutInMillis": 30000
+            }
+          },
+          "HttpApiRouteGetTareas": {
+            "Type": "AWS::ApiGatewayV2::Route",
+            "Properties": {
+              "ApiId": {
+                "Ref": "HttpApi"
+              },
+              "RouteKey": "GET /tareas",
+              "Target": {
+                "Fn::Join": [
+                  "/",
+                  [
+                    "integrations",
+                    {
+                      "Ref": "HttpApiIntegrationObtenerTasks"
+                    }
+                  ]
+                ]
+              }
+            },
+            "DependsOn": "HttpApiIntegrationObtenerTasks"
+          },
+          "ObtenerTaskLambdaPermissionHttpApi": {
+            "Type": "AWS::Lambda::Permission",
+            "Properties": {
+              "FunctionName": {
+                "Fn::GetAtt": [
+                  "ObtenerTaskLambdaFunction",
+                  "Arn"
+                ]
+              },
+              "Action": "lambda:InvokeFunction",
+              "Principal": "apigateway.amazonaws.com",
+              "SourceArn": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":execute-api:",
+                    {
+                      "Ref": "AWS::Region"
+                    },
+                    ":",
+                    {
+                      "Ref": "AWS::AccountId"
+                    },
+                    ":",
+                    {
+                      "Ref": "HttpApi"
+                    },
+                    "/*"
+                  ]
+                ]
+              }
+            }
+          },
+          "HttpApiIntegrationObtenerTask": {
+            "Type": "AWS::ApiGatewayV2::Integration",
+            "Properties": {
+              "ApiId": {
+                "Ref": "HttpApi"
+              },
+              "IntegrationType": "AWS_PROXY",
+              "IntegrationUri": {
+                "Fn::GetAtt": [
+                  "ObtenerTaskLambdaFunction",
+                  "Arn"
+                ]
+              },
+              "PayloadFormatVersion": "2.0",
+              "TimeoutInMillis": 30000
+            }
+          },
+          "HttpApiRouteGetTareasIdVar": {
+            "Type": "AWS::ApiGatewayV2::Route",
+            "Properties": {
+              "ApiId": {
+                "Ref": "HttpApi"
+              },
+              "RouteKey": "GET /tareas/{id}",
+              "Target": {
+                "Fn::Join": [
+                  "/",
+                  [
+                    "integrations",
+                    {
+                      "Ref": "HttpApiIntegrationObtenerTask"
+                    }
+                  ]
+                ]
+              }
+            },
+            "DependsOn": "HttpApiIntegrationObtenerTask"
+          },
+          "EliminarTaskLambdaPermissionHttpApi": {
+            "Type": "AWS::Lambda::Permission",
+            "Properties": {
+              "FunctionName": {
+                "Fn::GetAtt": [
+                  "EliminarTaskLambdaFunction",
+                  "Arn"
+                ]
+              },
+              "Action": "lambda:InvokeFunction",
+              "Principal": "apigateway.amazonaws.com",
+              "SourceArn": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":execute-api:",
+                    {
+                      "Ref": "AWS::Region"
+                    },
+                    ":",
+                    {
+                      "Ref": "AWS::AccountId"
+                    },
+                    ":",
+                    {
+                      "Ref": "HttpApi"
+                    },
+                    "/*"
+                  ]
+                ]
+              }
+            }
+          },
+          "HttpApiIntegrationEliminarTask": {
+            "Type": "AWS::ApiGatewayV2::Integration",
+            "Properties": {
+              "ApiId": {
+                "Ref": "HttpApi"
+              },
+              "IntegrationType": "AWS_PROXY",
+              "IntegrationUri": {
+                "Fn::GetAtt": [
+                  "EliminarTaskLambdaFunction",
+                  "Arn"
+                ]
+              },
+              "PayloadFormatVersion": "2.0",
+              "TimeoutInMillis": 30000
+            }
+          },
+          "HttpApiRouteDeleteTareasIdVar": {
+            "Type": "AWS::ApiGatewayV2::Route",
+            "Properties": {
+              "ApiId": {
+                "Ref": "HttpApi"
+              },
+              "RouteKey": "DELETE /tareas/{id}",
+              "Target": {
+                "Fn::Join": [
+                  "/",
+                  [
+                    "integrations",
+                    {
+                      "Ref": "HttpApiIntegrationEliminarTask"
+                    }
+                  ]
+                ]
+              }
+            },
+            "DependsOn": "HttpApiIntegrationEliminarTask"
+          },
+          "ActualizarTaskLambdaPermissionHttpApi": {
+            "Type": "AWS::Lambda::Permission",
+            "Properties": {
+              "FunctionName": {
+                "Fn::GetAtt": [
+                  "ActualizarTaskLambdaFunction",
+                  "Arn"
+                ]
+              },
+              "Action": "lambda:InvokeFunction",
+              "Principal": "apigateway.amazonaws.com",
+              "SourceArn": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":execute-api:",
+                    {
+                      "Ref": "AWS::Region"
+                    },
+                    ":",
+                    {
+                      "Ref": "AWS::AccountId"
+                    },
+                    ":",
+                    {
+                      "Ref": "HttpApi"
+                    },
+                    "/*"
+                  ]
+                ]
+              }
+            }
+          },
+          "HttpApiIntegrationActualizarTask": {
+            "Type": "AWS::ApiGatewayV2::Integration",
+            "Properties": {
+              "ApiId": {
+                "Ref": "HttpApi"
+              },
+              "IntegrationType": "AWS_PROXY",
+              "IntegrationUri": {
+                "Fn::GetAtt": [
+                  "ActualizarTaskLambdaFunction",
+                  "Arn"
+                ]
+              },
+              "PayloadFormatVersion": "2.0",
+              "TimeoutInMillis": 30000
+            }
+          },
+          "HttpApiRoutePutTareasIdVar": {
+            "Type": "AWS::ApiGatewayV2::Route",
+            "Properties": {
+              "ApiId": {
+                "Ref": "HttpApi"
+              },
+              "RouteKey": "PUT /tareas/{id}",
+              "Target": {
+                "Fn::Join": [
+                  "/",
+                  [
+                    "integrations",
+                    {
+                      "Ref": "HttpApiIntegrationActualizarTask"
+                    }
+                  ]
+                ]
+              }
+            },
+            "DependsOn": "HttpApiIntegrationActualizarTask"
+          },
+          "tareasTable": {
+            "Type": "AWS::DynamoDB::Table",
+            "Properties": {
+              "TableName": "tabla",
+              "BillingMode": "PAY_PER_REQUEST",
+              "AttributeDefinitions": [
+                {
+                  "AttributeName": "id",
+                  "AttributeType": "S"
+                }
+              ],
+              "KeySchema": [
+                {
+                  "AttributeName": "id",
+                  "KeyType": "HASH"
+                }
+              ]
+            }
+          }
+        },
+        "Outputs": {
+          "ServerlessDeploymentBucketName": {
+            "Value": "serverless-framework-deployments-us-east-1-d6410a1c-8fc2",
+            "Export": {
+              "Name": "sls-servidor-melanymoreira-dev-ServerlessDeploymentBucketName"
+            }
+          },
+          "AgregarTaskLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Ref": "AgregarTaskLambdaVersionu545ynwBb3jFkork0OUbgjix9OQsnulrX5nZe1RNOE"
+            },
+            "Export": {
+              "Name": "sls-servidor-melanymoreira-dev-AgregarTaskLambdaFunctionQualifiedArn"
+            }
+          },
+          "ObtenerTasksLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Ref": "ObtenerTasksLambdaVersionblR1bjT8ZhNUh0lEggFq5mvJSBjuyC5AKyjRRsagjc"
+            },
+            "Export": {
+              "Name": "sls-servidor-melanymoreira-dev-ObtenerTasksLambdaFunctionQualifiedArn"
+            }
+          },
+          "ObtenerTaskLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Ref": "ObtenerTaskLambdaVersionOMiEjX4VJxgmlgv2r3U5kr6we75wGSoNcgYqhbyvM"
+            },
+            "Export": {
+              "Name": "sls-servidor-melanymoreira-dev-ObtenerTaskLambdaFunctionQualifiedArn"
+            }
+          },
+          "EliminarTaskLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Ref": "EliminarTaskLambdaVersionQeSvh43bQiHIyYF3g3wCaWgcxx6Kj9KR1XrWaaOkc"
+            },
+            "Export": {
+              "Name": "sls-servidor-melanymoreira-dev-EliminarTaskLambdaFunctionQualifiedArn"
+            }
+          },
+          "ActualizarTaskLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Ref": "ActualizarTaskLambdaVersionrLmcm37Bbm32jwrN9HPr0QLQwr6Sn7zu4X3nxPzEpQ"
+            },
+            "Export": {
+              "Name": "sls-servidor-melanymoreira-dev-ActualizarTaskLambdaFunctionQualifiedArn"
+            }
+          },
+          "HttpApiId": {
+            "Description": "Id of the HTTP API",
+            "Value": {
+              "Ref": "HttpApi"
+            },
+            "Export": {
+              "Name": "sls-servidor-melanymoreira-dev-HttpApiId"
+            }
+          },
+          "HttpApiUrl": {
+            "Description": "URL of the HTTP API",
+            "Value": {
+              "Fn::Join": [
+                "",
+                [
+                  "https://",
+                  {
+                    "Ref": "HttpApi"
+                  },
+                  ".execute-api.",
+                  {
+                    "Ref": "AWS::Region"
+                  },
+                  ".",
+                  {
+                    "Ref": "AWS::URLSuffix"
+                  }
+                ]
+              ]
+            },
+            "Export": {
+              "Name": "sls-servidor-melanymoreira-dev-HttpApiUrl"
+            }
+          }
+        }
+      },
+      "vpc": {}
+    },
+    "dashboard": {
+      "isEnabledForService": true,
+      "requiredAuthentication": false,
+      "orgFeaturesInUse": {
+        "providers": false,
+        "monitoring": false
+      },
+      "orgObservabilityIntegrations": null,
+      "serviceAppId": "7cmyBXxpDW5KcBLvPL",
+      "serviceProvider": null,
+      "instanceParameters": null
+    },
+    "serviceRawFile": "org: melanymoreira\r\napp: servidor-melanymoreira\r\nservice: servidor-melanymoreira\r\nprovider:\r\n  name: aws\r\n  runtime: nodejs20.x\r\n  iamRoleStatements:\r\n    - Effect: Allow\r\n      Action:\r\n        - dynamodb:*\r\n      Resource:\r\n          - arn:aws:dynamodb:us-east-1:469647637171:table/tabla\r\n    \r\nfunctions:\r\n  agregarTask:\r\n    handler: src/agregarTask.agregarTask\r\n    events:\r\n      - httpApi:\r\n          path: /tarea\r\n          method: post\r\n\r\n  obtenerTasks:\r\n    handler: src/obtenerTasks.obtenerTasks\r\n    events:\r\n      - httpApi:\r\n          path: /tareas\r\n          method: get\r\n\r\n  obtenerTask:\r\n    handler: src/obtenerTask.obtenerTask\r\n    events:\r\n      - httpApi:\r\n          path: /tareas/{id}\r\n          method: get\r\n\r\n  eliminarTask:\r\n    handler: src/eliminarTask.eliminarTask\r\n    events:\r\n      - httpApi:\r\n          path: /tareas/{id}\r\n          method: delete\r\n\r\n  actualizarTask:\r\n    handler: src/actualizarTask.actualizarTask\r\n    events:\r\n      - httpApi:\r\n          path: /tareas/{id}\r\n          method: put\r\nresources: \r\n  Resources:\r\n    tareasTable:\r\n      Type: AWS::DynamoDB::Table\r\n      Properties:\r\n        TableName: tabla\r\n        BillingMode: PAY_PER_REQUEST\r\n        AttributeDefinitions:\r\n          - AttributeName: id\r\n            AttributeType: S\r\n        KeySchema:\r\n          - AttributeName: id\r\n            KeyType: HASH\r\n",
+    "command": [
+      "deploy"
+    ],
+    "options": {
+      "verbose": true
+    },
+    "orgId": "89118f95-1bba-43df-96ea-dd124558e6ec",
+    "orgName": "melanymoreira",
+    "userId": "kVcpMbMqq9YdBTRj8s",
+    "userName": "melanymoreira",
+    "serviceProviderAwsAccountId": "469647637171",
+    "serviceProviderAwsCfStackName": "servidor-melanymoreira-dev",
+    "serviceProviderAwsCfStackId": "arn:aws:cloudformation:us-east-1:469647637171:stack/servidor-melanymoreira-dev/ff09bef0-2d14-11f0-b6d7-0affc71f8aa9",
+    "serviceProviderAwsCfStackCreated": "2025-05-09T20:34:25.115Z",
+    "serviceProviderAwsCfStackUpdated": null,
+    "serviceProviderAwsCfStackStatus": "CREATE_COMPLETE",
+    "serviceProviderAwsCfStackOutputs": [
+      {
+        "OutputKey": "AgregarTaskLambdaFunctionQualifiedArn",
+        "OutputValue": "arn:aws:lambda:us-east-1:469647637171:function:servidor-melanymoreira-dev-agregarTask:1",
+        "Description": "Current Lambda function version",
+        "ExportName": "sls-servidor-melanymoreira-dev-AgregarTaskLambdaFunctionQualifiedArn"
+      },
+      {
+        "OutputKey": "ActualizarTaskLambdaFunctionQualifiedArn",
+        "OutputValue": "arn:aws:lambda:us-east-1:469647637171:function:servidor-melanymoreira-dev-actualizarTask:1",
+        "Description": "Current Lambda function version",
+        "ExportName": "sls-servidor-melanymoreira-dev-ActualizarTaskLambdaFunctionQualifiedArn"
+      },
+      {
+        "OutputKey": "ObtenerTaskLambdaFunctionQualifiedArn",
+        "OutputValue": "arn:aws:lambda:us-east-1:469647637171:function:servidor-melanymoreira-dev-obtenerTask:1",
+        "Description": "Current Lambda function version",
+        "ExportName": "sls-servidor-melanymoreira-dev-ObtenerTaskLambdaFunctionQualifiedArn"
+      },
+      {
+        "OutputKey": "EliminarTaskLambdaFunctionQualifiedArn",
+        "OutputValue": "arn:aws:lambda:us-east-1:469647637171:function:servidor-melanymoreira-dev-eliminarTask:1",
+        "Description": "Current Lambda function version",
+        "ExportName": "sls-servidor-melanymoreira-dev-EliminarTaskLambdaFunctionQualifiedArn"
+      },
+      {
+        "OutputKey": "HttpApiId",
+        "OutputValue": "wab43twls6",
+        "Description": "Id of the HTTP API",
+        "ExportName": "sls-servidor-melanymoreira-dev-HttpApiId"
+      },
+      {
+        "OutputKey": "ServerlessDeploymentBucketName",
+        "OutputValue": "serverless-framework-deployments-us-east-1-d6410a1c-8fc2",
+        "ExportName": "sls-servidor-melanymoreira-dev-ServerlessDeploymentBucketName"
+      },
+      {
+        "OutputKey": "ObtenerTasksLambdaFunctionQualifiedArn",
+        "OutputValue": "arn:aws:lambda:us-east-1:469647637171:function:servidor-melanymoreira-dev-obtenerTasks:1",
+        "Description": "Current Lambda function version",
+        "ExportName": "sls-servidor-melanymoreira-dev-ObtenerTasksLambdaFunctionQualifiedArn"
+      },
+      {
+        "OutputKey": "HttpApiUrl",
+        "OutputValue": "https://wab43twls6.execute-api.us-east-1.amazonaws.com",
+        "Description": "URL of the HTTP API",
+        "ExportName": "sls-servidor-melanymoreira-dev-HttpApiUrl"
+      }
+    ],
+    "compiledCloudFormationTemplate": {
+      "AWSTemplateFormatVersion": "2010-09-09",
+      "Description": "The AWS CloudFormation template for this Serverless application",
+      "Resources": {
+        "AgregarTaskLogGroup": {
+          "Type": "AWS::Logs::LogGroup",
+          "Properties": {
+            "LogGroupName": "/aws/lambda/servidor-melanymoreira-dev-agregarTask"
+          }
+        },
+        "ObtenerTasksLogGroup": {
+          "Type": "AWS::Logs::LogGroup",
+          "Properties": {
+            "LogGroupName": "/aws/lambda/servidor-melanymoreira-dev-obtenerTasks"
+          }
+        },
+        "ObtenerTaskLogGroup": {
+          "Type": "AWS::Logs::LogGroup",
+          "Properties": {
+            "LogGroupName": "/aws/lambda/servidor-melanymoreira-dev-obtenerTask"
+          }
+        },
+        "EliminarTaskLogGroup": {
+          "Type": "AWS::Logs::LogGroup",
+          "Properties": {
+            "LogGroupName": "/aws/lambda/servidor-melanymoreira-dev-eliminarTask"
+          }
+        },
+        "ActualizarTaskLogGroup": {
+          "Type": "AWS::Logs::LogGroup",
+          "Properties": {
+            "LogGroupName": "/aws/lambda/servidor-melanymoreira-dev-actualizarTask"
+          }
+        },
+        "IamRoleLambdaExecution": {
+          "Type": "AWS::IAM::Role",
+          "Properties": {
+            "AssumeRolePolicyDocument": {
+              "Version": "2012-10-17",
+              "Statement": [
+                {
+                  "Effect": "Allow",
+                  "Principal": {
+                    "Service": [
+                      "lambda.amazonaws.com"
+                    ]
+                  },
+                  "Action": [
+                    "sts:AssumeRole"
+                  ]
+                }
+              ]
+            },
+            "Policies": [
+              {
+                "PolicyName": {
+                  "Fn::Join": [
+                    "-",
+                    [
+                      "servidor-melanymoreira",
+                      "dev",
+                      "lambda"
+                    ]
+                  ]
+                },
+                "PolicyDocument": {
+                  "Version": "2012-10-17",
+                  "Statement": [
+                    {
+                      "Effect": "Allow",
+                      "Action": [
+                        "logs:CreateLogStream",
+                        "logs:CreateLogGroup",
+                        "logs:TagResource"
+                      ],
+                      "Resource": [
+                        {
+                          "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/servidor-melanymoreira-dev*:*"
+                        }
+                      ]
+                    },
+                    {
+                      "Effect": "Allow",
+                      "Action": [
+                        "logs:PutLogEvents"
+                      ],
+                      "Resource": [
+                        {
+                          "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/servidor-melanymoreira-dev*:*:*"
+                        }
+                      ]
+                    },
+                    {
+                      "Effect": "Allow",
+                      "Action": [
+                        "dynamodb:*"
+                      ],
+                      "Resource": "arn:aws:dynamodb:us-east-1:469647637171:table/tabla"
+                    }
+                  ]
+                }
+              }
+            ],
+            "Path": "/",
+            "RoleName": {
+              "Fn::Join": [
+                "-",
+                [
+                  "servidor-melanymoreira",
+                  "dev",
+                  {
+                    "Ref": "AWS::Region"
+                  },
+                  "lambdaRole"
+                ]
+              ]
+            }
+          }
+        },
+        "AgregarTaskLambdaFunction": {
+          "Type": "AWS::Lambda::Function",
+          "Properties": {
+            "Code": {
+              "S3Bucket": "serverless-framework-deployments-us-east-1-d6410a1c-8fc2",
+              "S3Key": "serverless/servidor-melanymoreira/dev/1746822856355-2025-05-09T20:34:16.355Z/servidor-melanymoreira.zip"
+            },
+            "Handler": "src/agregarTask.agregarTask",
+            "Runtime": "nodejs20.x",
+            "FunctionName": "servidor-melanymoreira-dev-agregarTask",
+            "MemorySize": 1024,
+            "Timeout": 6,
+            "Role": {
+              "Fn::GetAtt": [
+                "IamRoleLambdaExecution",
+                "Arn"
+              ]
+            }
+          },
+          "DependsOn": [
+            "AgregarTaskLogGroup"
+          ]
+        },
+        "ObtenerTasksLambdaFunction": {
+          "Type": "AWS::Lambda::Function",
+          "Properties": {
+            "Code": {
+              "S3Bucket": "serverless-framework-deployments-us-east-1-d6410a1c-8fc2",
+              "S3Key": "serverless/servidor-melanymoreira/dev/1746822856355-2025-05-09T20:34:16.355Z/servidor-melanymoreira.zip"
+            },
+            "Handler": "src/obtenerTasks.obtenerTasks",
+            "Runtime": "nodejs20.x",
+            "FunctionName": "servidor-melanymoreira-dev-obtenerTasks",
+            "MemorySize": 1024,
+            "Timeout": 6,
+            "Role": {
+              "Fn::GetAtt": [
+                "IamRoleLambdaExecution",
+                "Arn"
+              ]
+            }
+          },
+          "DependsOn": [
+            "ObtenerTasksLogGroup"
+          ]
+        },
+        "ObtenerTaskLambdaFunction": {
+          "Type": "AWS::Lambda::Function",
+          "Properties": {
+            "Code": {
+              "S3Bucket": "serverless-framework-deployments-us-east-1-d6410a1c-8fc2",
+              "S3Key": "serverless/servidor-melanymoreira/dev/1746822856355-2025-05-09T20:34:16.355Z/servidor-melanymoreira.zip"
+            },
+            "Handler": "src/obtenerTask.obtenerTask",
+            "Runtime": "nodejs20.x",
+            "FunctionName": "servidor-melanymoreira-dev-obtenerTask",
+            "MemorySize": 1024,
+            "Timeout": 6,
+            "Role": {
+              "Fn::GetAtt": [
+                "IamRoleLambdaExecution",
+                "Arn"
+              ]
+            }
+          },
+          "DependsOn": [
+            "ObtenerTaskLogGroup"
+          ]
+        },
+        "EliminarTaskLambdaFunction": {
+          "Type": "AWS::Lambda::Function",
+          "Properties": {
+            "Code": {
+              "S3Bucket": "serverless-framework-deployments-us-east-1-d6410a1c-8fc2",
+              "S3Key": "serverless/servidor-melanymoreira/dev/1746822856355-2025-05-09T20:34:16.355Z/servidor-melanymoreira.zip"
+            },
+            "Handler": "src/eliminarTask.eliminarTask",
+            "Runtime": "nodejs20.x",
+            "FunctionName": "servidor-melanymoreira-dev-eliminarTask",
+            "MemorySize": 1024,
+            "Timeout": 6,
+            "Role": {
+              "Fn::GetAtt": [
+                "IamRoleLambdaExecution",
+                "Arn"
+              ]
+            }
+          },
+          "DependsOn": [
+            "EliminarTaskLogGroup"
+          ]
+        },
+        "ActualizarTaskLambdaFunction": {
+          "Type": "AWS::Lambda::Function",
+          "Properties": {
+            "Code": {
+              "S3Bucket": "serverless-framework-deployments-us-east-1-d6410a1c-8fc2",
+              "S3Key": "serverless/servidor-melanymoreira/dev/1746822856355-2025-05-09T20:34:16.355Z/servidor-melanymoreira.zip"
+            },
+            "Handler": "src/actualizarTask.actualizarTask",
+            "Runtime": "nodejs20.x",
+            "FunctionName": "servidor-melanymoreira-dev-actualizarTask",
+            "MemorySize": 1024,
+            "Timeout": 6,
+            "Role": {
+              "Fn::GetAtt": [
+                "IamRoleLambdaExecution",
+                "Arn"
+              ]
+            }
+          },
+          "DependsOn": [
+            "ActualizarTaskLogGroup"
+          ]
+        },
+        "AgregarTaskLambdaVersionu545ynwBb3jFkork0OUbgjix9OQsnulrX5nZe1RNOE": {
+          "Type": "AWS::Lambda::Version",
+          "DeletionPolicy": "Retain",
+          "Properties": {
+            "FunctionName": {
+              "Ref": "AgregarTaskLambdaFunction"
+            },
+            "CodeSha256": "9qcJKqaO5sNR5ZmVW5Y0G6n/Qn2bdblxBkmVQNBC4cM="
+          }
+        },
+        "ObtenerTasksLambdaVersionblR1bjT8ZhNUh0lEggFq5mvJSBjuyC5AKyjRRsagjc": {
+          "Type": "AWS::Lambda::Version",
+          "DeletionPolicy": "Retain",
+          "Properties": {
+            "FunctionName": {
+              "Ref": "ObtenerTasksLambdaFunction"
+            },
+            "CodeSha256": "9qcJKqaO5sNR5ZmVW5Y0G6n/Qn2bdblxBkmVQNBC4cM="
+          }
+        },
+        "ObtenerTaskLambdaVersionOMiEjX4VJxgmlgv2r3U5kr6we75wGSoNcgYqhbyvM": {
+          "Type": "AWS::Lambda::Version",
+          "DeletionPolicy": "Retain",
+          "Properties": {
+            "FunctionName": {
+              "Ref": "ObtenerTaskLambdaFunction"
+            },
+            "CodeSha256": "9qcJKqaO5sNR5ZmVW5Y0G6n/Qn2bdblxBkmVQNBC4cM="
+          }
+        },
+        "EliminarTaskLambdaVersionQeSvh43bQiHIyYF3g3wCaWgcxx6Kj9KR1XrWaaOkc": {
+          "Type": "AWS::Lambda::Version",
+          "DeletionPolicy": "Retain",
+          "Properties": {
+            "FunctionName": {
+              "Ref": "EliminarTaskLambdaFunction"
+            },
+            "CodeSha256": "9qcJKqaO5sNR5ZmVW5Y0G6n/Qn2bdblxBkmVQNBC4cM="
+          }
+        },
+        "ActualizarTaskLambdaVersionrLmcm37Bbm32jwrN9HPr0QLQwr6Sn7zu4X3nxPzEpQ": {
+          "Type": "AWS::Lambda::Version",
+          "DeletionPolicy": "Retain",
+          "Properties": {
+            "FunctionName": {
+              "Ref": "ActualizarTaskLambdaFunction"
+            },
+            "CodeSha256": "9qcJKqaO5sNR5ZmVW5Y0G6n/Qn2bdblxBkmVQNBC4cM="
+          }
+        },
+        "HttpApi": {
+          "Type": "AWS::ApiGatewayV2::Api",
+          "Properties": {
+            "Name": "dev-servidor-melanymoreira",
+            "ProtocolType": "HTTP"
+          }
+        },
+        "HttpApiStage": {
+          "Type": "AWS::ApiGatewayV2::Stage",
+          "Properties": {
+            "ApiId": {
+              "Ref": "HttpApi"
+            },
+            "StageName": "$default",
+            "AutoDeploy": true,
+            "DefaultRouteSettings": {
+              "DetailedMetricsEnabled": false
+            }
+          }
+        },
+        "AgregarTaskLambdaPermissionHttpApi": {
+          "Type": "AWS::Lambda::Permission",
+          "Properties": {
+            "FunctionName": {
+              "Fn::GetAtt": [
+                "AgregarTaskLambdaFunction",
+                "Arn"
+              ]
+            },
+            "Action": "lambda:InvokeFunction",
+            "Principal": "apigateway.amazonaws.com",
+            "SourceArn": {
+              "Fn::Join": [
+                "",
+                [
+                  "arn:",
+                  {
+                    "Ref": "AWS::Partition"
+                  },
+                  ":execute-api:",
+                  {
+                    "Ref": "AWS::Region"
+                  },
+                  ":",
+                  {
+                    "Ref": "AWS::AccountId"
+                  },
+                  ":",
+                  {
+                    "Ref": "HttpApi"
+                  },
+                  "/*"
+                ]
+              ]
+            }
+          }
+        },
+        "HttpApiIntegrationAgregarTask": {
+          "Type": "AWS::ApiGatewayV2::Integration",
+          "Properties": {
+            "ApiId": {
+              "Ref": "HttpApi"
+            },
+            "IntegrationType": "AWS_PROXY",
+            "IntegrationUri": {
+              "Fn::GetAtt": [
+                "AgregarTaskLambdaFunction",
+                "Arn"
+              ]
+            },
+            "PayloadFormatVersion": "2.0",
+            "TimeoutInMillis": 30000
+          }
+        },
+        "HttpApiRoutePostTarea": {
+          "Type": "AWS::ApiGatewayV2::Route",
+          "Properties": {
+            "ApiId": {
+              "Ref": "HttpApi"
+            },
+            "RouteKey": "POST /tarea",
+            "Target": {
+              "Fn::Join": [
+                "/",
+                [
+                  "integrations",
+                  {
+                    "Ref": "HttpApiIntegrationAgregarTask"
+                  }
+                ]
+              ]
+            }
+          },
+          "DependsOn": "HttpApiIntegrationAgregarTask"
+        },
+        "ObtenerTasksLambdaPermissionHttpApi": {
+          "Type": "AWS::Lambda::Permission",
+          "Properties": {
+            "FunctionName": {
+              "Fn::GetAtt": [
+                "ObtenerTasksLambdaFunction",
+                "Arn"
+              ]
+            },
+            "Action": "lambda:InvokeFunction",
+            "Principal": "apigateway.amazonaws.com",
+            "SourceArn": {
+              "Fn::Join": [
+                "",
+                [
+                  "arn:",
+                  {
+                    "Ref": "AWS::Partition"
+                  },
+                  ":execute-api:",
+                  {
+                    "Ref": "AWS::Region"
+                  },
+                  ":",
+                  {
+                    "Ref": "AWS::AccountId"
+                  },
+                  ":",
+                  {
+                    "Ref": "HttpApi"
+                  },
+                  "/*"
+                ]
+              ]
+            }
+          }
+        },
+        "HttpApiIntegrationObtenerTasks": {
+          "Type": "AWS::ApiGatewayV2::Integration",
+          "Properties": {
+            "ApiId": {
+              "Ref": "HttpApi"
+            },
+            "IntegrationType": "AWS_PROXY",
+            "IntegrationUri": {
+              "Fn::GetAtt": [
+                "ObtenerTasksLambdaFunction",
+                "Arn"
+              ]
+            },
+            "PayloadFormatVersion": "2.0",
+            "TimeoutInMillis": 30000
+          }
+        },
+        "HttpApiRouteGetTareas": {
+          "Type": "AWS::ApiGatewayV2::Route",
+          "Properties": {
+            "ApiId": {
+              "Ref": "HttpApi"
+            },
+            "RouteKey": "GET /tareas",
+            "Target": {
+              "Fn::Join": [
+                "/",
+                [
+                  "integrations",
+                  {
+                    "Ref": "HttpApiIntegrationObtenerTasks"
+                  }
+                ]
+              ]
+            }
+          },
+          "DependsOn": "HttpApiIntegrationObtenerTasks"
+        },
+        "ObtenerTaskLambdaPermissionHttpApi": {
+          "Type": "AWS::Lambda::Permission",
+          "Properties": {
+            "FunctionName": {
+              "Fn::GetAtt": [
+                "ObtenerTaskLambdaFunction",
+                "Arn"
+              ]
+            },
+            "Action": "lambda:InvokeFunction",
+            "Principal": "apigateway.amazonaws.com",
+            "SourceArn": {
+              "Fn::Join": [
+                "",
+                [
+                  "arn:",
+                  {
+                    "Ref": "AWS::Partition"
+                  },
+                  ":execute-api:",
+                  {
+                    "Ref": "AWS::Region"
+                  },
+                  ":",
+                  {
+                    "Ref": "AWS::AccountId"
+                  },
+                  ":",
+                  {
+                    "Ref": "HttpApi"
+                  },
+                  "/*"
+                ]
+              ]
+            }
+          }
+        },
+        "HttpApiIntegrationObtenerTask": {
+          "Type": "AWS::ApiGatewayV2::Integration",
+          "Properties": {
+            "ApiId": {
+              "Ref": "HttpApi"
+            },
+            "IntegrationType": "AWS_PROXY",
+            "IntegrationUri": {
+              "Fn::GetAtt": [
+                "ObtenerTaskLambdaFunction",
+                "Arn"
+              ]
+            },
+            "PayloadFormatVersion": "2.0",
+            "TimeoutInMillis": 30000
+          }
+        },
+        "HttpApiRouteGetTareasIdVar": {
+          "Type": "AWS::ApiGatewayV2::Route",
+          "Properties": {
+            "ApiId": {
+              "Ref": "HttpApi"
+            },
+            "RouteKey": "GET /tareas/{id}",
+            "Target": {
+              "Fn::Join": [
+                "/",
+                [
+                  "integrations",
+                  {
+                    "Ref": "HttpApiIntegrationObtenerTask"
+                  }
+                ]
+              ]
+            }
+          },
+          "DependsOn": "HttpApiIntegrationObtenerTask"
+        },
+        "EliminarTaskLambdaPermissionHttpApi": {
+          "Type": "AWS::Lambda::Permission",
+          "Properties": {
+            "FunctionName": {
+              "Fn::GetAtt": [
+                "EliminarTaskLambdaFunction",
+                "Arn"
+              ]
+            },
+            "Action": "lambda:InvokeFunction",
+            "Principal": "apigateway.amazonaws.com",
+            "SourceArn": {
+              "Fn::Join": [
+                "",
+                [
+                  "arn:",
+                  {
+                    "Ref": "AWS::Partition"
+                  },
+                  ":execute-api:",
+                  {
+                    "Ref": "AWS::Region"
+                  },
+                  ":",
+                  {
+                    "Ref": "AWS::AccountId"
+                  },
+                  ":",
+                  {
+                    "Ref": "HttpApi"
+                  },
+                  "/*"
+                ]
+              ]
+            }
+          }
+        },
+        "HttpApiIntegrationEliminarTask": {
+          "Type": "AWS::ApiGatewayV2::Integration",
+          "Properties": {
+            "ApiId": {
+              "Ref": "HttpApi"
+            },
+            "IntegrationType": "AWS_PROXY",
+            "IntegrationUri": {
+              "Fn::GetAtt": [
+                "EliminarTaskLambdaFunction",
+                "Arn"
+              ]
+            },
+            "PayloadFormatVersion": "2.0",
+            "TimeoutInMillis": 30000
+          }
+        },
+        "HttpApiRouteDeleteTareasIdVar": {
+          "Type": "AWS::ApiGatewayV2::Route",
+          "Properties": {
+            "ApiId": {
+              "Ref": "HttpApi"
+            },
+            "RouteKey": "DELETE /tareas/{id}",
+            "Target": {
+              "Fn::Join": [
+                "/",
+                [
+                  "integrations",
+                  {
+                    "Ref": "HttpApiIntegrationEliminarTask"
+                  }
+                ]
+              ]
+            }
+          },
+          "DependsOn": "HttpApiIntegrationEliminarTask"
+        },
+        "ActualizarTaskLambdaPermissionHttpApi": {
+          "Type": "AWS::Lambda::Permission",
+          "Properties": {
+            "FunctionName": {
+              "Fn::GetAtt": [
+                "ActualizarTaskLambdaFunction",
+                "Arn"
+              ]
+            },
+            "Action": "lambda:InvokeFunction",
+            "Principal": "apigateway.amazonaws.com",
+            "SourceArn": {
+              "Fn::Join": [
+                "",
+                [
+                  "arn:",
+                  {
+                    "Ref": "AWS::Partition"
+                  },
+                  ":execute-api:",
+                  {
+                    "Ref": "AWS::Region"
+                  },
+                  ":",
+                  {
+                    "Ref": "AWS::AccountId"
+                  },
+                  ":",
+                  {
+                    "Ref": "HttpApi"
+                  },
+                  "/*"
+                ]
+              ]
+            }
+          }
+        },
+        "HttpApiIntegrationActualizarTask": {
+          "Type": "AWS::ApiGatewayV2::Integration",
+          "Properties": {
+            "ApiId": {
+              "Ref": "HttpApi"
+            },
+            "IntegrationType": "AWS_PROXY",
+            "IntegrationUri": {
+              "Fn::GetAtt": [
+                "ActualizarTaskLambdaFunction",
+                "Arn"
+              ]
+            },
+            "PayloadFormatVersion": "2.0",
+            "TimeoutInMillis": 30000
+          }
+        },
+        "HttpApiRoutePutTareasIdVar": {
+          "Type": "AWS::ApiGatewayV2::Route",
+          "Properties": {
+            "ApiId": {
+              "Ref": "HttpApi"
+            },
+            "RouteKey": "PUT /tareas/{id}",
+            "Target": {
+              "Fn::Join": [
+                "/",
+                [
+                  "integrations",
+                  {
+                    "Ref": "HttpApiIntegrationActualizarTask"
+                  }
+                ]
+              ]
+            }
+          },
+          "DependsOn": "HttpApiIntegrationActualizarTask"
+        },
+        "tareasTable": {
+          "Type": "AWS::DynamoDB::Table",
+          "Properties": {
+            "TableName": "tabla",
+            "BillingMode": "PAY_PER_REQUEST",
+            "AttributeDefinitions": [
+              {
+                "AttributeName": "id",
+                "AttributeType": "S"
+              }
+            ],
+            "KeySchema": [
+              {
+                "AttributeName": "id",
+                "KeyType": "HASH"
+              }
+            ]
+          }
+        }
+      },
+      "Outputs": {
+        "ServerlessDeploymentBucketName": {
+          "Value": "serverless-framework-deployments-us-east-1-d6410a1c-8fc2",
+          "Export": {
+            "Name": "sls-servidor-melanymoreira-dev-ServerlessDeploymentBucketName"
+          }
+        },
+        "AgregarTaskLambdaFunctionQualifiedArn": {
+          "Description": "Current Lambda function version",
+          "Value": {
+            "Ref": "AgregarTaskLambdaVersionu545ynwBb3jFkork0OUbgjix9OQsnulrX5nZe1RNOE"
+          },
+          "Export": {
+            "Name": "sls-servidor-melanymoreira-dev-AgregarTaskLambdaFunctionQualifiedArn"
+          }
+        },
+        "ObtenerTasksLambdaFunctionQualifiedArn": {
+          "Description": "Current Lambda function version",
+          "Value": {
+            "Ref": "ObtenerTasksLambdaVersionblR1bjT8ZhNUh0lEggFq5mvJSBjuyC5AKyjRRsagjc"
+          },
+          "Export": {
+            "Name": "sls-servidor-melanymoreira-dev-ObtenerTasksLambdaFunctionQualifiedArn"
+          }
+        },
+        "ObtenerTaskLambdaFunctionQualifiedArn": {
+          "Description": "Current Lambda function version",
+          "Value": {
+            "Ref": "ObtenerTaskLambdaVersionOMiEjX4VJxgmlgv2r3U5kr6we75wGSoNcgYqhbyvM"
+          },
+          "Export": {
+            "Name": "sls-servidor-melanymoreira-dev-ObtenerTaskLambdaFunctionQualifiedArn"
+          }
+        },
+        "EliminarTaskLambdaFunctionQualifiedArn": {
+          "Description": "Current Lambda function version",
+          "Value": {
+            "Ref": "EliminarTaskLambdaVersionQeSvh43bQiHIyYF3g3wCaWgcxx6Kj9KR1XrWaaOkc"
+          },
+          "Export": {
+            "Name": "sls-servidor-melanymoreira-dev-EliminarTaskLambdaFunctionQualifiedArn"
+          }
+        },
+        "ActualizarTaskLambdaFunctionQualifiedArn": {
+          "Description": "Current Lambda function version",
+          "Value": {
+            "Ref": "ActualizarTaskLambdaVersionrLmcm37Bbm32jwrN9HPr0QLQwr6Sn7zu4X3nxPzEpQ"
+          },
+          "Export": {
+            "Name": "sls-servidor-melanymoreira-dev-ActualizarTaskLambdaFunctionQualifiedArn"
+          }
+        },
+        "HttpApiId": {
+          "Description": "Id of the HTTP API",
+          "Value": {
+            "Ref": "HttpApi"
+          },
+          "Export": {
+            "Name": "sls-servidor-melanymoreira-dev-HttpApiId"
+          }
+        },
+        "HttpApiUrl": {
+          "Description": "URL of the HTTP API",
+          "Value": {
+            "Fn::Join": [
+              "",
+              [
+                "https://",
+                {
+                  "Ref": "HttpApi"
+                },
+                ".execute-api.",
+                {
+                  "Ref": "AWS::Region"
+                },
+                ".",
+                {
+                  "Ref": "AWS::URLSuffix"
+                }
+              ]
+            ]
+          },
+          "Export": {
+            "Name": "sls-servidor-melanymoreira-dev-HttpApiUrl"
+          }
+        }
+      }
+    }
+  }
+}
