@@ -121,6 +121,15 @@ functions:
       - httpApi:
           path: /asignatura/{id}
           method: put
+          functions:
+          
+  obtenerTodasAsignaturas:
+    handler: src/asignaturas/obtenerTodasAsignaturas.obtenerTodasAsignaturas
+    events:
+      - httpApi:
+          path: /asignaturas
+          method: get
+
 
   # Funciones para la tabla parciales
   agregarParcial:
