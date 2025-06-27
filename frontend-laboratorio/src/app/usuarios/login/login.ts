@@ -33,7 +33,7 @@ export class LoginComponent {
         }
         this.authService.login(user);
         if (user.rol === 'docente') {
-          this.router.navigate(['/docentes/ver-asignaturas']);
+          this.router.navigate(['/docentes']);
         } else if (user.rol === 'estudiante') {
           this.router.navigate(['/estudiante']);
         } else {
