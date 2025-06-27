@@ -1,6 +1,6 @@
-org: melanymoreira
-app: servidor-melanymoreira
-service: servidor-melanymoreira
+org: kevin1
+service: apiproductos
+
 provider:
   name: aws
   runtime: nodejs20.x
@@ -9,13 +9,24 @@ provider:
       Action:
         - dynamodb:*
       Resource:
-          - arn:aws:dynamodb:us-east-1:469647637171:table/usuario
-          - arn:aws:dynamodb:us-east-1:469647637171:table/laboratorios
-          - arn:aws:dynamodb:us-east-1:469647637171:table/asignaturas
-          - arn:aws:dynamodb:us-east-1:469647637171:table/parciales
-          - arn:aws:dynamodb:us-east-1:469647637171:table/practicas
-          - arn:aws:dynamodb:us-east-1:469647637171:table/usoEquipo
-
+        - arn:aws:dynamodb:us-east-1:648908580448:table/usuario
+        - arn:aws:dynamodb:us-east-1:648908580448:table/laboratorios
+        - arn:aws:dynamodb:us-east-1:648908580448:table/asignaturas
+        - arn:aws:dynamodb:us-east-1:648908580448:table/parciales
+        - arn:aws:dynamodb:us-east-1:648908580448:table/practicas
+        - arn:aws:dynamodb:us-east-1:648908580448:table/usoEquipo
+  httpApi:
+    cors:
+      allowedOrigins:
+        - http://localhost:4200
+      allowedMethods:
+        - GET
+        - POST
+        - PUT
+        - DELETE
+        - OPTIONS
+      allowedHeaders:
+        - Content-Type
 functions:
   # Funciones para la tabla usuarios
   agregarUser:
@@ -45,7 +56,14 @@ functions:
       - httpApi:
           path: /usuario/{id}
           method: put
-  
+          
+  obtenerTodosUsuarios:
+    handler: src/usuarios/obtenerTodosUsuarios.obtenerTodosUsuarios
+    events:
+      - httpApi:
+          path: /usuarios
+          method: get
+    
   # Funciones para la tabla laboratorios
   agregarLaboratorio:
     handler: src/laboratorios/agregarLab.agregarLab
@@ -190,3 +208,76 @@ functions:
       - httpApi:
           path: /usoEquipo/{id}
           method: put
+resources:
+  Resources:
+    UsuarioTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: usuario
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        BillingMode: PAY_PER_REQUEST
+
+    LaboratoriosTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: laboratorios
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        BillingMode: PAY_PER_REQUEST
+
+    AsignaturasTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: asignaturas
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        BillingMode: PAY_PER_REQUEST
+
+    ParcialesTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: parciales
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        BillingMode: PAY_PER_REQUEST
+
+    PracticasTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: practicas
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        BillingMode: PAY_PER_REQUEST
+
+    UsoEquipoTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: usoEquipo
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        BillingMode: PAY_PER_REQUEST
