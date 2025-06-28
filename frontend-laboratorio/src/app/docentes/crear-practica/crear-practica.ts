@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 interface Practica {
   id: string;
@@ -23,7 +24,7 @@ export class CrearPracticaComponent implements OnInit {
   practicas: Practica[] = [];
   docenteId: string = '';
 
-  constructor(private fb: FormBuilder, private http: HttpClient) {
+  constructor(private fb: FormBuilder, private http: HttpClient, private router: Router) {
     this.practicaForm = this.fb.group({
       nombre: ['', Validators.required],
       descripcion: [''],
@@ -32,11 +33,22 @@ export class CrearPracticaComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const usuario = JSON.parse(localStorage.getItem('usuario') || '{}');
-    this.docenteId = usuario.id;
+    if (typeof window !== 'undefined' && window.localStorage) {
+      const usuarioStr = localStorage.getItem('usuario');
+      let usuario: any = null;
+      try {
+        usuario = usuarioStr ? JSON.parse(usuarioStr) : null;
+      } catch (e) {
+        usuario = null;
+      }
+      this.docenteId = usuario && usuario.id ? usuario.id : '';
 
-    if (this.docenteId) {
-      this.cargarPracticas();
+      if (this.docenteId) {
+        this.cargarPracticas();
+      }
+    } else {
+      // Si no hay localStorage (por ejemplo, en SSR), no hacer nada o asignar un valor por defecto
+      this.docenteId = '';
     }
   }
 
@@ -53,20 +65,17 @@ export class CrearPracticaComponent implements OnInit {
     });
   }
 
-onSubmit() {
-  if (this.practicaForm.valid) {
-    console.log('Datos que se enviarán:', this.practicaForm.value);
-    const nuevaPractica = {
-      ...this.practicaForm.value,
-      docenteId: this.docenteId
-    };
-    console.log('Objeto final que se enviará:', nuevaPractica);
-    this.http.post('https://.../practicas', nuevaPractica).subscribe( ... );
-  }
-
-
+  onSubmit() {
+    if (this.practicaForm.valid) {
+      console.log('Datos que se enviarán:', this.practicaForm.value);
+      const nuevaPractica = {
+        ...this.practicaForm.value,
+        docenteId: this.docenteId
+      };
+      // Depuración: mostrar el valor de fechaLimite antes de enviar
+      console.log('Fecha límite enviada:', nuevaPractica.fechaLimite);
       this.http.post('https://o81leawoc8.execute-api.us-east-1.amazonaws.com/practicas', nuevaPractica).subscribe({
-        next: () => {
+        next: (resp: any) => {
           alert('Práctica creada con éxito');
           this.practicaForm.reset();
           this.cargarPracticas();
@@ -79,19 +88,20 @@ onSubmit() {
     }
   }
 
-  // // Método para mostrar fecha en formato legible dd/mm/yyyy
-  // formatoFecha(fechaISO: string): string {
-  //   const date = new Date(fechaISO);
-  //   return date.toLocaleDateString('es-ES');
-  // }
-
   formatoFecha(fechaISO: string): string {
-  console.log('Fecha recibida:', fechaISO);
-  const date = new Date(fechaISO);
-  if (isNaN(date.getTime())) {
-    return 'Fecha inválida';
+    if (!fechaISO) return '-';
+    // Soporta tanto fechas tipo 'YYYY-MM-DD' como ISO completas
+    // Si viene con hora, la recorta
+    const soloFecha = fechaISO.split('T')[0];
+    const partes = soloFecha.split('-');
+    if (partes.length === 3) {
+      // Devuelve en formato dd/mm/yyyy
+      return `${partes[2]}/${partes[1]}/${partes[0]}`;
+    }
+    return fechaISO;
   }
-  return date.toLocaleDateString('es-ES');
-}
 
+  regresarPanelDocente() {
+    this.router.navigate(['/docentes']);
+  }
 }

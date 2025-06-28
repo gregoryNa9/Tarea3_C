@@ -1,3 +1,4 @@
+<h3>Crear Practicas</h3>
 <form [formGroup]="practicaForm" (ngSubmit)="onSubmit()">
   <label>Nombre:
     <input formControlName="nombre" required />
@@ -10,6 +11,8 @@
   </label>
   <button type="submit" [disabled]="!practicaForm.valid">Crear práctica</button>
 </form>
+
+<button type="button" (click)="regresarPanelDocente()">Regresar al Panel Docente</button>
 
 <hr />
 
@@ -25,7 +28,7 @@
     <tr *ngFor="let p of practicas">
       <td>{{ p.nombre }}</td>
       <td>{{ p.descripcion || '-' }}</td>
-      <td>{{ formatoFecha(p.fechaLimite) }}</td>
+      <td>{{ p.fechaLimite ? formatoFecha(p.fechaLimite) : '-' }}</td>
     </tr>
   </tbody>
 </table>

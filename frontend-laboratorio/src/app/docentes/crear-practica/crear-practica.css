@@ -1,0 +1,460 @@
+/* Estilos para formulario */
+form {
+  background: #ffffff;
+  padding: 2rem;
+  border-radius: 12px;
+  border-left: 4px solid #3498db;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  margin-bottom: 2rem;
+  border: 1px solid #e8ecef;
+  position: relative;
+  overflow: hidden;
+}
+
+form::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, #3498db, #2980b9);
+}
+
+/* Labels del formulario */
+form label {
+  display: block;
+  color: #2c3e50;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Inputs y textarea */
+form input,
+form textarea {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: 2px solid #e9ecef;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  transition: all 0.3s ease;
+  background: #fafbfc;
+  margin-top: 0.5rem;
+  box-sizing: border-box;
+}
+
+form input:focus,
+form textarea:focus {
+  outline: none;
+  border-color: #3498db;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+  transform: translateY(-1px);
+}
+
+form textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+/* Botón submit */
+form button[type="submit"] {
+  background: linear-gradient(135deg, #3498db, #2980b9);
+  color: white;
+  border: none;
+  padding: 0.8rem 1.8rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 12px rgba(52, 152, 219, 0.3);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 1rem;
+}
+
+form button[type="submit"]:hover:not(:disabled) {
+  background: linear-gradient(135deg, #2980b9, #1f4e79);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
+}
+
+form button[type="submit"]:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: 0 3px 8px rgba(52, 152, 219, 0.3);
+}
+
+form button[type="submit"]:disabled {
+  background: #bdc3c7;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+/* form button[type="submit"]::before {
+  content: '+';
+  font-size: 18px;
+  font-weight: bold;
+} */
+
+/* Separador HR */
+hr {
+  border: none;
+  height: 2px;
+  background: linear-gradient(90deg, #3498db, #2980b9);
+  margin: 3rem 0;
+  border-radius: 2px;
+  position: relative;
+}
+
+hr::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60px;
+  height: 6px;
+  background: linear-gradient(90deg, #3498db, #2980b9);
+  border-radius: 3px;
+}
+
+/* Tabla */
+table {
+  width: 100%;
+  background: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e8ecef;
+  border-collapse: collapse;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Encabezado de tabla */
+table thead {
+  background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+  position: relative;
+}
+
+table thead::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, #3498db, #2980b9);
+}
+
+table th {
+  padding: 1.2rem 1rem;
+  text-align: left;
+  font-weight: 600;
+  color: #2c3e50;
+  font-size: 0.95rem;
+  border-bottom: 2px solid #dee2e6;
+}
+
+/* Filas del cuerpo */
+table tbody tr {
+  transition: all 0.3s ease;
+  border-bottom: 1px solid #e9ecef;
+  position: relative;
+}
+
+table tbody tr:hover {
+  background: rgba(52, 152, 219, 0.05);
+  transform: translateX(5px);
+  border-left: 3px solid #3498db;
+}
+
+/* table tbody tr:hover::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, #3498db, #2980b9);
+} */
+
+table tbody tr:last-child {
+  border-bottom: none;
+}
+
+/* Celdas */
+table td {
+  padding: 1rem;
+  color: #2c3e50;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  vertical-align: top;
+}
+
+table td:first-child {
+  font-weight: 500;
+  color: #2c3e50;
+}
+
+table td:nth-child(2) {
+  color: #5a6c7d;
+}
+
+table td:last-child {
+  color: #7f8c8d;
+  font-weight: 500;
+}
+
+/* Estado vacío */
+.empty-state {
+  text-align: center;
+  padding: 4rem 2rem;
+  color: #7f8c8d;
+  background: linear-gradient(135deg, #f8f9fa, #ecf0f1);
+  border-radius: 12px;
+  margin: 2rem 0;
+  border: 2px dashed #bdc3c7;
+  position: relative;
+}
+
+/* .empty-state::before {
+  content: '📋';
+  font-size: 3rem;
+  display: block;
+  margin-bottom: 1rem;
+} */
+
+.empty-state h3 {
+  color: #2c3e50;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.empty-state p {
+  font-size: 1rem;
+  font-style: italic;
+  margin: 0;
+}
+
+/* Animaciones de entrada */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.form-container,
+.table-container {
+  animation: fadeInUp 0.5s ease forwards;
+}
+
+.table-row {
+  animation: fadeInUp 0.3s ease forwards;
+}
+
+.table-row:nth-child(1) { animation-delay: 0.1s; }
+.table-row:nth-child(2) { animation-delay: 0.2s; }
+.table-row:nth-child(3) { animation-delay: 0.3s; }
+.table-row:nth-child(4) { animation-delay: 0.4s; }
+.table-row:nth-child(5) { animation-delay: 0.5s; }
+
+/* Badge para fechas próximas */
+.date-badge {
+  background: rgba(52, 152, 219, 0.1);
+  color: #3498db;
+  padding: 0.2rem 0.6rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  border: 1px solid rgba(52, 152, 219, 0.2);
+}
+
+.date-badge.urgent {
+  background: rgba(231, 76, 60, 0.1);
+  color: #e74c3c;
+  border-color: rgba(231, 76, 60, 0.2);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  form {
+    padding: 1.5rem;
+    margin: 1rem 0;
+  }
+  
+  form input,
+  form textarea {
+    padding: 0.7rem;
+    font-size: 0.9rem;
+  }
+  
+  form button[type="submit"] {
+    padding: 0.7rem 1.5rem;
+    font-size: 0.9rem;
+    width: 100%;
+    justify-content: center;
+  }
+  
+  /* Tabla responsive - convierte a cards */
+  table, thead, tbody, th, td, tr {
+    display: block;
+  }
+  
+  table thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+  
+  table tbody tr {
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    transform: none;
+    border-left: 4px solid #3498db;
+  }
+  
+  table tbody tr:hover {
+    transform: translateY(-2px);
+    border-left: 4px solid #2980b9;
+  }
+  
+  table td {
+    border: none;
+    padding: 0.5rem 0;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  /* table td:before {
+    content: attr(data-label) ': ';
+    font-weight: 600;
+    color: #2c3e50;
+    min-width: 80px;
+  } */
+  
+  /* Agregar labels para responsive
+  table td:nth-child(1):before { content: 'Nombre: '; }
+  table td:nth-child(2):before { content: 'Descripción: '; }
+  table td:nth-child(3):before { content: 'Fecha Límite: '; }
+   */
+  hr {
+    margin: 2rem 0;
+  }
+}
+/* Título de asignatura */
+h3:not(:first-child) {
+  color: #2c3e50;
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin: 0 0 1rem 0;
+  padding: 0;
+}
+
+@media (max-width: 480px) {
+  form {
+    padding: 1rem;
+  }
+  
+  form label {
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+  }
+  
+  form input,
+  form textarea {
+    padding: 0.6rem;
+    font-size: 0.85rem;
+  }
+  
+  form button[type="submit"] {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.85rem;
+  }
+  
+  table tbody tr {
+    padding: 0.8rem;
+    margin-bottom: 0.8rem;
+  }
+  
+  table td {
+    padding: 0.3rem 0;
+    font-size: 0.85rem;
+  }
+  
+  table td:before {
+    min-width: 70px;
+    font-size: 0.8rem;
+  }
+}
+
+
+h3:first-child::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, #3498db, #2980b9);
+  border-radius: 2px;
+}
+h3:first-child {
+  color: #2c3e50;
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 3px solid #3498db;
+  position: relative;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+/* Botón regresar */
+button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: linear-gradient(135deg, #95a5a6, #7f8c8d);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin: 2rem auto 0;
+  display: block;
+  box-shadow: 0 2px 8px rgba(127, 140, 141, 0.2);
+}
+
+button:hover {
+  background: linear-gradient(135deg, #7f8c8d, #6c7b7d);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(127, 140, 141, 0.3);
+}
+
+button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 5px rgba(127, 140, 141, 0.2);
+}
+
+button::before {
+  content: '←';
+  font-size: 16px;
+  font-weight: bold;
+}
