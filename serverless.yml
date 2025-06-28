@@ -1,6 +1,6 @@
-org: melanymoreira
-app: servidor-melanymoreira
-service: servidor-melanymoreira
+org: kevin1
+service: apiproductos
+
 provider:
   name: aws
   runtime: nodejs20.x
@@ -9,13 +9,24 @@ provider:
       Action:
         - dynamodb:*
       Resource:
-          - arn:aws:dynamodb:us-east-1:469647637171:table/usuario
-          - arn:aws:dynamodb:us-east-1:469647637171:table/laboratorios
-          - arn:aws:dynamodb:us-east-1:469647637171:table/asignaturas
-          - arn:aws:dynamodb:us-east-1:469647637171:table/parciales
-          - arn:aws:dynamodb:us-east-1:469647637171:table/practicas
-          - arn:aws:dynamodb:us-east-1:469647637171:table/usoEquipo
-
+        - arn:aws:dynamodb:us-east-1:648908580448:table/usuario
+        - arn:aws:dynamodb:us-east-1:648908580448:table/laboratorios
+        - arn:aws:dynamodb:us-east-1:648908580448:table/asignaturas
+        - arn:aws:dynamodb:us-east-1:648908580448:table/parciales
+        - arn:aws:dynamodb:us-east-1:648908580448:table/practicas
+        - arn:aws:dynamodb:us-east-1:648908580448:table/usoEquipo
+  httpApi:
+    cors:
+      allowedOrigins:
+        - http://localhost:4200
+      allowedMethods:
+        - GET
+        - POST
+        - PUT
+        - DELETE
+        - OPTIONS
+      allowedHeaders:
+        - Content-Type
 functions:
   # Funciones para la tabla usuarios
   agregarUser:
@@ -45,7 +56,14 @@ functions:
       - httpApi:
           path: /usuario/{id}
           method: put
-  
+
+  obtenerTodosUsuarios:
+    handler: src/usuarios/obtenerTodosUsuarios.obtenerTodosUsuarios
+    events:
+      - httpApi:
+          path: /usuarios
+          method: get
+
   # Funciones para la tabla laboratorios
   agregarLaboratorio:
     handler: src/laboratorios/agregarLab.agregarLab
@@ -53,21 +71,21 @@ functions:
       - httpApi:
           path: /laboratorio
           method: post
-  
+
   obtenerLaboratorio:
     handler: src/laboratorios/obtenerLab.obtenerLab
     events:
       - httpApi:
           path: /laboratorio/{id}
           method: get
-  
+
   eliminarLaboratorio:
     handler: src/laboratorios/eliminarLab.eliminarLab
     events:
       - httpApi:
           path: /laboratorio/{id}
           method: delete
-  
+
   actualizarLaboratorio:
     handler: src/laboratorios/actualizarLab.actualizarLab
     events:
@@ -82,7 +100,7 @@ functions:
       - httpApi:
           path: /asignatura
           method: post
-  
+
   obtenerAsignatura:
     handler: src/asignaturas/obtenerAsig.obtenerAsig
     events:
@@ -96,7 +114,20 @@ functions:
       - httpApi:
           path: /asignatura/{id}
           method: delete
-  
+
+  obtenerAsignaturasPorDocente:
+    handler: src/asignaturas/obtenerPorDocente.obtenerAsignaturasPorDocente
+    events:
+      - httpApi:
+          path: /asignaturas/docente/{docenteId}
+          method: get
+  obtenerAsignaturasPorEstudiante:
+    handler: src/asignaturas/obtenerAsignaturasPorEstudiante.obtenerAsignaturasPorEstudiante
+    events:
+      - httpApi:
+          path: /asignaturas/estudiante/{id}
+          method: get
+
   actualizarAsignatura:
     handler: src/asignaturas/actualizarAsig.actualizarAsig
     events:
@@ -104,28 +135,42 @@ functions:
           path: /asignatura/{id}
           method: put
 
+  obtenerTodasAsignaturas:
+    handler: src/asignaturas/obtenerTodasAsignaturas.obtenerTodasAsignaturas
+    events:
+      - httpApi:
+          path: /asignaturas
+          method: get
+
   # Funciones para la tabla parciales
   agregarParcial:
-    handler: src/parciales/agregarPar.agregarPar  
+    handler: src/parciales/agregarPar.agregarPar
     events:
       - httpApi:
           path: /parciales
           method: post
 
-  obtenerParciales:
-    handler: src/parciales/obtenerPar.obtenerPar
+  # obtenerParciales:
+  #   handler: src/parciales/obtenerPar.obtenerPar
+  #   events:
+  #     - httpApi:
+  #         path: /parciales
+  #         method: get
+
+  obtenerTodosParciales:
+    handler: src/parciales/obtenerTodosParciales.obtenerTodosParciales
     events:
       - httpApi:
           path: /parciales
           method: get
-  
+
   eliminarParcial:
     handler: src/parciales/eliminarPar.eliminarPar
     events:
       - httpApi:
           path: /parciales/{id}
           method: delete
-  
+
   actualizarParcial:
     handler: src/parciales/actualizarPar.actualizarPar
     events:
@@ -135,7 +180,7 @@ functions:
 
   # Funciones para la tabla practicas
   agregarPractica:
-    handler: src/practicas/agregarPract.agregarPract  
+    handler: src/practicas/agregarPract.agregarPract
     events:
       - httpApi:
           path: /practicas
@@ -162,6 +207,12 @@ functions:
           path: /practicas/{id}
           method: put
 
+  obtenerPracticasPorDocente:
+    handler: src/practicas/obtenerPracticasPorDocente.obtenerPracticasPorDocente
+    events:
+      - httpApi:
+          path: /practicas/docente/{docenteId}
+          method: get
   # Funciones para la tabla usoEquipo
   agregarUsoEquipo:
     handler: src/usoEquipo/agregarEquip.agregarEquip
@@ -190,3 +241,76 @@ functions:
       - httpApi:
           path: /usoEquipo/{id}
           method: put
+resources:
+  Resources:
+    UsuarioTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: usuario
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        BillingMode: PAY_PER_REQUEST
+
+    LaboratoriosTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: laboratorios
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        BillingMode: PAY_PER_REQUEST
+
+    AsignaturasTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: asignaturas
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        BillingMode: PAY_PER_REQUEST
+
+    ParcialesTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: parciales
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        BillingMode: PAY_PER_REQUEST
+
+    PracticasTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: practicas
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        BillingMode: PAY_PER_REQUEST
+
+    UsoEquipoTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: usoEquipo
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        BillingMode: PAY_PER_REQUEST

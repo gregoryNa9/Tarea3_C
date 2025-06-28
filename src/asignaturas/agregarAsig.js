@@ -3,24 +3,26 @@ const AWS = require("aws-sdk");
 
 exports.agregarAsig = async (event) => {
   const dynamoDB = new AWS.DynamoDB.DocumentClient();
-  const { nombre, codigo, docenteAsignado } = JSON.parse(event.body);
+  const { nombre, codigo, docenteId, estudiantes } = JSON.parse(event.body);
   const id = v4();
-  const items = {
+
+  const item = {
     id,
     nombre,
     codigo,
-    docenteAsignado,
+    docenteId,
+    estudiantes: estudiantes || []
   };
 
   await dynamoDB
     .put({
       TableName: "asignaturas",
-      Item: items,
+      Item: item
     })
     .promise();
 
   return {
     statusCode: 200,
-    body: JSON.stringify(items),
+    body: JSON.stringify(item)
   };
 };

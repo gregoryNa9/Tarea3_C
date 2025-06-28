@@ -1,0 +1,375 @@
+/* Estilos globales */
+body {
+  background-color: #f5f6fa;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 2rem;
+  counter-reset: asignatura-counter;
+}
+
+/* Título principal de la sección */
+h3:first-child {
+  color: #2c3e50;
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 3px solid #3498db;
+  position: relative;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h3:first-child::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, #3498db, #2980b9);
+  border-radius: 2px;
+}
+
+/* Contenedor de cada asignatura */
+body > div:not(:first-child) {
+  background: #ffffff;
+  margin-bottom: 1.5rem;
+  padding: 1.2rem 1.5rem;
+  border-radius: 10px;
+  border-left: 4px solid #3498db;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid #e8ecef;
+  counter-increment: asignatura-counter;
+}
+
+body > div:not(:first-child)::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, #3498db, #2980b9);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+body > div:not(:first-child)::after {
+  content: counter(asignatura-counter);
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  background: rgba(52, 152, 219, 0.1);
+  color: #3498db;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+body > div:not(:first-child):hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(52, 152, 219, 0.15);
+  border-left-color: #2980b9;
+}
+
+body > div:not(:first-child):hover::before {
+  transform: scaleX(1);
+}
+
+/* Título de asignatura */
+h3:not(:first-child) {
+  color: #2c3e50;
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin: 0 0 1rem 0;
+  padding: 0;
+}
+
+/* Contenedor de cada parcial */
+div div {
+  background: #f8f9fa;
+  margin: 1rem 0;
+  padding: 1rem 1.2rem;
+  border-radius: 8px;
+  border: 1px solid #dee2e6;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+div div:hover {
+  background: #ffffff;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  transform: translateX(5px);
+}
+
+/* Título de parcial */
+h4 {
+  color: #2c3e50;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0 0 0.8rem 0;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #e9ecef;
+  position: relative;
+}
+
+h4::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 40px;
+  height: 2px;
+  background: linear-gradient(90deg, #3498db, #2980b9);
+  border-radius: 1px;
+}
+
+/* Lista de calificaciones */
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+ul li {
+  padding: 0.8rem 1.2rem;
+  border-bottom: 1px solid #e9ecef;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  color: #2c3e50;
+  position: relative;
+  overflow: hidden;
+}
+
+ul li::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, #3498db, #2980b9);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+ul li:last-child {
+  border-bottom: none;
+}
+
+ul li:hover {
+  background: rgba(52, 152, 219, 0.05);
+  padding-left: 1.5rem;
+  border-left: 3px solid #3498db;
+}
+
+ul li:hover::before {
+  transform: scaleX(1);
+}
+
+/* Efecto visual para separar nombre y nota */
+ul li::after {
+  content: '';
+  position: absolute;
+  right: 1.2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50px;
+  height: 20px;
+  background: rgba(52, 152, 219, 0.1);
+  border-radius: 10px;
+  z-index: -1;
+  transition: all 0.3s ease;
+}
+
+ul li:hover::after {
+  background: rgba(52, 152, 219, 0.2);
+  width: 60px;
+}
+
+/* Mensaje cuando no hay parciales */
+p {
+  text-align: center;
+  color: #7f8c8d;
+  font-size: 1.1rem;
+  font-style: italic;
+  padding: 3rem 2rem;
+  background: linear-gradient(135deg, #ecf0f1, #d5dbdb);
+  border-radius: 12px;
+  border: 2px dashed #bdc3c7;
+  margin: 2rem 0;
+  position: relative;
+}
+
+p::before {
+  content: '📚';
+  font-size: 2rem;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+/* Botón regresar */
+button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: linear-gradient(135deg, #95a5a6, #7f8c8d);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin: 2rem auto 0;
+  display: block;
+  box-shadow: 0 2px 8px rgba(127, 140, 141, 0.2);
+}
+
+button:hover {
+  background: linear-gradient(135deg, #7f8c8d, #6c7b7d);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(127, 140, 141, 0.3);
+}
+
+button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 5px rgba(127, 140, 141, 0.2);
+}
+
+button::before {
+  content: '←';
+  font-size: 16px;
+  font-weight: bold;
+}
+
+/* Animaciones de entrada */
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+body > div:not(:first-child) {
+  animation: slideInUp 0.5s ease forwards;
+}
+
+body > div:nth-child(2) { animation-delay: 0.1s; }
+body > div:nth-child(3) { animation-delay: 0.2s; }
+body > div:nth-child(4) { animation-delay: 0.3s; }
+body > div:nth-child(5) { animation-delay: 0.4s; }
+body > div:nth-child(6) { animation-delay: 0.5s; }
+
+/* Alternancia de colores en calificaciones */
+ul li:nth-child(odd) {
+  background-color: rgba(248, 249, 250, 0.3);
+}
+
+ul li:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  body {
+    padding: 1rem;
+  }
+  
+  h3:first-child {
+    font-size: 1.4rem;
+  }
+  
+  h3:not(:first-child) {
+    font-size: 1.1rem;
+  }
+  
+  h4 {
+    font-size: 1rem;
+  }
+  
+  ul li {
+    padding: 0.6rem 1rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    text-align: left;
+  }
+  
+  ul li::after {
+    display: none;
+  }
+  
+  body > div:not(:first-child)::after {
+    width: 20px;
+    height: 20px;
+    font-size: 11px;
+  }
+  
+  div div {
+    margin: 1rem 0;
+    padding: 0.8rem 1rem;
+  }
+  
+  body > div:not(:first-child) {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  h3:first-child {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+  
+  h3:not(:first-child) {
+    font-size: 1rem;
+  }
+  
+  h4 {
+    font-size: 0.9rem;
+  }
+  
+  ul li {
+    padding: 0.5rem 0.8rem;
+    font-size: 0.9rem;
+  }
+  
+  p {
+    padding: 2rem 1rem;
+    font-size: 1rem;
+  }
+  
+  body > div:not(:first-child) {
+    padding: 0.8rem;
+    margin-bottom: 1rem;
+  }
+  
+  button {
+    padding: 10px 20px;
+    font-size: 13px;
+  }
+}
