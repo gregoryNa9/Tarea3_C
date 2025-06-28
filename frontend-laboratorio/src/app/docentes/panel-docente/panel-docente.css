@@ -100,6 +100,41 @@ nav a.active:not(:last-child)::after {
   display: none;
 }
 
+/* Botón cerrar sesión */
+button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: linear-gradient(135deg, #e74c3c, #c0392b);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin: 1rem auto;
+  display: block;
+  box-shadow: 0 2px 8px rgba(231, 76, 60, 0.2);
+}
+
+button:hover {
+  background: linear-gradient(135deg, #c0392b, #a93226);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3);
+}
+
+button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 5px rgba(231, 76, 60, 0.2);
+}
+
+button::before {
+  content: '🚪';
+  font-size: 14px;
+}
+
 /* Línea divisoria */
 hr {
   border: none;

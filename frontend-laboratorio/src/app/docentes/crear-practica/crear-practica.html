@@ -1,20 +1,31 @@
-<h3>Crear Nueva Práctica</h3>
-
 <form [formGroup]="practicaForm" (ngSubmit)="onSubmit()">
   <label>Nombre:
-    <input formControlName="nombre" />
+    <input formControlName="nombre" required />
   </label>
-  <br />
-
   <label>Descripción:
     <textarea formControlName="descripcion"></textarea>
   </label>
-  <br />
-
   <label>Fecha límite:
-    <input type="date" formControlName="fechaLimite" />
+    <input type="date" formControlName="fechaLimite" required />
   </label>
-  <br />
-
-  <button type="submit" [disabled]="!practicaForm.valid">Crear</button>
+  <button type="submit" [disabled]="!practicaForm.valid">Crear práctica</button>
 </form>
+
+<hr />
+
+<table>
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Descripción</th>
+      <th>Fecha Límite</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let p of practicas">
+      <td>{{ p.nombre }}</td>
+      <td>{{ p.descripcion || '-' }}</td>
+      <td>{{ formatoFecha(p.fechaLimite) }}</td>
+    </tr>
+  </tbody>
+</table>

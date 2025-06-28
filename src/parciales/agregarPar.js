@@ -3,12 +3,14 @@ const AWS = require("aws-sdk");
 
 exports.agregarPar = async (event) => {
   const dynamoDB = new AWS.DynamoDB.DocumentClient();
-  const { nombre, asignatura } = JSON.parse(event.body);
+  const { nombre, asignatura, calificaciones } = JSON.parse(event.body);
   const id = v4();
+
   const items = {
     id,
     nombre,
     asignatura,
+    calificaciones // array con notas y estudiantes
   };
 
   await dynamoDB

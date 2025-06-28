@@ -2,6 +2,7 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { AuthService } from '../../core/auth';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-panel-docente',
@@ -12,8 +13,13 @@ import { AuthService } from '../../core/auth';
 })
 export class PanelDocenteComponent {
   nombre: string = '';
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private router: Router) {
     const usuario = this.authService.getUsuarioActual();
     this.nombre = usuario?.nombre || '';
+  }
+
+  logout() {
+    this.authService.logout();
+    this.router.navigate(['/login']);
   }
 }

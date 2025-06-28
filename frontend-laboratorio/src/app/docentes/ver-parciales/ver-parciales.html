@@ -1,7 +1,20 @@
-<h3>Parciales</h3>
+<h3>Parciales por Asignatura</h3>
+<div *ngFor="let asignatura of asignaturas">
+  <h3>{{ asignatura.nombre }}</h3>
 
-<ul>
-  <li *ngFor="let parcial of parciales">
-    {{ parcial.nombre || parcial.id }}
-  </li>
-</ul>
+  <ng-container *ngIf="parcialesDe(asignatura.id).length > 0; else noParciales">
+    <div *ngFor="let parcial of parcialesDe(asignatura.id)">
+      <h4>{{ parcial.nombre }}</h4>
+      <ul>
+        <li *ngFor="let cal of parcial.calificaciones">
+          {{ nombreEstudiante(cal.estudianteId) }}: {{ cal.nota }}
+        </li>
+      </ul>
+    </div>
+  </ng-container>
+
+  <ng-template #noParciales>
+    <p><i>No existe registro para esta materia.</i></p>
+  </ng-template>
+</div>
+<button (click)="regresarPanelDocente()">Regresar al Panel Docente</button>

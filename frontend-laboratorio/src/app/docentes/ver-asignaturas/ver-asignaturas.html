@@ -1,7 +1,14 @@
-<h3>Asignaturas</h3>
+<h3>Asignaturas del Docente</h3>
 
-<ul>
+<ul *ngIf="asignaturas.length > 0; else sinAsignaturas">
   <li *ngFor="let asig of asignaturas">
-    {{ asig.nombre || asig.id }}
+    {{ asig.nombre }} ({{ asig.codigo }})
   </li>
 </ul>
+
+<ng-template #sinAsignaturas>
+  <p>No tienes asignaturas registradas.</p>
+</ng-template>
+<br>
+<br>
+<button (click)="regresarPanelDocente()">Regresar al Panel Docente</button>

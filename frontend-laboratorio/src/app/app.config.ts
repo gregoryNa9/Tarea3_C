@@ -17,6 +17,8 @@ export const appConfig: ApplicationConfig = {
       { path: 'login', component: LoginComponent },
       { path: 'docentes', component: PanelDocenteComponent },
       { path: 'docentes/ver-asignaturas', component: VerAsignaturasComponent },
+      { path: 'docentes/ver-parciales', component: VerParcialesComponent },
+      { path: 'docentes/crear-practica', component: CrearPracticaComponent },
       { path: 'estudiante', component: EstudiantePanelComponent },
       { path: '', redirectTo: 'login', pathMatch: 'full' }
     ]),
