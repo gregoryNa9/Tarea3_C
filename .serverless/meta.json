@@ -10064,5 +10064,335 @@
         }
       }
     }
+  },
+  "C:\\Users\\grego\\OneDrive\\Escritorio\\Tarea3_C\\serverless.yml": {
+    "versionFramework": "4.17.1",
+    "servicePath": "C:\\Users\\grego\\OneDrive\\Escritorio\\Tarea3_C\\serverless.yml",
+    "serviceConfigFileName": "serverless.yml",
+    "service": {
+      "org": "melanymoreira",
+      "app": "servidor-melanymoreira",
+      "service": "servidor-melanymoreira",
+      "provider": {
+        "name": "aws",
+        "runtime": "nodejs20.x",
+        "iamRoleStatements": [
+          {
+            "Effect": "Allow",
+            "Action": [
+              "dynamodb:*"
+            ],
+            "Resource": [
+              "arn:aws:dynamodb:us-east-1:469647637171:table/usuario",
+              "arn:aws:dynamodb:us-east-1:469647637171:table/laboratorios",
+              "arn:aws:dynamodb:us-east-1:469647637171:table/asignaturas",
+              "arn:aws:dynamodb:us-east-1:469647637171:table/parciales",
+              "arn:aws:dynamodb:us-east-1:469647637171:table/practicas",
+              "arn:aws:dynamodb:us-east-1:469647637171:table/usoEquipo"
+            ]
+          }
+        ]
+      },
+      "functions": {
+        "agregarUser": {
+          "handler": "src/usuarios/agregarUser.agregarUser",
+          "events": [
+            {
+              "httpApi": {
+                "path": "/usuario",
+                "method": "post"
+              }
+            }
+          ]
+        },
+        "obtenerUser": {
+          "handler": "src/usuarios/obtenerUser.obtenerUser",
+          "events": [
+            {
+              "httpApi": {
+                "path": "/usuario/{id}",
+                "method": "get"
+              }
+            }
+          ]
+        },
+        "eliminarUser": {
+          "handler": "src/usuarios/eliminarUser.eliminarUser",
+          "events": [
+            {
+              "httpApi": {
+                "path": "/usuario/{id}",
+                "method": "delete"
+              }
+            }
+          ]
+        },
+        "actualizarUser": {
+          "handler": "src/usuarios/actualizarUser.actualizarUser",
+          "events": [
+            {
+              "httpApi": {
+                "path": "/usuario/{id}",
+                "method": "put"
+              }
+            }
+          ]
+        },
+        "agregarLaboratorio": {
+          "handler": "src/laboratorios/agregarLab.agregarLab",
+          "events": [
+            {
+              "httpApi": {
+                "path": "/laboratorio",
+                "method": "post"
+              }
+            }
+          ]
+        },
+        "obtenerLaboratorio": {
+          "handler": "src/laboratorios/obtenerLab.obtenerLab",
+          "events": [
+            {
+              "httpApi": {
+                "path": "/laboratorio/{id}",
+                "method": "get"
+              }
+            }
+          ]
+        },
+        "eliminarLaboratorio": {
+          "handler": "src/laboratorios/eliminarLab.eliminarLab",
+          "events": [
+            {
+              "httpApi": {
+                "path": "/laboratorio/{id}",
+                "method": "delete"
+              }
+            }
+          ]
+        },
+        "actualizarLaboratorio": {
+          "handler": "src/laboratorios/actualizarLab.actualizarLab",
+          "events": [
+            {
+              "httpApi": {
+                "path": "/laboratorio/{id}",
+                "method": "put"
+              }
+            }
+          ]
+        },
+        "agregarAsignatura": {
+          "handler": "src/asignaturas/agregarAsig.agregarAsig",
+          "events": [
+            {
+              "httpApi": {
+                "path": "/asignatura",
+                "method": "post"
+              }
+            }
+          ]
+        },
+        "obtenerAsignatura": {
+          "handler": "src/asignaturas/obtenerAsig.obtenerAsig",
+          "events": [
+            {
+              "httpApi": {
+                "path": "/asignatura/{id}",
+                "method": "get"
+              }
+            }
+          ]
+        },
+        "eliminarAsignatura": {
+          "handler": "src/asignaturas/eliminarAsig.eliminarAsig",
+          "events": [
+            {
+              "httpApi": {
+                "path": "/asignatura/{id}",
+                "method": "delete"
+              }
+            }
+          ]
+        },
+        "actualizarAsignatura": {
+          "handler": "src/asignaturas/actualizarAsig.actualizarAsig",
+          "events": [
+            {
+              "httpApi": {
+                "path": "/asignatura/{id}",
+                "method": "put"
+              }
+            }
+          ]
+        },
+        "agregarParcial": {
+          "handler": "src/parciales/agregarPar.agregarPar",
+          "events": [
+            {
+              "httpApi": {
+                "path": "/parciales",
+                "method": "post"
+              }
+            }
+          ]
+        },
+        "obtenerParciales": {
+          "handler": "src/parciales/obtenerPar.obtenerPar",
+          "events": [
+            {
+              "httpApi": {
+                "path": "/parciales",
+                "method": "get"
+              }
+            }
+          ]
+        },
+        "eliminarParcial": {
+          "handler": "src/parciales/eliminarPar.eliminarPar",
+          "events": [
+            {
+              "httpApi": {
+                "path": "/parciales/{id}",
+                "method": "delete"
+              }
+            }
+          ]
+        },
+        "actualizarParcial": {
+          "handler": "src/parciales/actualizarPar.actualizarPar",
+          "events": [
+            {
+              "httpApi": {
+                "path": "/parciales/{id}",
+                "method": "put"
+              }
+            }
+          ]
+        },
+        "agregarPractica": {
+          "handler": "src/practicas/agregarPract.agregarPract",
+          "events": [
+            {
+              "httpApi": {
+                "path": "/practicas",
+                "method": "post"
+              }
+            }
+          ]
+        },
+        "obtenerPracticas": {
+          "handler": "src/practicas/obtenerPract.obtenerPract",
+          "events": [
+            {
+              "httpApi": {
+                "path": "/practicas",
+                "method": "get"
+              }
+            }
+          ]
+        },
+        "eliminarPractica": {
+          "handler": "src/practicas/eliminarPract.eliminarPract",
+          "events": [
+            {
+              "httpApi": {
+                "path": "/practicas/{id}",
+                "method": "delete"
+              }
+            }
+          ]
+        },
+        "actualizarPractica": {
+          "handler": "src/practicas/actualizarPract.actualizarPract",
+          "events": [
+            {
+              "httpApi": {
+                "path": "/practicas/{id}",
+                "method": "put"
+              }
+            }
+          ]
+        },
+        "agregarUsoEquipo": {
+          "handler": "src/usoEquipo/agregarEquip.agregarEquip",
+          "events": [
+            {
+              "httpApi": {
+                "path": "/usoEquipo",
+                "method": "post"
+              }
+            }
+          ]
+        },
+        "obtenerUsoEquipo": {
+          "handler": "src/usoEquipo/obtenerEquip.obtenerEquip",
+          "events": [
+            {
+              "httpApi": {
+                "path": "/usoEquipo/{id}",
+                "method": "get"
+              }
+            }
+          ]
+        },
+        "eliminarUsoEquipo": {
+          "handler": "src/usoEquipo/eliminarEquip.eliminarEquip",
+          "events": [
+            {
+              "httpApi": {
+                "path": "/usoEquipo/{id}",
+                "method": "delete"
+              }
+            }
+          ]
+        },
+        "actualizarUsoEquipo": {
+          "handler": "src/usoEquipo/actualizarEquip.actualizarEquip",
+          "events": [
+            {
+              "httpApi": {
+                "path": "/usoEquipo/{id}",
+                "method": "put"
+              }
+            }
+          ]
+        }
+      }
+    },
+    "provider": {
+      "name": "aws",
+      "runtime": "nodejs20.x",
+      "iamRoleStatements": [
+        {
+          "Effect": "Allow",
+          "Action": [
+            "dynamodb:*"
+          ],
+          "Resource": [
+            "arn:aws:dynamodb:us-east-1:469647637171:table/usuario",
+            "arn:aws:dynamodb:us-east-1:469647637171:table/laboratorios",
+            "arn:aws:dynamodb:us-east-1:469647637171:table/asignaturas",
+            "arn:aws:dynamodb:us-east-1:469647637171:table/parciales",
+            "arn:aws:dynamodb:us-east-1:469647637171:table/practicas",
+            "arn:aws:dynamodb:us-east-1:469647637171:table/usoEquipo"
+          ]
+        }
+      ]
+    },
+    "error": {
+      "message": "You are not a member of the Org \"melanymoreira\". Verify the \"org\" in your Service configuration (e.g. serverless.yml) or that you're providing manually is one your User Account or License Key has access to. Lastly, check the .serverlessrc file in the home directory of your machine to better understand what user account or License Key you are currently using. You can run \"serverless login\" to change the user account or License Key you are using.",
+      "stack": "Error: You are not a member of the Org \"melanymoreira\". Verify the \"org\" in your Service configuration (e.g. serverless.yml) or that you're providing manually is one your User Account or License Key has access to. Lastly, check the .serverlessrc file in the home directory of your machine to better understand what user account or License Key you are currently using. You can run \"serverless login\" to change the user account or License Key you are using.\n    at Authentication.getAuthenticatedData (file:///C:/Users/grego/.serverless/releases/4.17.1/package/dist/sf-core.js:830:3154)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async Authentication.authenticate (file:///C:/Users/grego/.serverless/releases/4.17.1/package/dist/sf-core.js:830:22245)\n    at async TraditionalRunner.resolveVariablesAndAuthenticate (file:///C:/Users/grego/.serverless/releases/4.17.1/package/dist/sf-core.js:834:2379)\n    at async TraditionalRunner.run (file:///C:/Users/grego/.serverless/releases/4.17.1/package/dist/sf-core.js:1407:27919)\n    at async route (file:///C:/Users/grego/.serverless/releases/4.17.1/package/dist/sf-core.js:1582:2878)\n    at async Object.run (file:///C:/Users/grego/.serverless/releases/4.17.1/package/dist/sf-core.js:1583:3661)\n    at async run2 (file:///C:/Users/grego/.serverless/releases/4.17.1/package/dist/sf-core.js:1583:4815)"
+    },
+    "serviceRawFile": "org: melanymoreira\r\napp: servidor-melanymoreira\r\nservice: servidor-melanymoreira\r\nprovider:\r\n  name: aws\r\n  runtime: nodejs20.x\r\n  iamRoleStatements:\r\n    - Effect: Allow\r\n      Action:\r\n        - dynamodb:*\r\n      Resource:\r\n          - arn:aws:dynamodb:us-east-1:469647637171:table/usuario\r\n          - arn:aws:dynamodb:us-east-1:469647637171:table/laboratorios\r\n          - arn:aws:dynamodb:us-east-1:469647637171:table/asignaturas\r\n          - arn:aws:dynamodb:us-east-1:469647637171:table/parciales\r\n          - arn:aws:dynamodb:us-east-1:469647637171:table/practicas\r\n          - arn:aws:dynamodb:us-east-1:469647637171:table/usoEquipo\r\n\r\nfunctions:\r\n  # Funciones para la tabla usuarios\r\n  agregarUser:\r\n    handler: src/usuarios/agregarUser.agregarUser\r\n    events:\r\n      - httpApi:\r\n          path: /usuario\r\n          method: post\r\n\r\n  obtenerUser:\r\n    handler: src/usuarios/obtenerUser.obtenerUser\r\n    events:\r\n      - httpApi:\r\n          path: /usuario/{id}\r\n          method: get\r\n\r\n  eliminarUser:\r\n    handler: src/usuarios/eliminarUser.eliminarUser\r\n    events:\r\n      - httpApi:\r\n          path: /usuario/{id}\r\n          method: delete\r\n\r\n  actualizarUser:\r\n    handler: src/usuarios/actualizarUser.actualizarUser\r\n    events:\r\n      - httpApi:\r\n          path: /usuario/{id}\r\n          method: put\r\n  \r\n  # Funciones para la tabla laboratorios\r\n  agregarLaboratorio:\r\n    handler: src/laboratorios/agregarLab.agregarLab\r\n    events:\r\n      - httpApi:\r\n          path: /laboratorio\r\n          method: post\r\n  \r\n  obtenerLaboratorio:\r\n    handler: src/laboratorios/obtenerLab.obtenerLab\r\n    events:\r\n      - httpApi:\r\n          path: /laboratorio/{id}\r\n          method: get\r\n  \r\n  eliminarLaboratorio:\r\n    handler: src/laboratorios/eliminarLab.eliminarLab\r\n    events:\r\n      - httpApi:\r\n          path: /laboratorio/{id}\r\n          method: delete\r\n  \r\n  actualizarLaboratorio:\r\n    handler: src/laboratorios/actualizarLab.actualizarLab\r\n    events:\r\n      - httpApi:\r\n          path: /laboratorio/{id}\r\n          method: put\r\n\r\n  # Funciones para la tabla asignaturas\r\n  agregarAsignatura:\r\n    handler: src/asignaturas/agregarAsig.agregarAsig\r\n    events:\r\n      - httpApi:\r\n          path: /asignatura\r\n          method: post\r\n  \r\n  obtenerAsignatura:\r\n    handler: src/asignaturas/obtenerAsig.obtenerAsig\r\n    events:\r\n      - httpApi:\r\n          path: /asignatura/{id}\r\n          method: get\r\n\r\n  eliminarAsignatura:\r\n    handler: src/asignaturas/eliminarAsig.eliminarAsig\r\n    events:\r\n      - httpApi:\r\n          path: /asignatura/{id}\r\n          method: delete\r\n  \r\n  actualizarAsignatura:\r\n    handler: src/asignaturas/actualizarAsig.actualizarAsig\r\n    events:\r\n      - httpApi:\r\n          path: /asignatura/{id}\r\n          method: put\r\n\r\n  # Funciones para la tabla parciales\r\n  agregarParcial:\r\n    handler: src/parciales/agregarPar.agregarPar  \r\n    events:\r\n      - httpApi:\r\n          path: /parciales\r\n          method: post\r\n\r\n  obtenerParciales:\r\n    handler: src/parciales/obtenerPar.obtenerPar\r\n    events:\r\n      - httpApi:\r\n          path: /parciales\r\n          method: get\r\n  \r\n  eliminarParcial:\r\n    handler: src/parciales/eliminarPar.eliminarPar\r\n    events:\r\n      - httpApi:\r\n          path: /parciales/{id}\r\n          method: delete\r\n  \r\n  actualizarParcial:\r\n    handler: src/parciales/actualizarPar.actualizarPar\r\n    events:\r\n      - httpApi:\r\n          path: /parciales/{id}\r\n          method: put\r\n\r\n  # Funciones para la tabla practicas\r\n  agregarPractica:\r\n    handler: src/practicas/agregarPract.agregarPract  \r\n    events:\r\n      - httpApi:\r\n          path: /practicas\r\n          method: post\r\n\r\n  obtenerPracticas:\r\n    handler: src/practicas/obtenerPract.obtenerPract\r\n    events:\r\n      - httpApi:\r\n          path: /practicas\r\n          method: get\r\n\r\n  eliminarPractica:\r\n    handler: src/practicas/eliminarPract.eliminarPract\r\n    events:\r\n      - httpApi:\r\n          path: /practicas/{id}\r\n          method: delete\r\n\r\n  actualizarPractica:\r\n    handler: src/practicas/actualizarPract.actualizarPract\r\n    events:\r\n      - httpApi:\r\n          path: /practicas/{id}\r\n          method: put\r\n\r\n  # Funciones para la tabla usoEquipo\r\n  agregarUsoEquipo:\r\n    handler: src/usoEquipo/agregarEquip.agregarEquip\r\n    events:\r\n      - httpApi:\r\n          path: /usoEquipo\r\n          method: post\r\n\r\n  obtenerUsoEquipo:\r\n    handler: src/usoEquipo/obtenerEquip.obtenerEquip\r\n    events:\r\n      - httpApi:\r\n          path: /usoEquipo/{id}\r\n          method: get\r\n\r\n  eliminarUsoEquipo:\r\n    handler: src/usoEquipo/eliminarEquip.eliminarEquip\r\n    events:\r\n      - httpApi:\r\n          path: /usoEquipo/{id}\r\n          method: delete\r\n\r\n  actualizarUsoEquipo:\r\n    handler: src/usoEquipo/actualizarEquip.actualizarEquip\r\n    events:\r\n      - httpApi:\r\n          path: /usoEquipo/{id}\r\n          method: put\r\n",
+    "command": [
+      "deploy"
+    ],
+    "options": {},
+    "serviceProviderAwsCfStackId": null,
+    "serviceProviderAwsCfStackCreated": null,
+    "serviceProviderAwsCfStackUpdated": null,
+    "serviceProviderAwsCfStackStatus": null,
+    "serviceProviderAwsCfStackOutputs": null
   }
 }
